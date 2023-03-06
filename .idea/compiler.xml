@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="roaker-log-starter" />
+        <module name="leaf-boot-starter" />
+        <module name="roaker-db-starter" />
+        <module name="leaf-core" />
+        <module name="leaf-server" />
+        <module name="hello-blockchain" />
+        <module name="roaker-core-commons" />
+        <module name="roaker-user-center-api" />
+        <module name="roaker-user-center-server" />
+        <module name="roaker-infra-seq" />
+        <module name="roaker-web-starter" />
+        <module name="roaker-redis-starter" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="future-common" target="1.8" />
+      <module name="roaker-sso-api" target="1.8" />
+      <module name="roaker-sso-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

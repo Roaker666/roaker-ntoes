@@ -1,0 +1,4 @@
+com.roaker.notes.commons.web.jackson.config.RoakerJacksonAutoConfiguration
+com.roaker.notes.commons.web.swagger.config.RoakerSwaggerAutoConfiguration
+com.roaker.notes.commons.web.xss.config.RoakerXssAutoConfiguration
+com.roaker.notes.commons.web.RoakerWebAutoConfiguration

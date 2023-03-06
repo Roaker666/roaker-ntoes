@@ -1,0 +1,5 @@
+org.springframework.context.ApplicationContextInitializer=\
+com.roaker.notes.commons.log.config.TtlMDCAdapterInitializer
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.roaker.notes.commons.log.LogAutoConfigure
