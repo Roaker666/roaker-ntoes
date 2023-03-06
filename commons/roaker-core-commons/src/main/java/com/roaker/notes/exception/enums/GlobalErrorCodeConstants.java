@@ -31,10 +31,13 @@ public interface GlobalErrorCodeConstants {
 
     ErrorCode INTERNAL_SERVER_ERROR = new ErrorCode(500, "系统异常");
     ErrorCode NOT_IMPLEMENTED = new ErrorCode(501, "功能未实现/未开启");
+    ErrorCode SEQ_SERVER_ERROR = new ErrorCode(502, "Seq-service服务调用异常");
+
 
     // ========== 自定义错误段 ==========
     ErrorCode REPEATED_REQUESTS = new ErrorCode(900, "重复请求，请稍后重试"); // 重复请求
     ErrorCode DEMO_DENY = new ErrorCode(901, "演示模式，禁止写操作");
+
 
     ErrorCode UNKNOWN = new ErrorCode(999, "未知错误");
 

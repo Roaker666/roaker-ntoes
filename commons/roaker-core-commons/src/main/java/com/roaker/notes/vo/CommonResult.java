@@ -1,12 +1,12 @@
 package com.roaker.notes.vo;
 
+import cn.hutool.core.lang.Assert;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.roaker.notes.exception.ErrorCode;
 import com.roaker.notes.exception.ServerException;
 import com.roaker.notes.exception.ServiceException;
 import com.roaker.notes.exception.enums.GlobalErrorCodeConstants;
 import lombok.Data;
-import org.springframework.util.Assert;
 
 import java.io.Serializable;
 import java.util.Objects;

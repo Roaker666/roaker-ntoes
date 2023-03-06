@@ -12,9 +12,14 @@
     <artifactId>roaker-sso</artifactId>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>roaker-sso-api</module>
+        <module>roaker-sso-server</module>
+    </modules>
+
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

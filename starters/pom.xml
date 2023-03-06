@@ -16,11 +16,12 @@
         <module>roaker-db-starter</module>
         <module>roaker-redis-starter</module>
         <module>roaker-web-starter</module>
+        <module>rokaer-seq-starter</module>
     </modules>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

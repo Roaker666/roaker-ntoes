@@ -3,11 +3,10 @@ package com.roaker.notes.commons.log.trace;
 import cn.hutool.core.util.StrUtil;
 import com.roaker.notes.commons.log.properties.TraceProperties;
 import feign.RequestInterceptor;
+import jakarta.annotation.Resource;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.annotation.Resource;
 
 /**
  * feign拦截器，传递traceId

@@ -97,13 +97,14 @@
         <commons-collections4.version>4.4</commons-collections4.version>
         <hibernate.version>7.0.5.Final</hibernate.version>
         <perf4j.version>0.9.16</perf4j.version>
-        <mybatis.version>3.3.0</mybatis.version>
+        <mybatis.version>3.5.0</mybatis.version>
         <commons-io.version>2.11.0</commons-io.version>
         <jackson.version>2.14.1</jackson.version>
         <mybatis-spring.version>3.0.1</mybatis-spring.version>
         <mysql.version>8.0.31</mysql.version>
         <log4j.version>2.7</log4j.version>
         <nacos.version>2021.1</nacos.version>
+        <swagger-annotation.version>2.2.2</swagger-annotation.version>
     </properties>
 
     <dependencies>
@@ -318,6 +319,13 @@
                 <optional>true</optional>
                 <version>4.0.1</version>
             </dependency>
+
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-annotation.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-jdbc</artifactId>
