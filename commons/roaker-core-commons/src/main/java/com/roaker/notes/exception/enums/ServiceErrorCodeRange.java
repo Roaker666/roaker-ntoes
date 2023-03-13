@@ -18,7 +18,7 @@ package com.roaker.notes.exception.enums;
  * 第三段，3 位，模块
  *      不限制规则。
  *      一般建议，每个系统里面，可能有多个模块，可以再去做分段。以用户系统为例子：
- *          001 - OAuth2 模块
+ *          001 - Oauth2 模块
  *          002 - User 模块
  *          003 - MobileCode 模块
  * 第四段，3 位，错误码
