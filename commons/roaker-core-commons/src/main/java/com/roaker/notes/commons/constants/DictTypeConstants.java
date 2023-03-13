@@ -3,7 +3,7 @@ package com.roaker.notes.commons.constants;
 /**
  * System 字典类型的枚举类
  *
- * @author 芋道源码
+ * @author lei.rao
  */
 public interface DictTypeConstants {
 

@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Oauth2 客户端 Convert
  *
- * @author 芋道源码
+ * @author lei.rao
  */
 @Mapper
 public interface Oauth2ClientConvert {
