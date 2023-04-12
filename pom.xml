@@ -38,7 +38,7 @@
         <spring.cloud.version>4.0.1</spring.cloud.version>
         <!-- Web 相关 -->
         <springdoc.version>1.6.14</springdoc.version>
-        <knife4j.version>4.0.0</knife4j.version>
+        <knife4j.version>4.1.0</knife4j.version>
         <servlet.versoin>2.5</servlet.versoin>
         <!-- DB 相关 -->
         <druid.version>1.2.15</druid.version>
@@ -97,7 +97,7 @@
         <commons-collections4.version>4.4</commons-collections4.version>
         <hibernate.version>7.0.5.Final</hibernate.version>
         <perf4j.version>0.9.16</perf4j.version>
-        <mybatis.version>3.5.0</mybatis.version>
+        <mybatis.version>3.5.11</mybatis.version>
         <commons-io.version>2.11.0</commons-io.version>
         <jackson.version>2.14.1</jackson.version>
         <mybatis-spring.version>3.0.1</mybatis-spring.version>
@@ -105,6 +105,10 @@
         <log4j.version>2.7</log4j.version>
         <nacos.version>2021.1</nacos.version>
         <swagger-annotation.version>2.2.2</swagger-annotation.version>
+        <tink.version>1.2.2</tink.version>
+        <actable.version>1.5.0.RELEASE</actable.version>
+        <maven-compiler.version>3.10.1</maven-compiler.version>
+        <jansi.version>1.18</jansi.version>
     </properties>
 
     <dependencies>
@@ -180,10 +184,39 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct</artifactId>
-                <version>${mapstruct.version}</version>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>rokaer-seq-starter</artifactId>
+                <version>${project.version}</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.fusesource.jansi/jansi -->
+            <dependency>
+                <groupId>org.fusesource.jansi</groupId>
+                <artifactId>jansi</artifactId>
+                <version>${jansi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gitee.sunchenbin.mybatis.actable</groupId>
+                <artifactId>mybatis-enhance-actable</artifactId>
+                <version>${actable.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.baomidou</groupId>
+                        <artifactId>mybatis-plus-annotation</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-infra-encrypt-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.crypto.tink</groupId>
+                <artifactId>tink</artifactId>
+                <version>${tink.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct-processor</artifactId>
@@ -251,7 +284,6 @@
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-spring</artifactId>
                 <version>${mybatis-spring.version}</version>
-                <scope>test</scope>
             </dependency>
 
             <dependency>
@@ -263,6 +295,12 @@
             <dependency>
                 <groupId>com.roaker.notes</groupId>
                 <artifactId>leaf-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-loadbalancer-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -373,6 +411,18 @@
             </dependency>
 
             <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-commons</artifactId>
+                <version>${spring.cloud.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+                <version>${spring.cloud.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>io.github.openfeign</groupId>
                 <artifactId>feign-core</artifactId>
                 <optional>true</optional>
@@ -390,7 +440,7 @@
 
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
             </dependency>
             <dependency>
@@ -423,6 +473,11 @@
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId> <!-- 代码生成器，使用它解析表结构 -->
                 <version>${mybatis-plus-generator.version}</version>
             </dependency>
@@ -437,7 +492,6 @@
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson.version}</version>
             </dependency>
-
 
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -747,12 +801,40 @@
     </dependencyManagement>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler.version}</version>
+                <configuration>
+                    <fork>true</fork>
+                    <compilerArgs>
+                        <arg>--add-opens</arg>
+                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>
+                        <arg>--add-exports</arg>
+                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>
+                        <arg>--add-exports</arg>
+                        <arg>java.base/jdk.internal.misc=ALL-UNNAMED</arg>
+                        <arg>--add-opens</arg>
+                        <arg>java.base/java.lang.invoke=ALL-UNNAMED</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring.boot.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>com.spotify</groupId>
@@ -761,5 +843,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
     </build>
 </project>

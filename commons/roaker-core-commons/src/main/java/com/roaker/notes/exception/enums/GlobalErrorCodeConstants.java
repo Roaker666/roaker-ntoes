@@ -27,11 +27,15 @@ public interface GlobalErrorCodeConstants {
     ErrorCode LOCKED = new ErrorCode(423, "请求失败，请稍后重试"); // 并发请求，不允许
     ErrorCode TOO_MANY_REQUESTS = new ErrorCode(429, "请求过于频繁，请稍后重试");
 
+    ErrorCode DATA_NOT_FOUND = new ErrorCode(440, "数据未找到");
+
     // ========== 服务端错误段 ==========
 
     ErrorCode INTERNAL_SERVER_ERROR = new ErrorCode(500, "系统异常");
     ErrorCode NOT_IMPLEMENTED = new ErrorCode(501, "功能未实现/未开启");
     ErrorCode SEQ_SERVER_ERROR = new ErrorCode(502, "Seq-service服务调用异常");
+    ErrorCode AUTH_SERVER_ERROR = new ErrorCode(503, "Seq-service服务调用异常");
+    ErrorCode ENCRYPT_SERVER_ERROR = new ErrorCode(503, "Encrypt-platform服务调用异常");
 
 
     // ========== 自定义错误段 ==========

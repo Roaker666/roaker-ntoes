@@ -1,12 +1,12 @@
 package com.roaker.notes.dynamic.enums;
 
 import com.google.common.collect.Sets;
+import jdk.internal.reflect.ConstructorAccessor;
+import jdk.internal.reflect.FieldAccessor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
-import sun.reflect.ConstructorAccessor;
-import sun.reflect.FieldAccessor;
-import sun.reflect.ReflectionFactory;
+import jdk.internal.reflect.ReflectionFactory;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;

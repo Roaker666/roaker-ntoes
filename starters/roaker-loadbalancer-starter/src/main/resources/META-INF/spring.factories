@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.roaker.notes.commons.lb.RestTemplateAutoConfigure,\
+com.roaker.notes.commons.lb.config.VersionIsolationAutoConfig

@@ -20,6 +20,16 @@
     <dependencies>
         <dependency>
             <groupId>com.roaker.notes</groupId>
+            <artifactId>rokaer-seq-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.roaker.notes</groupId>
+            <artifactId>roaker-loadbalancer-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.roaker.notes</groupId>
             <artifactId>roaker-core-commons</artifactId>
         </dependency>
 
@@ -37,7 +47,6 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -47,6 +56,31 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-extension</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mybatis</groupId>
+                    <artifactId>mybatis</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gitee.sunchenbin.mybatis.actable</groupId>
+            <artifactId>mybatis-enhance-actable</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
     </dependencies>
 

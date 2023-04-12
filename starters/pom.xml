@@ -17,6 +17,8 @@
         <module>roaker-redis-starter</module>
         <module>roaker-web-starter</module>
         <module>rokaer-seq-starter</module>
+        <module>roaker-sms-starter</module>
+        <module>roaker-loadbalancer-starter</module>
     </modules>
 
     <properties>
@@ -25,4 +27,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
 </project>

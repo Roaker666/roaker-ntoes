@@ -1,0 +1,17 @@
+logging:
+  config: classpath:logback/logback-spring.xml
+roaker:
+  trace: false
+  audit-log:
+    enable: true
+    logType: db
+    datasource:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      jdbcUrl: jdbc:mysql://localhost:3307/roaker-common?useUnicode=true&characterEncoding=utf8
+      username: root
+      password: root
+
+# Lock4j 配置项
+lock4j:
+  acquire-timeout: 3000 # 获取分布式锁超时时间，默认为 3000 毫秒
+  expire: 30000 # 分布式锁的超时时间，默认为 30 毫秒

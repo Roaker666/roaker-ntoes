@@ -21,9 +21,6 @@ import javax.sql.DataSource;
  * @since 1.0
  */
 @Slf4j
-@Service
-@ConditionalOnProperty(name = "zlt.audit-log.log-type", havingValue = "db")
-@ConditionalOnClass(JdbcTemplate.class)
 public class DbAuditServiceImpl implements IAuditService {
     private static final String INSERT_SQL = " insert into sys_logger " +
             " (application_name, class_name, method_name, user_id, user_name, client_id, operation, timestamp) " +

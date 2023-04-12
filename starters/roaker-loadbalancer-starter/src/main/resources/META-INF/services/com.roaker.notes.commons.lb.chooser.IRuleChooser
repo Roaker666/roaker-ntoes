@@ -1,0 +1,2 @@
+com.roaker.notes.commons.lb.chooser.RandomRuleChooser
+com.roaker.notes.commons.lb.chooser.RoundRobinRuleChooser

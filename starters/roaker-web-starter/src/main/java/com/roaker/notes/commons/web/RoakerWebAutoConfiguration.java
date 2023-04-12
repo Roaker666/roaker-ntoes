@@ -7,13 +7,14 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @author lei.rao
  * @since 1.0
  */
-@AutoConfiguration
+@Configuration
 @EnableConfigurationProperties(WebProperties.class)
 public class RoakerWebAutoConfiguration implements WebMvcConfigurer {
     @Value("${spring.application.name}")

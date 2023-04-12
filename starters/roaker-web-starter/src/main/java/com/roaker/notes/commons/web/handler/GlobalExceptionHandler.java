@@ -2,7 +2,6 @@ package com.roaker.notes.commons.web.handler;
 
 import com.roaker.notes.exception.ServiceException;
 import com.roaker.notes.vo.CommonResult;
-import io.github.resilience4j.ratelimiter.RequestNotPermitted;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -67,9 +66,9 @@ public class GlobalExceptionHandler {
         if (ex instanceof HttpRequestMethodNotSupportedException) {
             return httpRequestMethodNotSupportedExceptionHandler((HttpRequestMethodNotSupportedException) ex);
         }
-        if (ex instanceof RequestNotPermitted) {
-            return requestNotPermittedExceptionHandler(request, (RequestNotPermitted) ex);
-        }
+//        if (ex instanceof RequestNotPermitted) {
+//            return requestNotPermittedExceptionHandler(request, (RequestNotPermitted) ex);
+//        }
         if (ex instanceof ServiceException) {
             return serviceExceptionHandler((ServiceException) ex);
         }
@@ -164,14 +163,14 @@ public class GlobalExceptionHandler {
         return CommonResult.error(METHOD_NOT_ALLOWED.getCode(), String.format("请求方法不正确:%s", ex.getMessage()));
     }
 
-    /**
-     * 处理 Resilience4j 限流抛出的异常
-     */
-    @ExceptionHandler(value = RequestNotPermitted.class)
-    public CommonResult<?> requestNotPermittedExceptionHandler(HttpServletRequest req, RequestNotPermitted ex) {
-        log.warn("[requestNotPermittedExceptionHandler][url({}) 访问过于频繁]", req.getRequestURL(), ex);
-        return CommonResult.error(TOO_MANY_REQUESTS);
-    }
+//    /**
+//     * 处理 Resilience4j 限流抛出的异常
+//     */
+//    @ExceptionHandler(value = RequestNotPermitted.class)
+//    public CommonResult<?> requestNotPermittedExceptionHandler(HttpServletRequest req, RequestNotPermitted ex) {
+//        log.warn("[requestNotPermittedExceptionHandler][url({}) 访问过于频繁]", req.getRequestURL(), ex);
+//        return CommonResult.error(TOO_MANY_REQUESTS);
+//    }
 
 
     /**

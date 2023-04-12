@@ -3,6 +3,7 @@ package com.roaker.notes.commons.db.core.dataobject;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import lombok.Data;
 import org.apache.ibatis.type.JdbcType;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
  * @author lei.rao
  * @since 1.0
  */
+@Data
 public abstract class BaseDO implements Serializable {
     /**
      * 创建时间
@@ -35,9 +37,22 @@ public abstract class BaseDO implements Serializable {
      */
     @TableField(fill = FieldFill.INSERT_UPDATE, jdbcType = JdbcType.VARCHAR)
     private String modifier;
+
+    @TableField(fill = FieldFill.INSERT, jdbcType = JdbcType.INTEGER)
+    private Integer version;
     /**
      * 是否删除
      */
     @TableLogic
+    @TableField
     private Boolean deleted;
+
+    public void setDefault() {
+        this.setCreator("sys");
+        this.setCreateTime(LocalDateTime.now());
+        this.setModifier("sys");
+        this.setUpdateTime(LocalDateTime.now());
+        this.setVersion(0);
+        this.setDeleted(false);
+    }
 }

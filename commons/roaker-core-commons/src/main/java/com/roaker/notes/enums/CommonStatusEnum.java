@@ -1,8 +1,10 @@
 package com.roaker.notes.enums;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.roaker.notes.dynamic.enums.CommonEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.checkerframework.common.value.qual.EnumVal;
 
 import java.util.Arrays;
 
@@ -20,6 +22,7 @@ public enum CommonStatusEnum implements CommonEnum {
     /**
      * 状态值
      */
+    @EnumValue
     private final Integer code;
     /**
      * 状态名

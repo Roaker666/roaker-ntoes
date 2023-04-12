@@ -18,7 +18,7 @@ public class AuditLogProperties {
     /**
      * 是否开启审计日志
      */
-    private Boolean enabled = true;
+    private Boolean enable = true;
     /**
      * 日志记录类型(logger/redis/db/es)
      */

@@ -7,6 +7,7 @@ import com.roaker.notes.exception.ServerException;
 import com.roaker.notes.exception.ServiceException;
 import com.roaker.notes.exception.enums.GlobalErrorCodeConstants;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -17,6 +18,7 @@ import java.util.Objects;
  * @param <T> 数据泛型
  */
 @Data
+@Accessors(chain = true)
 public class CommonResult<T> implements Serializable {
 
     /**

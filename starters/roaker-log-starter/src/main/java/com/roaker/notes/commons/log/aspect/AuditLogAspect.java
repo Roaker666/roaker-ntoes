@@ -29,7 +29,6 @@ import java.time.LocalDateTime;
  */
 @Slf4j
 @Aspect
-@Component
 @ConditionalOnClass({HttpServletRequest.class, RequestContextHolder.class})
 public class AuditLogAspect {
     @Value("${spring.application.name}")
@@ -55,7 +54,7 @@ public class AuditLogAspect {
     @Before("@within(auditLog) || @annotation(auditLog)")
     public void beforeMethod(JoinPoint joinPoint, AuditLog auditLog) {
         //判断功能是否开启
-        if (auditLogProperties.getEnabled()) {
+        if (auditLogProperties.getEnable()) {
             if (auditService == null) {
                 log.warn("AuditLogAspect - auditService is null");
                 return;

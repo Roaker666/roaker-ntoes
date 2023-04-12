@@ -13,8 +13,6 @@ import java.time.format.DateTimeFormatter;
  * @since 1.0
  */
 @Slf4j
-@Service
-@ConditionalOnProperty(name = "zlt.audit-log.log-type", havingValue = "logger", matchIfMissing = true)
 public class LoggerAuditServiceImpl implements IAuditService {
     private static final String MSG_PATTERN = "{}|{}|{}|{}|{}|{}|{}|{}";
 

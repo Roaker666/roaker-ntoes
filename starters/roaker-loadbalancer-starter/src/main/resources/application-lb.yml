@@ -1,0 +1,12 @@
+roaker:
+  loadbalance:
+    isolation:
+      enabled: true
+      chooser: roundRobin
+    version: 1.0.0
+    rest-template:
+    max-total: 200
+    read-timeout: 35000
+    write-timeout: 35000
+    connect-timeout: 10000
+    keep-alive-duration: 300000

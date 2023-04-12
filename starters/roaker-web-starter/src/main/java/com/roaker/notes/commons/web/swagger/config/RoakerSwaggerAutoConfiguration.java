@@ -19,6 +19,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 
 import java.util.HashMap;
@@ -35,7 +36,7 @@ import java.util.Optional;
  *
  * @author 芋道源码
  */
-@AutoConfiguration
+@Configuration
 @ConditionalOnClass({OpenAPI.class})
 @EnableConfigurationProperties(SwaggerProperties.class)
 @ConditionalOnProperty(prefix = "springdoc.api-docs", name = "enabled", havingValue = "true", matchIfMissing = true)
@@ -80,22 +81,6 @@ public class RoakerSwaggerAutoConfiguration {
                 .in(SecurityScheme.In.HEADER); // token 所在位置
         securitySchemes.put(HttpHeaders.AUTHORIZATION, securityScheme);
         return securitySchemes;
-    }
-
-    /**
-     * 自定义 OpenAPI 处理器
-     */
-    @Bean
-    public OpenAPIService openApiBuilder(Optional<OpenAPI> openAPI,
-                                         SecurityService securityParser,
-                                         SpringDocConfigProperties springDocConfigProperties,
-                                         PropertyResolverUtils propertyResolverUtils,
-                                         Optional<List<OpenApiBuilderCustomizer>> openApiBuilderCustomizers,
-                                         Optional<List<ServerBaseUrlCustomizer>> serverBaseUrlCustomizers,
-                                         Optional<JavadocProvider> javadocProvider) {
-
-        return new OpenAPIService(openAPI, securityParser, springDocConfigProperties,
-                propertyResolverUtils, openApiBuilderCustomizers, serverBaseUrlCustomizers, javadocProvider);
     }
 
     // ========== 分组 OpenAPI 配置 ==========

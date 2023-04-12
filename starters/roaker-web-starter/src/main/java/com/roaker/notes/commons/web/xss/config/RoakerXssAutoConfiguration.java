@@ -15,11 +15,12 @@ import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilde
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.util.PathMatcher;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
-@AutoConfiguration
+@Configuration
 @EnableConfigurationProperties(XssProperties.class)
 public class RoakerXssAutoConfiguration implements WebMvcConfigurer {
 
@@ -42,7 +43,7 @@ public class RoakerXssAutoConfiguration implements WebMvcConfigurer {
     @Bean
     @ConditionalOnMissingBean(name = "xssJacksonCustomizer")
     @ConditionalOnBean(ObjectMapper.class)
-    @ConditionalOnProperty(value = "yudao.xss.enable", havingValue = "true")
+    @ConditionalOnProperty(value = "roaker.xss.enable", havingValue = "true")
     public Jackson2ObjectMapperBuilderCustomizer xssJacksonCustomizer(XssCleaner xssCleaner) {
         // 在反序列化时进行 xss 过滤，可以替换使用 XssStringJsonSerializer，在序列化时进行处理
         return builder -> builder.deserializerByType(String.class, new XssStringJsonDeserializer(xssCleaner));

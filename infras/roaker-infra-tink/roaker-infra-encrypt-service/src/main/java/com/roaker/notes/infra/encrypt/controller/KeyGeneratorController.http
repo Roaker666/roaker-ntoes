@@ -1,0 +1,29 @@
+### 请求 密钥生成接口 => 成功
+POST {{appApi}}/encrypt/v1/generateKey
+Content-Type: application/json
+{
+  "sysCode": "authentication-center",
+  "dataType": 0,
+  "keyType": 3,
+  "randomKey": "authentication-center"
+}
+
+
+### 请求 密码第一次加密密钥 => 成功
+POST {{appApi}}/encrypt/v1/generateKey
+Content-Type: application/json
+{
+  "sysCode": "encrypt-platform-service",
+  "keyType": 2,
+  "randomKey": "encrypt-platform-service"
+}
+
+### 请求 密码第二次加密密钥 => 成功
+POST {{appApi}}/encrypt/v1/generateKey
+Content-Type: application/json
+{
+  "sysCode": "encrypt-platform-service",
+  "dataType": 100,
+  "keyType": 3,
+  "randomKey": "encrypt-platform-service"
+}

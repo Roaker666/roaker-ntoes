@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.roaker.notes.ac.api.enums.Oauth2GrantTypeEnum;
 import com.roaker.notes.commons.db.core.dataobject.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -63,7 +64,7 @@ public class Oauth2ClientDO extends BaseDO {
     @TableField(typeHandler = JacksonTypeHandler.class)
     private List<String> redirectUris;
     /**
-     * 授权类型（模式） {@link com.roaker.notes.ac.api.enums.oath2.Oauth2GrantTypeEnum}
+     * 授权类型（模式） {@link Oauth2GrantTypeEnum}
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
     private List<String> authorizedGrantTypes;

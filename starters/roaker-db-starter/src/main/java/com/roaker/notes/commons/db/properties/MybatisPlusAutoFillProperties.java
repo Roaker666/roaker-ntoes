@@ -9,9 +9,9 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
  * @author lei.rao
  * @since 1.0
  */
-@Setter
 @Getter
-@ConfigurationProperties(prefix = "zlt.mybatis-plus.auto-fill")
+@Setter
+@ConfigurationProperties(prefix = "roaker.mybatis-plus.auto-fill")
 @RefreshScope
 public class MybatisPlusAutoFillProperties {
     /**
