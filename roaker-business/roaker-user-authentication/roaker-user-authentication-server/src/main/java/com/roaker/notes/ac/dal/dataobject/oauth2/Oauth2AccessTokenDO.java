@@ -1,10 +1,13 @@
 package com.roaker.notes.ac.dal.dataobject.oauth2;
 
-import com.baomidou.mybatisplus.annotation.KeySequence;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import com.gitee.sunchenbin.mybatis.actable.annotation.IsAutoIncrement;
+import com.gitee.sunchenbin.mybatis.actable.annotation.IsNotNull;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import com.roaker.notes.commons.db.core.dataobject.BaseDO;
+import com.roaker.notes.enums.UserTypeEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -25,26 +28,35 @@ public class Oauth2AccessTokenDO extends BaseDO {
     /**
      * 编号，数据库递增ID
      */
+    @TableId(type = IdType.AUTO)
+    @IsAutoIncrement
+    @IsNotNull
     private Long id;
     /**
      * 访问令牌
      */
+    @TableField
     private String accessToken;
     /**
      * 刷新令牌
      */
+    @TableField
     private String refreshToken;
     /**
      * 用户编号
      */
+    @TableField
     private Long userId;
     /**
      * 用户类型
      */
-    private Integer userType;
+    @TableField
+    @ColumnType(value = MySqlTypeConstant.INT)
+    private UserTypeEnum userType;
     /**
      * 客户端编号
      */
+    @TableField
     private String clientId;
     /**
      * 授权范围
@@ -54,6 +66,7 @@ public class Oauth2AccessTokenDO extends BaseDO {
     /**
      * 过期时间
      */
+    @TableField
     private LocalDateTime expiresTime;
 
 }

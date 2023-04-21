@@ -5,6 +5,7 @@ import com.roaker.notes.ac.dal.dataobject.oauth2.Oauth2CodeDO;
 import com.roaker.notes.ac.dal.mapper.oauth2.Oauth2CodeMapper;
 import com.roaker.notes.ac.service.oauth2.Oauth2CodeService;
 import com.roaker.notes.commons.utils.date.DateUtils;
+import com.roaker.notes.enums.UserTypeEnum;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -37,7 +38,7 @@ public class Oauth2CodeServiceImpl implements Oauth2CodeService {
     public Oauth2CodeDO createAuthorizationCode(Long userId, Integer userType, String clientId,
                                                 List<String> scopes, String redirectUri, String state) {
         Oauth2CodeDO codeDO = new Oauth2CodeDO().setCode(generateCode())
-                .setUserId(userId).setUserType(userType)
+                .setUserId(userId).setUserType(UserTypeEnum.valueOf(userType))
                 .setClientId(clientId).setScopes(scopes)
                 .setExpiresTime(LocalDateTime.now().plusSeconds(TIMEOUT))
                 .setRedirectUri(redirectUri).setState(state);

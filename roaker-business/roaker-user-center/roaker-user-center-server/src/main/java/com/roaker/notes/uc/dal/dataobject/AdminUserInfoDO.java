@@ -24,8 +24,8 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@BizKey(bizName = "share_user_info")
-public class ShareUserInfoDO extends BaseDO {
+@BizKey(bizName = "admin_user_info")
+public class AdminUserInfoDO extends BaseDO {
     @TableId(type = IdType.AUTO)
     @IsAutoIncrement
     @IsNotNull

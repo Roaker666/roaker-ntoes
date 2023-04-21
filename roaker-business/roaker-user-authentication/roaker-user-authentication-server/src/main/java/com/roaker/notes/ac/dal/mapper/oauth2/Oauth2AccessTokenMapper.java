@@ -1,6 +1,6 @@
 package com.roaker.notes.ac.dal.mapper.oauth2;
 
-import com.roaker.notes.ac.controller.admin.oauth2.vo.token.Oauth2AccessTokenPageReqVO;
+import com.roaker.notes.ac.controller.oauth2.admin.vo.token.Oauth2AccessTokenPageReqVO;
 import com.roaker.notes.ac.dal.dataobject.oauth2.Oauth2AccessTokenDO;
 import com.roaker.notes.commons.db.core.dataobject.PageResult;
 import com.roaker.notes.commons.db.core.mapper.BaseMapperX;

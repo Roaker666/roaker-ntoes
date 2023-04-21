@@ -1,9 +1,12 @@
 package com.roaker.notes.ac.dal.dataobject.oauth2;
 
-import com.baomidou.mybatisplus.annotation.KeySequence;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import com.gitee.sunchenbin.mybatis.actable.annotation.IsAutoIncrement;
+import com.gitee.sunchenbin.mybatis.actable.annotation.IsNotNull;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import com.roaker.notes.commons.db.core.dataobject.BaseDO;
+import com.roaker.notes.enums.UserTypeEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,22 +26,33 @@ public class Oauth2ApproveDO extends BaseDO {
     /**
      * 编号
      */
-    @TableId
+    @TableId(type = IdType.AUTO)
+    @IsAutoIncrement
+    @IsNotNull
     private Long id;
+    @TableField
     private Long userId;
-    private Integer userType;
+    @ColumnType(MySqlTypeConstant.INT)
+    @TableField
+    private UserTypeEnum userType;
+    @ColumnType
+    @TableField
     private String clientId;
     /**
      * 授权范围
      */
+    @TableField
     private String scope;
     /**
      * 是否接受
      * true - 接受
      */
+    @TableField
+    @ColumnType(MySqlTypeConstant.INT)
     private Boolean approved;
     /**
      * 过期时间
      */
+    @TableField
     private LocalDateTime expiresTime;
 }

@@ -9,6 +9,7 @@ import com.roaker.notes.ac.dal.mapper.oauth2.Oauth2ApproveMapper;
 import com.roaker.notes.ac.service.oauth2.Oauth2ApproveService;
 import com.roaker.notes.ac.service.oauth2.Oauth2ClientService;
 import com.roaker.notes.commons.utils.date.DateUtils;
+import com.roaker.notes.enums.UserTypeEnum;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -95,7 +96,7 @@ public class Oauth2ApproveServiceImpl implements Oauth2ApproveService {
     void saveApprove(Long userId, Integer userType, String clientId,
                      String scope, Boolean approved, LocalDateTime expireTime) {
         // 先更新
-        Oauth2ApproveDO approveDO = new Oauth2ApproveDO().setUserId(userId).setUserType(userType)
+        Oauth2ApproveDO approveDO = new Oauth2ApproveDO().setUserId(userId).setUserType(UserTypeEnum.valueOf(userType))
                 .setClientId(clientId).setScope(scope).setApproved(approved).setExpiresTime(expireTime);
         if (oauth2ApproveMapper.update(approveDO) == 1) {
             return;

@@ -65,7 +65,7 @@ public class Oauth2GrantServiceImpl implements Oauth2GrantService {
         }
 
         // 创建访问令牌
-        return oauth2TokenService.createAccessToken(codeDO.getUserId(), codeDO.getUserType(),
+        return oauth2TokenService.createAccessToken(codeDO.getUserId(), codeDO.getUserType().getCode(),
                 codeDO.getClientId(), codeDO.getScopes());
     }
 

@@ -1,8 +1,8 @@
 package com.roaker.notes.ac.service.oauth2;
 
-import com.roaker.notes.ac.controller.admin.oauth2.vo.client.Oauth2ClientCreateReqVO;
-import com.roaker.notes.ac.controller.admin.oauth2.vo.client.Oauth2ClientPageReqVO;
-import com.roaker.notes.ac.controller.admin.oauth2.vo.client.Oauth2ClientUpdateReqVO;
+import com.roaker.notes.ac.controller.oauth2.admin.vo.client.Oauth2ClientCreateReqVO;
+import com.roaker.notes.ac.controller.oauth2.admin.vo.client.Oauth2ClientPageReqVO;
+import com.roaker.notes.ac.controller.oauth2.admin.vo.client.Oauth2ClientUpdateReqVO;
 import com.roaker.notes.ac.dal.dataobject.oauth2.Oauth2ClientDO;
 import com.roaker.notes.commons.db.core.dataobject.PageResult;
 import jakarta.validation.Valid;

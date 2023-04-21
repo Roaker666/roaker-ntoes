@@ -3,7 +3,7 @@ package com.roaker.notes.ac.service.oauth2.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
-import com.roaker.notes.ac.controller.admin.oauth2.vo.token.Oauth2AccessTokenPageReqVO;
+import com.roaker.notes.ac.controller.oauth2.admin.vo.token.Oauth2AccessTokenPageReqVO;
 import com.roaker.notes.ac.dal.dataobject.oauth2.Oauth2AccessTokenDO;
 import com.roaker.notes.ac.dal.dataobject.oauth2.Oauth2ClientDO;
 import com.roaker.notes.ac.dal.dataobject.oauth2.Oauth2RefreshTokenDO;
@@ -13,6 +13,7 @@ import com.roaker.notes.ac.service.oauth2.Oauth2ClientService;
 import com.roaker.notes.ac.service.oauth2.Oauth2TokenService;
 import com.roaker.notes.commons.db.core.dataobject.PageResult;
 import com.roaker.notes.commons.utils.date.DateUtils;
+import com.roaker.notes.enums.UserTypeEnum;
 import com.roaker.notes.exception.enums.GlobalErrorCodeConstants;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -146,7 +147,7 @@ public class Oauth2TokenServiceImpl implements Oauth2TokenService {
 
     private Oauth2RefreshTokenDO createOauth2RefreshToken(Long userId, Integer userType, Oauth2ClientDO clientDO, List<String> scopes) {
         Oauth2RefreshTokenDO refreshToken = new Oauth2RefreshTokenDO().setRefreshToken(generateRefreshToken())
-                .setUserId(userId).setUserType(userType)
+                .setUserId(userId).setUserType(UserTypeEnum.valueOf(userType))
                 .setClientId(clientDO.getClientId()).setScopes(scopes)
                 .setExpiresTime(LocalDateTime.now().plusSeconds(clientDO.getRefreshTokenValiditySeconds()));
         oauth2RefreshTokenMapper.insert(refreshToken);
