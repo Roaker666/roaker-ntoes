@@ -1,4 +1,4 @@
-package com.sankuai.inf.leaf.server.controller;
+package com.roaker.notes.infra.controller;
 
 import com.sankuai.inf.leaf.common.Result;
 import com.sankuai.inf.leaf.common.Status;
@@ -17,18 +17,18 @@ public class LeafController {
 
     @Autowired
     private SegmentService segmentService;
-    @Autowired
-    private SnowflakeService snowflakeService;
+//    @Autowired
+//    private SnowflakeService snowflakeService;
 
     @RequestMapping(value = "/api/segment/get/{key}")
     public String getSegmentId(@PathVariable("key") String key) {
         return get(key, segmentService.getId(key));
     }
 
-    @RequestMapping(value = "/api/snowflake/get/{key}")
-    public String getSnowflakeId(@PathVariable("key") String key) {
-        return get(key, snowflakeService.getId(key));
-    }
+//    @RequestMapping(value = "/api/snowflake/get/{key}")
+//    public String getSnowflakeId(@PathVariable("key") String key) {
+//        return get(key, snowflakeService.getId(key));
+//    }
 
     private String get(@PathVariable("key") String key, Result id) {
         Result result;

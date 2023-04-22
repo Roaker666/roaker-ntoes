@@ -3,3 +3,12 @@ server:
 spring:
   application:
     name: seq-service
+  main:
+    allow-bean-definition-overriding: true
+app:
+  id: ${spring.application.name}
+apollo:
+  meta: http://localhost:8080
+  bootstrap:
+    eagerLoad:
+      enabled: true

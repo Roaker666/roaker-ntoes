@@ -1,5 +1,6 @@
 package com.roaker.notes.infra.encrypt;
 
+import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import com.roaker.notes.commons.web.annotation.RoakerCloudApplication;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

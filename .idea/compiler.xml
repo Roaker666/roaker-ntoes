@@ -14,7 +14,6 @@
         <module name="leaf-boot-starter" />
         <module name="roaker-db-starter" />
         <module name="leaf-core" />
-        <module name="leaf-server" />
         <module name="hello-blockchain" />
         <module name="roaker-sso-server" />
         <module name="roaker-sms-starter" />
@@ -32,6 +31,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="future-common" target="1.8" />
+      <module name="leaf-server" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

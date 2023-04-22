@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -20,11 +21,11 @@ public class RoakerWebAutoConfiguration implements WebMvcConfigurer {
     @Value("${spring.application.name}")
     private String applicationName;
 
-    @Bean
-    public GlobalResponseBodyHandler globalResponseBodyHandler() {
-        return new GlobalResponseBodyHandler();
-    }
-
+//    @Bean
+//    public GlobalResponseBodyHandler globalResponseBodyHandler() {
+//        return new GlobalResponseBodyHandler();
+//    }
+//
     @Bean
     public GlobalExceptionHandler globalExceptionHandler() {
         return new GlobalExceptionHandler(applicationName);

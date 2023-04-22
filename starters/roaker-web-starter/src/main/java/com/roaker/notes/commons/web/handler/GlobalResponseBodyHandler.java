@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * 原因是，GlobalResponseBodyHandler 本质上是 AOP，它不应该改变 Controller 返回的数据结构
  *
  */
-@ControllerAdvice
+@ControllerAdvice(basePackages = "com.roaker.notes")
 public class GlobalResponseBodyHandler implements ResponseBodyAdvice {
 
     @Override

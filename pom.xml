@@ -109,6 +109,7 @@
         <actable.version>1.5.0.RELEASE</actable.version>
         <maven-compiler.version>3.10.1</maven-compiler.version>
         <jansi.version>1.18</jansi.version>
+        <apollo.version>2.1.0</apollo.version>
     </properties>
 
     <dependencies>
@@ -183,6 +184,18 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-freemarker</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.ctrip.framework.apollo/apollo-client -->
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>${apollo.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.roaker.notes</groupId>
                 <artifactId>rokaer-seq-starter</artifactId>

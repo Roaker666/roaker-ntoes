@@ -10,8 +10,7 @@ import org.springframework.stereotype.Component;
  * @date 2019/10/09
  */
 @Component
-@ConfigurationProperties(prefix = "leaf",ignoreUnknownFields = true)
-@PropertySource("classpath:leaf.properties")
+@ConfigurationProperties(prefix = "roaker.leaf",ignoreUnknownFields = true)
 public class LeafSpringBootProperties {
     private String name;
     private Segment segment;
