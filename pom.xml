@@ -33,8 +33,8 @@
         <lombok.version>1.18.24</lombok.version>
         <revision>1.7.0-snapshot</revision>
         <!-- 统一依赖管理 -->
-        <spring.boot.version>3.0.2</spring.boot.version>
-        <spring.version>6.0.4</spring.version>
+        <spring.boot.version>2.7.11</spring.boot.version>
+        <spring.version>5.3.27</spring.version>
         <spring.cloud.version>4.0.1</spring.cloud.version>
         <!-- Web 相关 -->
         <springdoc.version>1.6.14</springdoc.version>
@@ -110,7 +110,18 @@
         <maven-compiler.version>3.10.1</maven-compiler.version>
         <jansi.version>1.18</jansi.version>
         <apollo.version>2.1.0</apollo.version>
+        <maven-gpg.version>1.6</maven-gpg.version>
+        <maven-flatten.version>1.4.1</maven-flatten.version>
+        <!-- spring native -->
         <spring-native.version>0.12.2</spring-native.version>
+        <!-- Customize Spring Boot classifier, useful in order to avoid a clash between Spring Boot repackaging and native-image-maven-plugin -->
+        <repackage.classifier/>
+        <!-- `tiny` builder allows small footprint and reduced surface attack, you can also use `base` (the default) or `full` builders to have more tooling available in the image for an improved developer experience -->
+        <builder>paketobuildpacks/builder:tiny</builder>
+        <!-- -O1 is the default, but we specify it anyway as this property can't be empty. It's used by the -q commandline parameter to override the value with -Ob to enable quick build mode -->
+        <native.buildtools.buildArg>--no-fallback</native.buildtools.buildArg>
+        <native.buildtools.version>0.9.21</native.buildtools.version>
+        <junit-launcher.version>1.8.1</junit-launcher.version>
     </properties>
 
     <dependencies>
@@ -190,6 +201,11 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-launcher</artifactId>
+                <version>${junit-launcher.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework.experimental</groupId>
                 <artifactId>spring-native</artifactId>
                 <version>${spring-native.version}</version>
@@ -238,12 +254,6 @@
                 <groupId>com.google.crypto.tink</groupId>
                 <artifactId>tink</artifactId>
                 <version>${tink.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct-processor</artifactId>
-                <version>${mapstruct.version}</version>
             </dependency>
 
             <dependency>
@@ -850,7 +860,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
-                    <version>1.6</version>
+                    <version>${maven-gpg.version}</version>
                     <configuration>
                         <skip>true</skip>
                     </configuration>
@@ -858,32 +868,32 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>flatten-maven-plugins</artifactId>
-                    <version>1.4.1</version>
+                    <version>${maven-flatten.version}</version>
                     <configuration>
                         <skip>true</skip>
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>org.springframework.experimental</groupId>
-                    <artifactId>spring-aot-maven-plugin</artifactId>
-                    <version>0.12.2</version>
-                    <executions>
-                        <execution>
-                            <id>generate</id>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${docker-maven-plugin.version}</version>
                 </plugin>
-
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring.boot.version}</version>
+                    <executions>
+                        <execution>
+                            <id>repackage</id>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                     <configuration>
+                        <classifier>${repackage.classifier}</classifier>
                         <image>
-                            <builder>paketobuildpacks/builder:tiny</builder>
+                            <builder>${builder}</builder>
                             <env>
                                 <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
                             </env>
@@ -893,19 +903,83 @@
                 <plugin>
                     <groupId>org.graalvm.buildtools</groupId>
                     <artifactId>native-maven-plugin</artifactId>
-                    <version>0.9.21</version>
+                    <version>${native.buildtools.version}</version>
                     <extensions>true</extensions>
+                    <executions>
+                        <execution>
+                            <id>build-native</id>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                            <phase>package</phase>
+                        </execution>
+                        <execution>
+                            <id>test-native</id>
+                            <goals>
+                                <goal>test</goal>
+                            </goals>
+                            <phase>test</phase>
+                        </execution>
+                    </executions>
                     <configuration>
-                        <skipNativeTests>true</skipNativeTests>
+                        <buildArgs>
+                            <buildArg>${native.buildtools.buildArg}</buildArg>
+                        </buildArgs>
                     </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>com.spotify</groupId>
-                    <artifactId>docker-maven-plugin</artifactId>
-                    <version>${docker-maven-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
-
     </build>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-release</id>
+            <name>Spring release</name>
+            <url>https://repo.spring.io/release</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestone</id>
+            <name>Spring milestone</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-snapshot</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+    <repositories>
+        <repository>
+            <id>spring-release</id>
+            <name>Spring release</name>
+            <url>https://repo.spring.io/release</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestone</id>
+            <name>Spring milestone</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-snapshot</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
 </project>
