@@ -32,6 +32,11 @@
       <option name="url" value="https://nexus.sg.maribank.io/repository/maven-public" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="spring-milestone" />
+      <option name="name" value="Spring milestone" />
+      <option name="url" value="https://repo.spring.io/milestone" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="nexus-xu" />
       <option name="name" value="Nexus Central" />
       <option name="url" value="http://nexus-nonlive.uat.sg.maribank.io/repository/maven-public/" />
@@ -40,6 +45,11 @@
       <option name="id" value="nexus-xu" />
       <option name="name" value="Nexus Central" />
       <option name="url" value="https://nexus-nonlive.uat.sg.maribank.io/repository/maven-public" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="spring-release" />
+      <option name="name" value="Spring release" />
+      <option name="url" value="https://repo.spring.io/release" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />
@@ -65,6 +75,11 @@
       <option name="id" value="jboss.community" />
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="spring-snapshot" />
+      <option name="name" value="Spring Snapshots" />
+      <option name="url" value="https://repo.spring.io/snapshot" />
     </remote-repository>
   </component>
 </project>

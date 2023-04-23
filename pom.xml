@@ -33,7 +33,7 @@
         <lombok.version>1.18.24</lombok.version>
         <revision>1.7.0-snapshot</revision>
         <!-- 统一依赖管理 -->
-        <spring.boot.version>2.7.11</spring.boot.version>
+        <spring.boot.version>3.0.2</spring.boot.version>
         <spring.version>5.3.27</spring.version>
         <spring.cloud.version>4.0.1</spring.cloud.version>
         <!-- Web 相关 -->
@@ -119,16 +119,12 @@
         <!-- `tiny` builder allows small footprint and reduced surface attack, you can also use `base` (the default) or `full` builders to have more tooling available in the image for an improved developer experience -->
         <builder>paketobuildpacks/builder:tiny</builder>
         <!-- -O1 is the default, but we specify it anyway as this property can't be empty. It's used by the -q commandline parameter to override the value with -Ob to enable quick build mode -->
-        <native.buildtools.buildArg>--no-fallback</native.buildtools.buildArg>
+        <native.buildtools.buildArg>compile-no-fork</native.buildtools.buildArg>
         <native.buildtools.version>0.9.21</native.buildtools.version>
         <junit-launcher.version>1.8.1</junit-launcher.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-native</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
@@ -194,6 +190,10 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.experimental</groupId>
+            <artifactId>spring-native</artifactId>
         </dependency>
     </dependencies>
 
@@ -854,7 +854,6 @@
                 </configuration>
             </plugin>
         </plugins>
-
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -865,14 +864,14 @@
                         <skip>true</skip>
                     </configuration>
                 </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>flatten-maven-plugins</artifactId>
-                    <version>${maven-flatten.version}</version>
-                    <configuration>
-                        <skip>true</skip>
-                    </configuration>
-                </plugin>
+<!--                <plugin>-->
+<!--                    <groupId>org.codehaus.mojo</groupId>-->
+<!--                    <artifactId>flatten-maven-plugins</artifactId>-->
+<!--                    <version>${maven-flatten.version}</version>-->
+<!--                    <configuration>-->
+<!--                        <skip>true</skip>-->
+<!--                    </configuration>-->
+<!--                </plugin>-->
                 <plugin>
                     <groupId>com.spotify</groupId>
                     <artifactId>docker-maven-plugin</artifactId>
@@ -890,46 +889,70 @@
                             </goals>
                         </execution>
                     </executions>
-                    <configuration>
-                        <classifier>${repackage.classifier}</classifier>
-                        <image>
-                            <builder>${builder}</builder>
-                            <env>
-                                <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
-                            </env>
-                        </image>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.graalvm.buildtools</groupId>
-                    <artifactId>native-maven-plugin</artifactId>
-                    <version>${native.buildtools.version}</version>
-                    <extensions>true</extensions>
-                    <executions>
-                        <execution>
-                            <id>build-native</id>
-                            <goals>
-                                <goal>build</goal>
-                            </goals>
-                            <phase>package</phase>
-                        </execution>
-                        <execution>
-                            <id>test-native</id>
-                            <goals>
-                                <goal>test</goal>
-                            </goals>
-                            <phase>test</phase>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <buildArgs>
-                            <buildArg>${native.buildtools.buildArg}</buildArg>
-                        </buildArgs>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
+    <profiles>
+        <profile>
+            <id>native</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-maven-plugin</artifactId>
+                            <version>${spring.boot.version}</version>
+                            <configuration>
+                                <image>
+                                    <builder>paketobuildpacks/builder:tiny</builder>
+                                    <env>
+                                        <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+                                    </env>
+                                </image>
+                            </configuration>
+                            <executions>
+                                <execution>
+                                    <id>repackage</id>
+                                    <goals>
+                                        <goal>repackage</goal>
+                                    </goals>
+                                </execution>
+                                <execution>
+                                    <id>process-aot</id>
+                                    <goals>
+                                        <goal>process-aot</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.graalvm.buildtools</groupId>
+                            <artifactId>native-maven-plugin</artifactId>
+                            <version>${native.buildtools.version}</version>
+                            <extensions>true</extensions>
+                            <executions>
+                                <execution>
+                                    <id>build-native</id>
+                                    <goals>
+                                        <goal>compile-no-fork</goal>
+                                    </goals>
+                                    <phase>package</phase>
+                                </execution>
+                                <execution>
+                                    <id>test-native</id>
+                                    <goals>
+                                        <goal>test</goal>
+                                    </goals>
+                                    <phase>test</phase>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
     <pluginRepositories>
         <pluginRepository>
             <id>spring-release</id>

@@ -5,6 +5,7 @@ import com.roaker.notes.ac.dal.dataobject.oauth2.Oauth2AccessTokenDO;
 import com.roaker.notes.commons.db.core.dataobject.PageResult;
 import com.roaker.notes.commons.db.core.mapper.BaseMapperX;
 import com.roaker.notes.commons.db.core.query.LambdaQueryWrapperX;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  * @author lei.rao
  * @since 1.0
  */
+@Mapper
 public interface Oauth2AccessTokenMapper extends BaseMapperX<Oauth2AccessTokenDO> {
     default Oauth2AccessTokenDO selectByAccessToken(String accessToken) {
         return selectOne(Oauth2AccessTokenDO::getAccessToken, accessToken);

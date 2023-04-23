@@ -62,6 +62,7 @@ public class Oauth2AccessTokenDO extends BaseDO {
      * 授权范围
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
+    @ColumnType(MySqlTypeConstant.JSON)
     private List<String> scopes;
     /**
      * 过期时间

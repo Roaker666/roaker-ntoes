@@ -25,11 +25,11 @@ import static com.roaker.notes.vo.CommonResult.success;
 @Tag(name = "管理后台 - Oauth2.0 令牌")
 @RestController
 @RequestMapping("/admin-ua/oauth2-token")
-public class Oauth2TokenController {
+public class AdminOauth2TokenController {
     @Resource
     private Oauth2TokenService oauth2TokenService;
     @Resource
-    private AdminAuthService authService;
+    private AdminAuthService adminAuthService;
 
     @GetMapping("/page")
     @Operation(summary = "获得访问令牌分页", description = "只返回有效期内的")
@@ -42,7 +42,7 @@ public class Oauth2TokenController {
     @Operation(summary = "删除访问令牌")
     @Parameter(name = "accessToken", description = "访问令牌", required = true, example = "tudou")
     public CommonResult<Boolean> deleteAccessToken(@RequestParam("accessToken") String accessToken) {
-        authService.logout(accessToken, LoginLogTypeEnum.LOGOUT_DELETE.getCode());
+        adminAuthService.logout(accessToken, LoginLogTypeEnum.LOGOUT_DELETE.getCode());
         return success(true);
     }
 }

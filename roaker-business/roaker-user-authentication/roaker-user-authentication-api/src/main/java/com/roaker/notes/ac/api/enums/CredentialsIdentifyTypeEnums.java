@@ -1,5 +1,6 @@
 package com.roaker.notes.ac.api.enums;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.roaker.notes.dynamic.enums.CommonEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +14,7 @@ import lombok.Getter;
 public enum CredentialsIdentifyTypeEnums implements CommonEnum {
     PASSWORD(1, "Password"),
     PIN(2,"Pin");
+    @EnumValue
     private final Integer code;
 
     private final String name;

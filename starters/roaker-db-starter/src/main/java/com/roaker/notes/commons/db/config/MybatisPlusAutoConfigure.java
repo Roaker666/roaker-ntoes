@@ -32,7 +32,8 @@ import org.springframework.context.annotation.FilterType;
         excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = StartUpHandlerImpl.class)})
 @MapperScan(basePackages = {
         "com.gitee.sunchenbin.mybatis.actable.dao",
-        "com.roaker.notes.infra.encrypt.dal.mapper"
+        "com.roaker.notes.infra.encrypt.dal.mapper",
+        "com.roaker.notes.ac.dal.mapper",
 })
 public class MybatisPlusAutoConfigure {
 

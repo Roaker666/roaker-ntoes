@@ -35,20 +35,12 @@
     </dependencies>
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
         </plugins>
     </build>
     <profiles>
         <!-- Enable building a native image using a local installation of native-image with GraalVM native-maven-plugin -->
         <profile>
             <id>native</id>
-            <properties>
-                <!-- Avoid a clash between Spring Boot repackaging and native-maven-plugin -->
-                <repackage.classifier>exec</repackage.classifier>
-            </properties>
             <dependencies>
                 <!-- Required with Maven Surefire 2.x -->
                 <dependency>
@@ -64,12 +56,16 @@
                         <artifactId>spring-boot-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
-                        <groupId>org.springframework.experimental</groupId>
-                        <artifactId>spring-aot-maven-plugin</artifactId>
-                    </plugin>
-                    <plugin>
                         <groupId>org.graalvm.buildtools</groupId>
                         <artifactId>native-maven-plugin</artifactId>
+                        <version>${native.buildtools.version}</version>
+                        <configuration>
+                            <mainClass>com.roaker.notes.infra.SeqApplication</mainClass>
+                            <imageName>${artifactId}</imageName>
+                            <buildArgs>
+                                <buildArg>--verbose</buildArg>
+                            </buildArgs>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>

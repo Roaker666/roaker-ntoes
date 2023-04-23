@@ -1,6 +1,7 @@
 package com.roaker.notes.enums;
 
 import cn.hutool.core.util.ArrayUtil;
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.roaker.notes.commons.core.IntArrayValuable;
 import com.roaker.notes.dynamic.enums.CommonEnum;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ public enum UserTypeEnum implements CommonEnum, IntArrayValuable {
     /**
      * 类型
      */
+    @EnumValue
     private final Integer code;
     /**
      * 类型名

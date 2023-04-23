@@ -22,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +64,7 @@ public class Oauth2ClientServiceImpl implements Oauth2ClientService {
     @PostConstruct
     public void initLocalCache() {
         // 第一步：查询数据
-        List<Oauth2ClientDO> clients = oauth2ClientMapper.selectList();
+        List<Oauth2ClientDO> clients = new ArrayList<>();
         log.info("[initLocalCache][缓存 Oauth2 客户端，数量为:{}]", clients.size());
 
         // 第二步：构建缓存。
