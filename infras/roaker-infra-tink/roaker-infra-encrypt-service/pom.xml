@@ -42,6 +42,14 @@
             <groupId>com.roaker.notes</groupId>
             <artifactId>roaker-web-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.roaker.notes</groupId>
+            <artifactId>roaker-file-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+        </dependency>
     </dependencies>
 
 

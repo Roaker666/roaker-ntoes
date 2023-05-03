@@ -8,5 +8,7 @@ public interface ApplicationNameConstants {
     String SEQ_NAME = "seq-service";
     String AUTH_NAME = "roaker-user-authentication-server";
 
-    String ENCRYPT_NAME="encrypt-platform-service";
+    String ENCRYPT_NAME = "encrypt-platform-service";
+
+    String UC_NAME = "user-center";
 }

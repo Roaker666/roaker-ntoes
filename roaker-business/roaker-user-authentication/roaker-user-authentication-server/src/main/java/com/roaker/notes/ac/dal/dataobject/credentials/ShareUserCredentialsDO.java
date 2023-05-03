@@ -1,7 +1,6 @@
 package com.roaker.notes.ac.dal.dataobject.credentials;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.gitee.sunchenbin.mybatis.actable.annotation.Column;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.gitee.sunchenbin.mybatis.actable.annotation.IsAutoIncrement;
 import com.gitee.sunchenbin.mybatis.actable.annotation.IsNotNull;

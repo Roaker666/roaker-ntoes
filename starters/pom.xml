@@ -19,6 +19,7 @@
         <module>rokaer-seq-starter</module>
         <module>roaker-sms-starter</module>
         <module>roaker-loadbalancer-starter</module>
+        <module>roaker-file-starter</module>
     </modules>
 
     <properties>

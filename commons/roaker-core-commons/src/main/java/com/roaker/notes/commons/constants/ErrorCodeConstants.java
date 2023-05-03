@@ -33,7 +33,10 @@ public interface ErrorCodeConstants {
     ErrorCode ROLE_CAN_NOT_UPDATE_SYSTEM_TYPE_ROLE = new ErrorCode(1002002003, "不能操作类型为系统内置的角色");
     ErrorCode ROLE_IS_DISABLE = new ErrorCode(1002002004, "名字为【{}】的角色已被禁用");
     ErrorCode ROLE_ADMIN_CODE_ERROR = new ErrorCode(1002002005, "编码【{}】不能使用");
-
+    // ========= 文件相关 1001003000=================
+    ErrorCode FILE_PATH_EXISTS = new ErrorCode(1001003000, "文件路径已存在");
+    ErrorCode FILE_NOT_EXISTS = new ErrorCode(1001003001, "文件不存在");
+    ErrorCode FILE_IS_EMPTY = new ErrorCode(1001003002, "文件为空");
     // ========== 用户模块 1002003000 ==========
     ErrorCode USER_USERNAME_EXISTS = new ErrorCode(1002003000, "用户账号已经存在");
     ErrorCode USER_MOBILE_EXISTS = new ErrorCode(1002003001, "手机号已经存在");
@@ -162,5 +165,13 @@ public interface ErrorCodeConstants {
 
     // ========== 站内信发送 1002028000 ==========
     ErrorCode NOTIFY_SEND_TEMPLATE_PARAM_MISS = new ErrorCode(1002025000, "模板参数({})缺失");
+
+    // ========== 文件配置 1001006000 ==========
+    ErrorCode FILE_CONFIG_NOT_EXISTS = new ErrorCode(1001006000, "文件配置不存在");
+    ErrorCode FILE_CONFIG_DELETE_FAIL_MASTER = new ErrorCode(1001006001, "该文件配置不允许删除，原因：它是主配置，删除会导致无法上传文件");
+
+    // ========== 数据源配置 1001007000 ==========
+    ErrorCode DATA_SOURCE_CONFIG_NOT_EXISTS = new ErrorCode(1001007000, "数据源配置不存在");
+    ErrorCode DATA_SOURCE_CONFIG_NOT_OK = new ErrorCode(1001007001, "数据源配置不正确，无法进行连接");
 
 }

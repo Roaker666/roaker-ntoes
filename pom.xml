@@ -201,6 +201,21 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-file-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-notify-center-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-role-permission-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.junit.platform</groupId>
                 <artifactId>junit-platform-launcher</artifactId>
                 <version>${junit-launcher.version}</version>
