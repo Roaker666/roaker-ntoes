@@ -1,6 +1,7 @@
 package com.roaker.notes.notify.dal.dataobject;
 
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,8 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 public class NotifySmsDO implements Serializable {
+    @ExcelProperty({"SMS","短信内容模板"})
     private String smsContent;
+    @ExcelProperty({"SMS","短信固定收件人"})
     private String smsRecipient;
 }

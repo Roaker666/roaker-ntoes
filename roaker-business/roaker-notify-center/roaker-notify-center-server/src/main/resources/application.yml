@@ -1,0 +1,9 @@
+rocketmq:
+  name-server: localhost:9876
+  producer:
+    group: roaker-notify-center
+    sendMessageTimeout: 300000
+    tls-enable: false
+    enable-msg-trace: true
+  consumer:
+    enable-msg-trace: true

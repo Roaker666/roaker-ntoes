@@ -36,11 +36,6 @@
             <artifactId>spring-boot-starter-cache</artifactId> <!-- 实现对 Caches 的自动化配置 -->
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-
 
         <dependency>
             <groupId>io.netty</groupId>

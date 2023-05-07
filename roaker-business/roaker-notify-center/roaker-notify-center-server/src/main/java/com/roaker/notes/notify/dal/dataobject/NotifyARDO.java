@@ -1,5 +1,6 @@
 package com.roaker.notes.notify.dal.dataobject;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,10 +17,16 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 public class NotifyARDO implements Serializable {
+    @ExcelProperty({"AR", "ar标题"})
     private String arTitle;
+    @ExcelProperty({"AR", "ar内容"})
     private String arContent;
+    @ExcelProperty({"AR", "ar重定向地址"})
     private String arRedirect;
-    private String arFolder;
+    @ExcelProperty({"AR", "ar类型"})
+    private Integer arType;
+    @ExcelProperty({"AR", "arBanner"})
     private String arBanner;
+    @ExcelProperty({"AR", "ar标签"})
     private String arRedirectLabel;
 }

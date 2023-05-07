@@ -30,9 +30,8 @@ public class NotifyTemplateDO extends BaseDO {
      * 模板Code
      */
     @TableField
-    @ColumnType(MySqlTypeConstant.INT)
     @Unique
-    private Integer templateCode;
+    private String templateCode;
     /**
      * 模板名称
      */
@@ -45,14 +44,14 @@ public class NotifyTemplateDO extends BaseDO {
     @ColumnType(MySqlTypeConstant.INT)
     private SceneEnum scene;
     /**
-     * PN 模板配置
+     * PN推送 模板配置
      */
     @ColumnType(MySqlTypeConstant.JSON)
     @TableField(typeHandler = JacksonTypeHandler.class)
     private NotifyPNDO notifyPn;
 
     /**
-     * AR 模板配置
+     * AR站内信 模板配置
      */
     @ColumnType(MySqlTypeConstant.JSON)
     @TableField(typeHandler = JacksonTypeHandler.class)

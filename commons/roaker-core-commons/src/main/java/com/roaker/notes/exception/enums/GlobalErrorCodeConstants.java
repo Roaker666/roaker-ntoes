@@ -35,7 +35,8 @@ public interface GlobalErrorCodeConstants {
     ErrorCode NOT_IMPLEMENTED = new ErrorCode(501, "功能未实现/未开启");
     ErrorCode SEQ_SERVER_ERROR = new ErrorCode(502, "Seq-service服务调用异常");
     ErrorCode AUTH_SERVER_ERROR = new ErrorCode(503, "Seq-service服务调用异常");
-    ErrorCode ENCRYPT_SERVER_ERROR = new ErrorCode(503, "Encrypt-platform服务调用异常");
+    ErrorCode ENCRYPT_SERVER_ERROR = new ErrorCode(504, "Encrypt-platform服务调用异常");
+    ErrorCode MSG_SERVER_ERROR = new ErrorCode(505, "MSG-SERVER服务调用异常");
 
 
     // ========== 自定义错误段 ==========

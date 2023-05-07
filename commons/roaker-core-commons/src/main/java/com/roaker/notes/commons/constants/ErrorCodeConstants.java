@@ -84,8 +84,11 @@ public interface ErrorCodeConstants {
     ErrorCode SMS_CHANNEL_HAS_CHILDREN = new ErrorCode(1002011002, "无法删除，该短信渠道还有短信模板");
 
     // ========== 短信模板 1002012000 ==========
-    ErrorCode SMS_TEMPLATE_NOT_EXISTS = new ErrorCode(1002012000, "短信模板不存在");
+    ErrorCode MSG_TEMPLATE_NOT_EXISTS = new ErrorCode(1002012000, "消息模板不存在");
     ErrorCode SMS_TEMPLATE_CODE_DUPLICATE = new ErrorCode(1002012001, "已经存在编码为【{}】的短信模板");
+    ErrorCode MSG_CHANNEL_NOT_SUPPORT = new ErrorCode(1002012002, "消息模板渠道不支持");
+
+    ErrorCode MSG_TEMPLATE_EXISTED = new ErrorCode(1002012003, "消息模板已经存在");
 
     // ========== 短信发送 1002013000 ==========
     ErrorCode SMS_SEND_MOBILE_NOT_EXISTS = new ErrorCode(1002013000, "手机号不存在");

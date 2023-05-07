@@ -1,5 +1,6 @@
 package com.roaker.notes.notify.dal.dataobject;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,9 +17,14 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 public class NotifyEmailDO implements Serializable {
+    @ExcelProperty({"EMAIL","邮件主题"})
     private String emailSubject;
+    @ExcelProperty({"EMAIL","邮件内容"})
     private String emailContent;
-    private String emailAttachment;
+    @ExcelProperty({"EMAIL","邮件附件数量"})
     private Integer emailAttachmentNum;
+    @ExcelProperty({"EMAIL","邮件固定收件人"})
     private String emailRecipient;
+    @ExcelProperty({"EMAIL","发件人固定地址"})
+    private String fromAddress;
 }

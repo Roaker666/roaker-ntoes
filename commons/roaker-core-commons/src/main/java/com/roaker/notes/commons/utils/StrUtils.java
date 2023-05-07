@@ -40,9 +40,13 @@ public class StrUtils {
         return false;
     }
 
-    public static List<Long> splitToLong(String value,  CharSequence separator) {
+    public static List<Long> splitToLong(String value, CharSequence separator) {
         long[] longs = StrUtil.splitToLong(value, separator);
         return Arrays.stream(longs).boxed().collect(Collectors.toList());
+    }
+
+    public static String conditionStr(Boolean cond, String str1, String str2) {
+        return cond ? str1 : str2;
     }
 
 }

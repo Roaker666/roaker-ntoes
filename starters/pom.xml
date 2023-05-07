@@ -20,6 +20,8 @@
         <module>roaker-sms-starter</module>
         <module>roaker-loadbalancer-starter</module>
         <module>roaker-file-starter</module>
+        <module>roaker-protection-starters</module>
+        <module>roaker-excel-starters</module>
     </modules>
 
     <properties>
