@@ -18,6 +18,13 @@
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.github.yulichang/mybatis-plus-join-boot-starter -->
+        <dependency>
+            <groupId>com.github.yulichang</groupId>
+            <artifactId>mybatis-plus-join-boot-starter</artifactId>
+            <version>1.4.4.2</version>
+        </dependency>
+
         <dependency>
             <groupId>com.roaker.notes</groupId>
             <artifactId>roaker-notify-center-api</artifactId>

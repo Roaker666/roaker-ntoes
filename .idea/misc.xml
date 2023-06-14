@@ -12,6 +12,13 @@
       <set>
         <option value="$PROJECT_DIR$/commons/roaker-leaf/leaf-server/pom.xml" />
         <option value="$PROJECT_DIR$/future-common/pom.xml" />
+        <option value="$PROJECT_DIR$/roaker-business/roaker-role-permission/pom.xml" />
+        <option value="$PROJECT_DIR$/roaker-business/roaker-role-permission/roaker-role-permission-api/pom.xml" />
+        <option value="$PROJECT_DIR$/roaker-business/roaker-role-permission/roaker-role-permission-server/pom.xml" />
+        <option value="$PROJECT_DIR$/roaker-business/roaker-user-authentication/pom.xml" />
+        <option value="$PROJECT_DIR$/roaker-business/roaker-user-authentication/roaker-user-authentication-api/pom.xml" />
+        <option value="$PROJECT_DIR$/roaker-business/roaker-user-authentication/roaker-user-authentication-server/pom.xml" />
+        <option value="$PROJECT_DIR$/roaker-sso/pom.xml" />
       </set>
     </option>
   </component>

@@ -1,7 +1,7 @@
 server:
   port: 8000
 app:
-  id: encrypt-platform-service
+  id: roaker-common
 apollo:
   meta: http://localhost:8080
   bootstrap:
@@ -14,3 +14,4 @@ spring:
     active: dev
   main:
     allow-bean-definition-overriding: true
+    allow-circular-references: true

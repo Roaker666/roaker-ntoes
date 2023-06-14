@@ -20,8 +20,10 @@ import com.roaker.notes.notify.vo.QueryNotifyTemplatePageReqVO;
 import com.roaker.notes.notify.vo.UpdateNotifyTemplateVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -89,16 +91,43 @@ public class NotifyTemplateServiceImpl implements NotifyTemplateService {
 
     @Override
     public NotifyTemplateDto getNotifyTemplate(String templateCode) {
+        NotifyTemplateDO notifyTemplateDO = notifyTemplateMapper.selectOne(new LambdaQueryWrapperX<NotifyTemplateDO>()
+                .eq(NotifyTemplateDO::getTemplateCode, templateCode));
+        if (notifyTemplateDO == null) {
+            throw exception(ErrorCodeConstants.MSG_TEMPLATE_NOT_EXISTS);
+        }
+        List<NotifySceneChannelDO> channelDOList = notifySceneChannelMapper.queryList(templateCode, notifyTemplateDO.getScene());
 
+        return NotifyTemplateDto.from(notifyTemplateDO, channelDOList);
     }
 
     @Override
     public PageResult<NotifyTemplateDto> queryNotifyTemplatePage(QueryNotifyTemplatePageReqVO queryReqVo) {
-        return null;
+        List<NotifyTemplateDto> result = new ArrayList<>();
+        PageResult<NotifyTemplateDO> templateDOPageResult = notifyTemplateMapper.selectPage(queryReqVo);
+        if (CollectionUtils.isNotEmpty(templateDOPageResult.getList())) {
+            result = templateDOPageResult.getList().stream()
+                    .map(notifyTemplateDO -> {
+                        List<NotifySceneChannelDO> channelDOList = notifySceneChannelMapper.queryList(notifyTemplateDO.getTemplateCode(), notifyTemplateDO.getScene());
+                        return NotifyTemplateDto.from(notifyTemplateDO, channelDOList);
+                    })
+                    .collect(Collectors.toList());
+        }
+        return new PageResult<>(result, templateDOPageResult.getTotal());
     }
 
     @Override
     public List<NotifyTemplateDto> queryNotifyTemplateList(ExportNotifyTemplateReqVO exportReqVo) {
-        return null;
+        List<NotifyTemplateDto> result = new ArrayList<>();
+        List<NotifyTemplateDO> templateDOList = notifyTemplateMapper.selectList(exportReqVo);
+        if (CollectionUtils.isNotEmpty(templateDOList)) {
+            result = templateDOList.stream()
+                    .map(notifyTemplateDO -> {
+                        List<NotifySceneChannelDO> channelDOList = notifySceneChannelMapper.queryList(notifyTemplateDO.getTemplateCode(), notifyTemplateDO.getScene());
+                        return NotifyTemplateDto.from(notifyTemplateDO, channelDOList);
+                    })
+                    .collect(Collectors.toList());
+        }
+        return result;
     }
 }

@@ -21,7 +21,7 @@ public class MessageSendReq {
 
     private String templateCode;
 
-    private Long uid;
+    private String uid;
 
     private Map<String, Object> params;
 }

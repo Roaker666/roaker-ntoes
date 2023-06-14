@@ -9,4 +9,6 @@ public interface NotifyCommonConstants {
     String MAIL_TOPIC = "roaker.notify.mail.topic";
     String AR_TOPIC = "roaker.notify.ar.topic";
     String PN_TOPIC = "roaker.notify.pn.topic";
+
+    String KEY_CONSUMER_GROUP = "rocketmq.consumer.group";
 }

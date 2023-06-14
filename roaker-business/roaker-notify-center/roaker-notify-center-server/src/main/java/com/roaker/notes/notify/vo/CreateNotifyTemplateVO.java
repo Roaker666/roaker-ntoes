@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Data
 public class CreateNotifyTemplateVO implements Serializable {
-    private Long uid;
+    private String uid;
     private String templateCode;
     private String templateName;
     private String scene;

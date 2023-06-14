@@ -7,3 +7,4 @@ rocketmq:
     enable-msg-trace: true
   consumer:
     enable-msg-trace: true
+    group: roaker-notify-center

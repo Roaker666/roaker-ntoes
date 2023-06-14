@@ -4,7 +4,6 @@ import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.roaker.notes.file.core.client.db.DBFileContentFrameworkDAO;
 import com.roaker.notes.infra.encrypt.dal.dataobject.FileContentDO;
-import com.roaker.notes.infra.encrypt.vo.FileContentMapper;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Repository;
 

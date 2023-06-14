@@ -1,13 +1,17 @@
 package com.roaker.notes.notify.dto;
 
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.google.common.collect.Lists;
 import com.roaker.notes.commons.excel.convert.DictConvert;
 import com.roaker.notes.enums.CommonStatusEnum;
 import com.roaker.notes.enums.NotifyChannelEnum;
 import com.roaker.notes.enums.NotifyRecipientTypeEnum;
 import com.roaker.notes.enums.SceneEnum;
 import com.roaker.notes.notify.dal.dataobject.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -16,6 +20,9 @@ import java.util.List;
  * @since 1.0
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class NotifyTemplateDto {
     @ExcelProperty(value = "模板号码")
     private String templateCode;
@@ -42,6 +49,18 @@ public class NotifyTemplateDto {
 
 
     public static NotifyTemplateDto from(NotifyTemplateDO notifyTemplateDO, List<NotifySceneChannelDO> sceneChannelDO) {
-
+        return NotifyTemplateDto.builder()
+                .templateCode(notifyTemplateDO.getTemplateCode())
+                .templateName(notifyTemplateDO.getTemplateName())
+                .scene(notifyTemplateDO.getScene())
+                .notifyPn(notifyTemplateDO.getNotifyPn())
+                .notifyAr(notifyTemplateDO.getNotifyAr())
+                .notifySms(notifyTemplateDO.getNotifySms())
+                .notifyEmail(notifyTemplateDO.getNotifyEmail())
+                .recipientType(notifyTemplateDO.getRecipientType())
+                .remark(notifyTemplateDO.getRemark())
+                .status(notifyTemplateDO.getStatus())
+                .enableChannelStatus(Lists.transform(sceneChannelDO, NotifySceneChannelDO::getNotifyChannel))
+                .build();
     }
 }

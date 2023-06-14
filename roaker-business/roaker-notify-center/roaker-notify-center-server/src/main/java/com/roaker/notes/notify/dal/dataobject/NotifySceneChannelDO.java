@@ -24,6 +24,9 @@ public class NotifySceneChannelDO extends BaseDO {
     @IsAutoIncrement
     @IsNotNull
     private Long id;
+    @TableField
+    @ColumnType(MySqlTypeConstant.VARCHAR)
+    private String templateCode;
 
     /**
      * 消息配置场景

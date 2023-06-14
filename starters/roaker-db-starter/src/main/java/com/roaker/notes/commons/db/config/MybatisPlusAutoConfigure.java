@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.core.annotation.Order;
 
 /**
  * @author lei.rao
@@ -33,7 +34,7 @@ import org.springframework.context.annotation.FilterType;
 @MapperScan(basePackages = {
         "com.gitee.sunchenbin.mybatis.actable.dao",
         "com.roaker.notes.infra.encrypt.dal.mapper",
-        "com.roaker.notes.ac.dal.mapper",
+        "com.roaker.notes.uc.dal.mapper",
 })
 public class MybatisPlusAutoConfigure {
 
@@ -58,6 +59,7 @@ public class MybatisPlusAutoConfigure {
     }
 
     @Bean
+    @Order(-1)
     public StartUpHandler startUpHandler() {
         return new CreateTableStartUpHandlerImpl();
     }

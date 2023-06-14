@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@BizKey(bizName = "admin_user_info")
+@BizKey(bizName = "admin_user_info", bizPrefix = "AUI")
 public class AdminUserInfoDO extends BaseDO {
     @TableId(type = IdType.AUTO)
     @IsAutoIncrement
@@ -35,7 +35,7 @@ public class AdminUserInfoDO extends BaseDO {
      */
     @TableId(type = IdType.ASSIGN_ID)
     @ColumnType(MySqlTypeConstant.BIGINT)
-    private Long uid;
+    private String uid;
     /**
      * 用户昵称
      */

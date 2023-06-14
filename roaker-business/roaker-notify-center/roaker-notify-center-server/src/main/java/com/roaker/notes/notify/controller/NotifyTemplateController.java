@@ -63,6 +63,6 @@ public class NotifyTemplateController {
     public void exportTemplateList(@RequestBody ExportNotifyTemplateReqVO exportNotifyTemplateReqVO, HttpServletResponse httpServletResponse) throws IOException {
         List<NotifyTemplateDto> notifyTemplateDtos =
                 notifyTemplateService.queryNotifyTemplateList(exportNotifyTemplateReqVO);
-        ExcelUtils.write(httpServletResponse, "notifyTempalte.xlxs", "notifyTemplate", NotifyTemplateDto.class, notifyTemplateDtos);
+        ExcelUtils.write(httpServletResponse, "notifyTemplate.xlxs", "notifyTemplate", NotifyTemplateDto.class, notifyTemplateDtos);
     }
 }

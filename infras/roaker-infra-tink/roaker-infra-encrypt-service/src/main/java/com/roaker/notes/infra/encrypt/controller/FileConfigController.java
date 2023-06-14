@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,10 +24,10 @@ import static com.roaker.notes.vo.CommonResult.success;
 @RestController
 @RequestMapping("/infra/file-config")
 @Validated
+@RequiredArgsConstructor
 public class FileConfigController {
 
-    @Resource
-    private FileConfigService fileConfigService;
+    private final FileConfigService fileConfigService;
 
     @PostMapping("/create")
     @Operation(summary = "创建文件配置")

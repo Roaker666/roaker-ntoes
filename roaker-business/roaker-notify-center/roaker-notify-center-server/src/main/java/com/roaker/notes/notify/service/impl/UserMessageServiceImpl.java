@@ -81,7 +81,7 @@ public class UserMessageServiceImpl implements UserMessageService {
                     case MAIL ->
                             resp.setEmailMsgId(sendMail(notifyTemplateDto, sendReq.getUid(), sendReq.getEmailRecipient(), sendReq.getTemplateCode(), sendReq.getParams()));
                     case AR ->
-                            resp.setArMsgId(sendPn(notifyTemplateDto, sendReq.getUid(), sendReq.getTemplateCode(), sendReq.getParams()));
+                            resp.setArMsgId(sendAr(notifyTemplateDto, sendReq.getUid(), sendReq.getTemplateCode(), sendReq.getParams()));
                     case PN ->
                             resp.setPnMsgId(sendPn(notifyTemplateDto, sendReq.getUid(), sendReq.getTemplateCode(), sendReq.getParams()));
                     default -> throw exception(ErrorCodeConstants.MSG_CHANNEL_NOT_SUPPORT);
@@ -91,7 +91,7 @@ public class UserMessageServiceImpl implements UserMessageService {
         return resp;
     }
 
-    private String sendPn(NotifyTemplateDto notifyTemplateDto, Long uid, String templateCode, Map<String, Object> params) {
+    private String sendPn(NotifyTemplateDto notifyTemplateDto, String uid, String templateCode, Map<String, Object> params) {
         if (!CollectionUtils.containsAny(notifyTemplateDto.getEnableChannelStatus(), NotifyChannelEnum.PN)) {
             throw exception(ErrorCodeConstants.MSG_CHANNEL_NOT_SUPPORT);
         }
@@ -116,7 +116,7 @@ public class UserMessageServiceImpl implements UserMessageService {
         return pnNotice.getMsgId();
     }
 
-    private String sendAr(NotifyTemplateDto notifyTemplateDto, Long uid, String templateCode, Map<String, Object> params) {
+    private String sendAr(NotifyTemplateDto notifyTemplateDto, String uid, String templateCode, Map<String, Object> params) {
         if (!CollectionUtils.containsAny(notifyTemplateDto.getEnableChannelStatus(), NotifyChannelEnum.AR)) {
             throw exception(ErrorCodeConstants.MSG_CHANNEL_NOT_SUPPORT);
         }
@@ -143,7 +143,7 @@ public class UserMessageServiceImpl implements UserMessageService {
     }
 
 
-    private String sendMail(NotifyTemplateDto notifyTemplateDto, Long uid, String emailRecipient1, String templateCode, Map<String, Object> params) {
+    private String sendMail(NotifyTemplateDto notifyTemplateDto, String uid, String emailRecipient1, String templateCode, Map<String, Object> params) {
         if (!CollectionUtils.containsAny(notifyTemplateDto.getEnableChannelStatus(), NotifyChannelEnum.MAIL)) {
             throw exception(ErrorCodeConstants.MSG_CHANNEL_NOT_SUPPORT);
         }

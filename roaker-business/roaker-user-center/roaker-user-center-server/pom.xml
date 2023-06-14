@@ -38,5 +38,10 @@
             <groupId>com.roaker.notes</groupId>
             <artifactId>roaker-user-center-api</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.roaker.notes</groupId>
+            <artifactId>roaker-excel-starters</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@BizKey(bizName = "share_user_info")
+@BizKey(bizName = "share_user_info", bizPrefix = "SUI")
 public class ShareUserInfoDO extends BaseDO {
     @TableId(type = IdType.AUTO)
     @IsAutoIncrement
@@ -35,7 +35,7 @@ public class ShareUserInfoDO extends BaseDO {
      */
     @TableId(type = IdType.ASSIGN_ID)
     @ColumnType(MySqlTypeConstant.BIGINT)
-    private Long uid;
+    private String uid;
     /**
      * 用户昵称
      */

@@ -11,7 +11,7 @@ public class ShareUserDTO implements Serializable {
     /**
      * 用户ID
      */
-    private Long uid;
+    private String uid;
     /**
      * 用户昵称
      */

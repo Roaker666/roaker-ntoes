@@ -18,6 +18,7 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -36,9 +37,9 @@ import static com.roaker.notes.vo.CommonResult.success;
 @RequestMapping("/infra/file")
 @Validated
 @Slf4j
+@RequiredArgsConstructor
 public class FileController{
-    @Resource
-    private FileService fileService;
+    private final FileService fileService;
 
 
     @PostMapping("/upload")

@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Data
 public class UpdateNotifyTemplateVO {
-    private Long uid;
+    private String uid;
     private String templateCode;
     private String templateName;
     private NotifyPNDO notifyPn;

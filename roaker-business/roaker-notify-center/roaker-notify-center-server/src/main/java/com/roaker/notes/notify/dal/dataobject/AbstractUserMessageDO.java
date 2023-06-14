@@ -29,7 +29,7 @@ public abstract class AbstractUserMessageDO extends BaseDO implements Serializab
     @TableId(type = IdType.ASSIGN_UUID)
     protected String msgId;
     @TableField
-    protected Long uid;
+    protected String uid;
     @TableField
     protected String templateCode;
     @TableField

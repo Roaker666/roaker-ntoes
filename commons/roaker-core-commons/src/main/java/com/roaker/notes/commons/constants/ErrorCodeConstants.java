@@ -19,12 +19,12 @@ public interface ErrorCodeConstants {
     ErrorCode AUTH_MOBILE_NOT_EXISTS = new ErrorCode(1002000007, "手机号不存在");
 
     // ========== 菜单模块 1002001000 ==========
-    ErrorCode MENU_NAME_DUPLICATE = new ErrorCode(1002001000, "已经存在该名字的菜单");
-    ErrorCode MENU_PARENT_NOT_EXISTS = new ErrorCode(1002001001, "父菜单不存在");
-    ErrorCode MENU_PARENT_ERROR = new ErrorCode(1002001002, "不能设置自己为父菜单");
-    ErrorCode MENU_NOT_EXISTS = new ErrorCode(1002001003, "菜单不存在");
-    ErrorCode MENU_EXISTS_CHILDREN = new ErrorCode(1002001004, "存在子菜单，无法删除");
-    ErrorCode MENU_PARENT_NOT_DIR_OR_MENU = new ErrorCode(1002001005, "父菜单的类型必须是目录或者菜单");
+    ErrorCode PermissionInfo_NAME_DUPLICATE = new ErrorCode(1002001000, "已经存在该名字的菜单");
+    ErrorCode PermissionInfo_PARENT_NOT_EXISTS = new ErrorCode(1002001001, "父菜单不存在");
+    ErrorCode PermissionInfo_PARENT_ERROR = new ErrorCode(1002001002, "不能设置自己为父菜单");
+    ErrorCode PermissionInfo_NOT_EXISTS = new ErrorCode(1002001003, "菜单不存在");
+    ErrorCode PermissionInfo_EXISTS_CHILDREN = new ErrorCode(1002001004, "存在子菜单，无法删除");
+    ErrorCode PermissionInfo_PARENT_NOT_DIR_OR_PermissionInfo = new ErrorCode(1002001005, "父菜单的类型必须是目录或者菜单");
 
     // ========== 角色模块 1002002000 ==========
     ErrorCode ROLE_NOT_EXISTS = new ErrorCode(1002002000, "角色不存在");

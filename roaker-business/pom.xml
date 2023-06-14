@@ -14,9 +14,7 @@
 
     <modules>
         <module>roaker-user-center</module>
-        <module>roaker-user-authentication</module>
         <module>roaker-notify-center</module>
-        <module>roaker-role-permission</module>
     </modules>
 
     <properties>

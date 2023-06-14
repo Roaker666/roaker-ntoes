@@ -72,7 +72,7 @@ public interface CommonConstant {
     /**
      * 菜单
      */
-    Integer MENU = 1;
+    Integer PermissionInfo = 1;
 
     /**
      * 权限
