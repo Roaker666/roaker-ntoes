@@ -19,7 +19,7 @@ import static com.roaker.notes.exception.util.ServiceExceptionUtil.exception;
 /**
  * Oauth2 授予 Service 实现类
  *
- * @author 芋道源码
+ * @author lei.rao
  */
 @Service
 public class Oauth2GrantServiceImpl implements Oauth2GrantService {

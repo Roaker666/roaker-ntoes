@@ -35,7 +35,7 @@ import static com.roaker.notes.exception.util.ServiceExceptionUtil.exception;
 /**
  * Oauth2.0 Client Service 实现类
  *
- * @author 芋道源码
+ * @author lei.rao
  */
 @Service
 @Validated

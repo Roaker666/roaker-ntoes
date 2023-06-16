@@ -24,7 +24,7 @@ import static com.roaker.notes.exception.enums.GlobalErrorCodeConstants.*;
 /**
  * 全局异常处理器，将 Exception 翻译成 CommonResult + 对应的异常编号
  *
- * @author 芋道源码
+ * @author lei.rao
  */
 @RestControllerAdvice
 @AllArgsConstructor

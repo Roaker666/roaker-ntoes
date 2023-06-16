@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 /**
  * @author lei.rao
  * @since 1.0
@@ -16,9 +18,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Schema(name = "动态字典表", description = "")
 public class DynamicDictDO {
-
     /**
-     * 配置类型;1:模板枚举配置 2:下拉筛选配置 3:国家编码配置
+     * 配置类型;{@link DynamicDictTypeEnums}
      */
     @Schema(name = "配置类型", description = "1:模板枚举配置 2:下拉筛选配置 3:国家编码配置")
     private Integer type;
@@ -57,5 +58,7 @@ public class DynamicDictDO {
      */
     @Schema(name = "上游业务描述名称", description = "")
     private String originName;
+
+    private LocalDateTime updateTime;
 
 }

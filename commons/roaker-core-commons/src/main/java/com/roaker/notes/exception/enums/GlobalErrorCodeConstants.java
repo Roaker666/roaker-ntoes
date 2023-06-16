@@ -38,6 +38,8 @@ public interface GlobalErrorCodeConstants {
     ErrorCode ENCRYPT_SERVER_ERROR = new ErrorCode(504, "Encrypt-platform服务调用异常");
     ErrorCode MSG_SERVER_ERROR = new ErrorCode(505, "MSG-SERVER服务调用异常");
 
+    ErrorCode USER_SERVER_ERROR = new ErrorCode(505, "USER-SERVER服务调用异常");
+
 
     // ========== 自定义错误段 ==========
     ErrorCode REPEATED_REQUESTS = new ErrorCode(900, "重复请求，请稍后重试"); // 重复请求

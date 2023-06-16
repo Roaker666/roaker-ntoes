@@ -38,7 +38,7 @@ import static java.util.Collections.singleton;
 /**
  * 权限 Service 实现类
  *
- * @author 芋道源码
+ * @author lei.rao
  */
 @Service
 @Slf4j

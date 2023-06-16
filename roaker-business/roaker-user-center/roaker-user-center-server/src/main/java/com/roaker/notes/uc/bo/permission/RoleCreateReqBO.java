@@ -8,7 +8,7 @@ import lombok.Data;
 /**
  * 角色创建 Request BO
  *
- * @author 芋道源码
+ * @author lei.rao
  */
 @Data
 public class RoleCreateReqBO {

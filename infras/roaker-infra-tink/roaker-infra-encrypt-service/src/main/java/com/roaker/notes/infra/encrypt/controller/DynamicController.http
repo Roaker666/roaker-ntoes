@@ -1,0 +1,12 @@
+### 创建
+POST {{baseUrl}}/inra/dynamic-dict/create
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "code": 200,
+  "message": "成功",
+  "group": "test",
+  "type": 1
+}
+

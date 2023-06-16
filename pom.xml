@@ -123,6 +123,7 @@
         <junit-launcher.version>1.8.1</junit-launcher.version>
         <rocketmq-starter.version>2.2.3</rocketmq-starter.version>
         <microservice-canvas.version>0.10.0.RELEASE</microservice-canvas.version>
+        <reflections.version>0.10.2</reflections.version>
     </properties>
 
     <dependencies>
@@ -131,6 +132,7 @@
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
+
 
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -197,6 +199,18 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>${reflections.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-social-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!-- https://mvnrepository.com/artifact/io.microservices.tools.canvas/microservice-canvas-springmvc -->
             <dependency>
                 <groupId>io.microservices.tools.canvas</groupId>
@@ -920,14 +934,14 @@
                         <skip>true</skip>
                     </configuration>
                 </plugin>
-<!--                <plugin>-->
-<!--                    <groupId>org.codehaus.mojo</groupId>-->
-<!--                    <artifactId>flatten-maven-plugins</artifactId>-->
-<!--                    <version>${maven-flatten.version}</version>-->
-<!--                    <configuration>-->
-<!--                        <skip>true</skip>-->
-<!--                    </configuration>-->
-<!--                </plugin>-->
+                <!--                <plugin>-->
+                <!--                    <groupId>org.codehaus.mojo</groupId>-->
+                <!--                    <artifactId>flatten-maven-plugins</artifactId>-->
+                <!--                    <version>${maven-flatten.version}</version>-->
+                <!--                    <configuration>-->
+                <!--                        <skip>true</skip>-->
+                <!--                    </configuration>-->
+                <!--                </plugin>-->
                 <plugin>
                     <groupId>com.spotify</groupId>
                     <artifactId>docker-maven-plugin</artifactId>

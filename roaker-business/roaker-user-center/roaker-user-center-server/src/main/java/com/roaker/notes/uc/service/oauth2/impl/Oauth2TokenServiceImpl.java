@@ -28,7 +28,7 @@ import static com.roaker.notes.exception.util.ServiceExceptionUtil.exception0;
 /**
  * Oauth2.0 Token Service 实现类
  *
- * @author 芋道源码
+ * @author lei.rao
  */
 @Service
 public class Oauth2TokenServiceImpl implements Oauth2TokenService {

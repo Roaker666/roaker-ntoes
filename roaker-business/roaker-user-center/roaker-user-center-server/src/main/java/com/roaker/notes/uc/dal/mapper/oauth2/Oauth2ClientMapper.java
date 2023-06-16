@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
 /**
  * Oauth2 客户端 Mapper
  *
- * @author 芋道源码
+ * @author lei.rao
  */
 @Mapper
 public interface Oauth2ClientMapper extends BaseMapperX<Oauth2ClientDO> {

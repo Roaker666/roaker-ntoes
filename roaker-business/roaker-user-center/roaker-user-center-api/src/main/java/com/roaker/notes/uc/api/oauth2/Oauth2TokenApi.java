@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 /**
  * Oauth2.0 Token API 接口
  *
- * @author 芋道源码
+ * @author lei.rao
  */
 @FeignClient(name = ApplicationNameConstants.AUTH_NAME, fallbackFactory = Oauth2TokenApiFallback.class, dismiss404 = true)
 public interface Oauth2TokenApi {

@@ -2,7 +2,7 @@ package com.roaker.notes.uc.controller.auth.vo;
 
 import com.roaker.notes.commons.validation.InEnum;
 import com.roaker.notes.commons.validation.Mobile;
-import com.roaker.notes.uc.enums.SmsSceneEnum;
+import com.roaker.notes.uc.enums.notify.SmsSceneEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

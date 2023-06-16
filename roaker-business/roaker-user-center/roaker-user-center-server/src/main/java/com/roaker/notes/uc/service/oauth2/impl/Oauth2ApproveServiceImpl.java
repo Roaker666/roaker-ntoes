@@ -25,7 +25,7 @@ import static com.roaker.notes.commons.utils.RoakerCollectionUtils.convertSet;
 /**
  * Oauth2 批准 Service 实现类
  *
- * @author 芋道源码
+ * @author lei.rao
  */
 @Service
 @Validated

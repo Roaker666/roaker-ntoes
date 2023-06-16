@@ -1,12 +1,10 @@
 package com.roaker.notes.uc.service.auth.impl;
 
-import cn.hutool.core.util.ObjectUtil;
 import com.roaker.notes.uc.controller.auth.vo.AuthSmsSendReqVO;
-import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2AccessTokenDO;
 import com.roaker.notes.uc.service.auth.AdminAuthService;
 import com.roaker.notes.uc.service.oauth2.Oauth2TokenService;
-import com.roaker.notes.uc.api.UserCenterClient;
-import com.roaker.notes.uc.dto.ShareUserDTO;
+import com.roaker.notes.uc.api.user.UserCenterClient;
+import com.roaker.notes.uc.dto.user.ShareUserDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
