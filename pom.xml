@@ -20,6 +20,8 @@
         <module>roaker-business</module>
         <module>infras</module>
         <module>commons</module>
+        <module>flink</module>
+        <module>flink/flink-learning</module>
     </modules>
 
     <properties>
@@ -892,17 +894,17 @@
                 <configuration>
                     <fork>true</fork>
                     <compilerArgs>
-                        <arg>--add-opens</arg>
-                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>
-                        <arg>--add-exports</arg>
-                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>
-                        <arg>--add-exports</arg>
-                        <arg>java.base/jdk.internal.misc=ALL-UNNAMED</arg>
-                        <arg>--add-opens</arg>
-                        <arg>java.base/java.lang.invoke=ALL-UNNAMED</arg>
-                        <compilerArg>
-                            -Amapstruct.defaultComponentModel=spring
-                        </compilerArg>
+<!--                        <arg>&#45;&#45;add-opens</arg>-->
+<!--                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>-->
+<!--                        <arg>&#45;&#45;add-exports</arg>-->
+<!--                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>-->
+<!--                        <arg>&#45;&#45;add-exports</arg>-->
+<!--                        <arg>java.base/jdk.internal.misc=ALL-UNNAMED</arg>-->
+<!--                        <arg>&#45;&#45;add-opens</arg>-->
+<!--                        <arg>java.base/java.lang.invoke=ALL-UNNAMED</arg>-->
+<!--                        <compilerArg>-->
+<!--                            -Amapstruct.defaultComponentModel=spring-->
+<!--                        </compilerArg>-->
                     </compilerArgs>
                     <annotationProcessorPaths>
                         <path>

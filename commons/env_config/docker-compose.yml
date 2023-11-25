@@ -237,7 +237,7 @@ services:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka1:29092
   jobmanager:
-    image: flink:latest
+    image: flink:java17
     ports:
       - "8081:8081"
     command: jobmanager
@@ -247,7 +247,7 @@ services:
         jobmanager.rpc.address: jobmanager        
 
   taskmanager:
-    image: flink:latest
+    image: flink:java17
     depends_on:
       - jobmanager
     command: taskmanager

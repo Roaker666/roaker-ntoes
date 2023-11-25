@@ -13,10 +13,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="/usr/local/Cellar/maven/repo/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
-          <entry name="/usr/local/Cellar/maven/repo/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
-          <entry name="/usr/local/Cellar/maven/repo/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar" />
-          <entry name="/usr/local/Cellar/maven/repo/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
+          <entry name="$USER_HOME$/maven/repo/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
+          <entry name="$USER_HOME$/maven/repo/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
+          <entry name="$USER_HOME$/maven/repo/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar" />
+          <entry name="$USER_HOME$/maven/repo/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
         <module name="roaker-infra-encrypt-service" />
         <module name="rokaer-seq-starter" />
@@ -41,6 +41,7 @@
         <module name="roaker-web-starter" />
         <module name="roaker-redis-starter" />
         <module name="roaker-infra-encrypt-api" />
+        <module name="flink-learning" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -62,51 +63,53 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="commons" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="hello-blockchain" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="infras" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="leaf-boot-starter" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="leaf-core" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="leaf-plugin" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
+      <module name="commons" options="" />
+      <module name="flink" options="" />
+      <module name="flink-learning" options="" />
+      <module name="hello-blockchain" options="" />
+      <module name="infras" options="" />
+      <module name="leaf-boot-starter" options="" />
+      <module name="leaf-core" options="" />
+      <module name="leaf-plugin" options="" />
       <module name="leaf-server" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED" />
-      <module name="roaker-business" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-core-commons" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-core-domain" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-core-messaging" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-db-starter" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-dynamic-stater" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-excel-starters" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-file-starter" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-infra-encrypt-api" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-infra-encrypt-service" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-infra-seq" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-infra-tink" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-leaf" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-loadbalancer-starter" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-log-starter" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-notes" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
+      <module name="roaker-business" options="" />
+      <module name="roaker-core-commons" options="" />
+      <module name="roaker-core-domain" options="" />
+      <module name="roaker-core-messaging" options="" />
+      <module name="roaker-db-starter" options="" />
+      <module name="roaker-dynamic-stater" options="" />
+      <module name="roaker-excel-starters" options="" />
+      <module name="roaker-file-starter" options="" />
+      <module name="roaker-infra-encrypt-api" options="" />
+      <module name="roaker-infra-encrypt-service" options="" />
+      <module name="roaker-infra-seq" options="" />
+      <module name="roaker-infra-tink" options="" />
+      <module name="roaker-leaf" options="" />
+      <module name="roaker-loadbalancer-starter" options="" />
+      <module name="roaker-log-starter" options="" />
+      <module name="roaker-notes" options="" />
       <module name="roaker-notify-center" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
       <module name="roaker-notify-center-api" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
       <module name="roaker-notify-center-server" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-protection-starters" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-redis-starter" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
+      <module name="roaker-protection-starters" options="" />
+      <module name="roaker-redis-starter" options="" />
       <module name="roaker-role-permission" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
       <module name="roaker-role-permission-api" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
       <module name="roaker-role-permission-server" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-sms-starter" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-social-starter" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
+      <module name="roaker-sms-starter" options="" />
+      <module name="roaker-social-starter" options="" />
       <module name="roaker-sso" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
       <module name="roaker-sso-api" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
       <module name="roaker-sso-server" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
       <module name="roaker-user-authentication" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
       <module name="roaker-user-authentication-api" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
       <module name="roaker-user-authentication-server" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-user-center" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-user-center-api" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-user-center-server" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="roaker-web-starter" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="rokaer-seq-starter" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
-      <module name="starters" options="--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.reflect=ALL-UNNAMED --add-exports java.base/jdk.internal.misc=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED -Amapstruct.defaultComponentModel=spring" />
+      <module name="roaker-user-center" options="" />
+      <module name="roaker-user-center-api" options="" />
+      <module name="roaker-user-center-server" options="" />
+      <module name="roaker-web-starter" options="" />
+      <module name="rokaer-seq-starter" options="" />
+      <module name="starters" options="" />
     </option>
   </component>
 </project>

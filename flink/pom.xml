@@ -5,23 +5,20 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.roaker.notes</groupId>
-        <artifactId>commons</artifactId>
+        <artifactId>roaker-notes</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>roaker-core-domain</artifactId>
+    <artifactId>flink</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>flink-learning</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.roaker.notes</groupId>
-            <artifactId>roaker-core-commons</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>
