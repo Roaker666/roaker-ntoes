@@ -1,0 +1,264 @@
+version: '3.1'
+
+services:
+  #  db:
+  #    image: mysql:8.0.32
+  #    container_name: db
+  #    restart: always
+  #    environment:
+  #      TZ: Asia/Shanghai
+  #      MYSQL_ROOT_PASSWORD: root
+  #    ports:
+  #      - "3306:3306"
+  #    volumes:
+  #      - /Users/raolei/docker/mysql/data/:/var/lib/mysql/
+  #      - /Users/raolei/docker/mysql/conf/:/etc/mysql/conf.d/
+  #      - /Users/raolei/docker/mysql/conf/my.cnf:/etc/my.cnf
+  #    command:
+  #      --default-authentication-plugin=mysql_native_password
+  #      --character-set-server=utf8mb4
+  #      --collation-server=utf8mb4_general_ci
+  #      --explicit_defaults_for_timestamp=true
+  #      --lower_case_table_names=1
+  #    networks:
+  #      - mynetwork
+  #
+  #  xxl-job-admin:
+  #    image: roaker/xxl-job-admin:2.4.1
+  #    restart: always
+  #    container_name: xxl-job-admin
+  #    links:
+  #      - db
+  #    environment:
+  #      SPRING_DATASOURCE_URL: 'jdbc:mysql://db:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai'
+  #      SPRING_DATASOURCE_USERNAME: 'root'
+  #      SPRING_DATASOURCE_PASSWORD: 'root'
+  #      JAVA_OPTS: "-Xms64M -Xmx64M -Xmn32M"
+  #    ports:
+  #      - "8020:8080"
+  #    volumes:
+  #      - /Users/raolei/docker/xxl-job-admin/data/applogs:/data/applogs
+  #    networks:
+  #      - mynetwork
+  #
+  #  #参考 https://jlovec.net/2021/03/17/shi-yong-docker-da-jian-smtp-fu-wu/
+  #  smtp-mail:
+  #    image: ixdotai/smtp:latest
+  #    container_name: smtp-mail
+  #    restart: always
+  #    ports:
+  #      - "10025:25"
+  #    environment:
+  #      #负责发件请求的拦截,当前表示任意客户端皆可发起发件请求
+  #      RELAY_NETWORKS: "0.0.0.0/0"
+  #    volumes:
+  #      - /Users/raolei/docker/smtp/conf/hosts:/etc/hosts
+  #      - /Users/raolei/docker/smtp/conf/resolve.conf:/etc/resolve.conf
+  #    networks:
+  #      - mynetwork
+  #
+  #  redis:
+  #    image: redis:latest
+  #    container_name: redis
+  #    restart: always
+  #    ports:
+  #      - "6379:6379"
+  #    networks:
+  #      - mynetwork
+  #    volumes:
+  #      - /Users/raolei/docker/redis/data:/data:rw
+  #      - /Users/raolei/docker/redis/conf/redis.conf:/etc/redis/redis.conf
+  #      - /Users/raolei/docker/redis/logs:/logs
+  #    command: "redis-server /etc/redis/redis.conf"
+  #
+  #  elasticsearch:
+  #    image: elasticsearch:8.2.3
+  #    container_name: es_823
+  #    environment:
+  #      - cluster.name=docker-cluster
+  #      - node.name=es_c
+  #      - discovery.type=single-node
+  #      - bootstrap.memory_lock=true
+  #      - xpack.license.self_generated.type=basic
+  #      - xpack.security.enabled=false
+  #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  #      - "ELASTICSEARCH_USERNAME=root"
+  #      - "ELASTICSEARCH_PASSWORD=root"
+  #    ulimits:
+  #      memlock:
+  #        soft: -1
+  #        hard: -1
+  #    volumes:
+  #      - /Users/raolei/docker/elasticsearch/data:/usr/share/elasticsearch/data
+  #      - /Users/raolei/docker/elasticsearch/plugins:/usr/share/elasticsearch/plugins
+  #      - /Users/raolei/docker/elasticsearch/logs:/usr/share/elasticsearch/logs
+  #    ports:
+  #      - "9200:9200"
+  #      - "9300:9300"
+  #    networks:
+  #      - mynetwork
+  #
+  #  kinana:
+  #    image: library/kibana:8.2.3
+  #    container_name: kinaba823
+  #    environment:
+  #      - XPACK_GRAPH_ENABLED=true
+  #      - TIMELION_ENABLED=true
+  #      - XPACK_MONITORING_COLLECTION_ENABLED=true
+  #      - "ELASTICSEARCH_HOSTS=http://elasticsearch:9200"
+  #      - "ELASTICSEARCH_USERNAME=root"
+  #      - "ELASTICSEARCH_PASSWORD=root"
+  #    ports:
+  #      - "5601:5601"
+  #    networks:
+  #      - mynetwork
+  #
+  #  cerebro:
+  #    image: wesdobry/cerebro:latest
+  #    container_name: cerebro
+  #    ports:
+  #      - "9000:9000"
+  #    command:
+  #      - -Dhosts.0.host=http://elasticsearch:9200
+  #    networks:
+  #      - mynetwork
+  #
+  #  apollo-configservice:
+  #    image: apolloconfig/apollo-configservice:latest
+  #    container_name: apollo-configservice
+  #    ports:
+  #      - "8080:8080"
+  #    volumes:
+  #      #日志挂载
+  #      - /Users/raolei/docker/apollo/servers/server2/logs/apollo-configservice:/opt/logs
+  #    environment:
+  #      SERVER_PORT: 8080
+  #      JAVA_OPTS: "-Dapollo_profile=github -Deureka.instance.homePageUrl=http://192.168.0.126:8080"
+  #      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/ApolloConfigDB?characterEncoding=utf8"
+  #      SPRING_DATASOURCE_USERNAME: 'root'
+  #      SPRING_DATASOURCE_PASSWORD: 'root'
+  #    links:
+  #      - db
+  #  apollo-adminservice:
+  #    image: apolloconfig/apollo-adminservice:latest
+  #    container_name: apollo-adminservice
+  #    ports:
+  #      - "8090:8090"
+  #    volumes:
+  #      - /Users/raolei/docker/apollo/servers/server2/logs/apollo-adminservice:/opt/logs
+  #    environment:
+  #      JAVA_OPTS: "-Dapollo_profile=github -Deureka.instance.homePageUrl=http://192.168.0.126:8090"
+  #      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/ApolloConfigDB?characterEncoding=utf8"
+  #      SPRING_DATASOURCE_USERNAME: 'root'
+  #      SPRING_DATASOURCE_PASSWORD: 'root'
+  #    links:
+  #      - apollo-configservice
+  #      - db
+  #  apollo-portal:
+  #    image: apolloconfig/apollo-portal:latest
+  #    container_name: apollo-portal
+  #    ports:
+  #      - "8070:8070"
+  #    volumes:
+  #      - /Users/raolei/docker/apollo/servers/server2/logs/apollo-portal:/opt/logs
+  #    environment:
+  #      JAVA_OPTS: "-Dapollo_profile=github"
+  #      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/ApolloPortalDB?characterEncoding=utf8"
+  #      SPRING_DATASOURCE_USERNAME: 'root'
+  #      SPRING_DATASOURCE_PASSWORD: 'root'
+  #      APOLLO_PORTAL_ENVS: DEV
+  #      DEV_META: http://192.168.0.126:8080
+  #      SERVER_SERVLET_CONTEXT_PATH: "/"
+  #    links:
+  #      - apollo-adminservice
+  #      - db
+  zoo1:
+    image: confluentinc/cp-zookeeper:latest
+    hostname: zoo1
+    container_name: zoo1
+    ports:
+      - "2181:2181"
+    volumes:
+      - /Users/raolei/docker/zk/data:/var/lib/zookeeper/data
+      - /Users/raolei/docker/zk/logs:/var/lib/zookeeper/log
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_SERVER_ID: 1
+      ZOOKEEPER_SERVERS: zoo1:2888:3888
+
+  kafka1:
+    image: confluentinc/cp-kafka:latest
+    hostname: kafka1
+    container_name: kafka1
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+      - "9999:9999"
+    volumes:
+      - /Users/raolei/docker/kafka/data:/var/lib/kafka/data
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:19092,EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092,DOCKER://host.docker.internal:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,DOCKER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181"
+      KAFKA_BROKER_ID: 1
+      KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_JMX_PORT: 9999
+      KAFKA_JMX_HOSTNAME: ${DOCKER_HOST_IP:-127.0.0.1}
+      KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.authorizer.AclAuthorizer
+      KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
+    depends_on:
+      - zoo1
+  kafka-schema-registry:
+    image: confluentinc/cp-schema-registry:latest
+    hostname: kafka-schema-registry
+    container_name: kafka-schema-registry
+    depends_on:
+      - zoo1
+      - kafka1
+    ports:
+      - "8082:8081"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: kafka-schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'PLAINTEXT://kafka1:19092'
+      SCHEMA_REGISTRY_LISTENERS: http://kafka-schema-registry:8081
+  kafka-ui:
+    container_name: kafka-ui
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - 8088:8080
+    depends_on:
+      - zoo1
+      - kafka1
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka1:29092
+  jobmanager:
+    image: flink:latest
+    ports:
+      - "8081:8081"
+    command: jobmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager        
+
+  taskmanager:
+    image: flink:latest
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 3
+networks:
+  mynetwork:
+    driver: bridge
+    external: true
+
+
