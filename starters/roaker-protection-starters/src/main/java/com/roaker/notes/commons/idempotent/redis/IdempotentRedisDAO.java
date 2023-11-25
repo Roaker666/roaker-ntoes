@@ -19,7 +19,7 @@ public class IdempotentRedisDAO {
             String.class,
             RedisKeyDefine.TimeoutTypeEnum.DYNAMIC);
 
-    private final RedisTemplate<String, Object> redisTemplate;
+    private final RedisTemplate<String, String> redisTemplate;
 
     public Boolean setIfAbsent(String key, long timeout, TimeUnit timeUnit) {
         String redisKey = formatKey(key);

@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * Swagger 配置属性
  *
- * @author 芋道源码
+ * @author lei.rao
  */
 @ConfigurationProperties("roaker.swagger")
 @Data

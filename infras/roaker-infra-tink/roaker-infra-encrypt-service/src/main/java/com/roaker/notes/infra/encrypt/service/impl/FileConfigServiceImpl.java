@@ -2,6 +2,7 @@ package com.roaker.notes.infra.encrypt.service.impl;
 
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.core.util.IdUtil;
+import com.gitee.sunchenbin.mybatis.actable.manager.handler.StartUpHandler;
 import com.roaker.notes.commons.constants.ErrorCodeConstants;
 import com.roaker.notes.commons.db.core.dataobject.PageResult;
 import com.roaker.notes.commons.utils.JacksonUtils;
@@ -22,6 +23,8 @@ import jakarta.annotation.Resource;
 import jakarta.validation.Validator;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronization;
@@ -41,6 +44,7 @@ import static com.roaker.notes.exception.util.ServiceExceptionUtil.exception;
 @Service
 @Validated
 @Slf4j
+@Order(Integer.MAX_VALUE)
 public class FileConfigServiceImpl implements FileConfigService {
     @Resource
     private FileClientFactory fileClientFactory;
@@ -58,9 +62,14 @@ public class FileConfigServiceImpl implements FileConfigService {
     @Resource
     private Validator validator;
 
+    @Resource
+    private ApplicationContext applicationContext;
+
     @Override
     @PostConstruct
     public void initLocalCache() {
+        // 先加载
+        applicationContext.getBean(StartUpHandler.class);
         // 第一步：查询数据
         List<FileConfigDO> configs = fileConfigMapper.selectList();
         log.info("[initLocalCache][缓存文件配置，数量为:{}]", configs.size());

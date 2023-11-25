@@ -13,6 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>roaker-core-commons</module>
+        <module>roaker-core-domain</module>
+        <module>roaker-core-messaging</module>
         <module>roaker-leaf</module>
     </modules>
 

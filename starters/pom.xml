@@ -22,6 +22,8 @@
         <module>roaker-file-starter</module>
         <module>roaker-protection-starters</module>
         <module>roaker-excel-starters</module>
+        <module>roaker-dynamic-stater</module>
+        <module>roaker-social-starter</module>
     </modules>
 
     <properties>

@@ -9,7 +9,6 @@ import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import com.roaker.notes.commons.db.core.dataobject.BaseDO;
 import com.roaker.notes.file.core.client.FileClientConfig;
 import com.roaker.notes.file.core.enums.FileStorageEnum;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.Accessors;
 

@@ -1,10 +1,10 @@
 package com.roaker.notes.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
+import com.roaker.notes.commons.core.IntArrayValuable;
 import com.roaker.notes.dynamic.enums.CommonEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.checkerframework.common.value.qual.EnumVal;
 
 import java.util.Arrays;
 
@@ -15,10 +15,11 @@ import java.util.Arrays;
  */
 @Getter
 @AllArgsConstructor
-public enum CommonStatusEnum implements CommonEnum {
+public enum CommonStatusEnum implements CommonEnum, IntArrayValuable {
 
     ENABLE(0, "开启"),
     DISABLE(1, "关闭");
+    public static final int[] ARRAYS = Arrays.stream(values()).mapToInt(CommonStatusEnum::getCode).toArray();
     /**
      * 状态值
      */
@@ -28,5 +29,10 @@ public enum CommonStatusEnum implements CommonEnum {
      * 状态名
      */
     private final String name;
+
+    @Override
+    public int[] array() {
+        return new int[0];
+    }
 
 }

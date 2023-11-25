@@ -16,7 +16,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>hello-blockchain</module>
-        <module>roaker-sso</module>
         <module>starters</module>
         <module>roaker-business</module>
         <module>infras</module>
@@ -123,6 +122,8 @@
         <native.buildtools.version>0.9.21</native.buildtools.version>
         <junit-launcher.version>1.8.1</junit-launcher.version>
         <rocketmq-starter.version>2.2.3</rocketmq-starter.version>
+        <microservice-canvas.version>0.10.0.RELEASE</microservice-canvas.version>
+        <reflections.version>0.10.2</reflections.version>
     </properties>
 
     <dependencies>
@@ -131,6 +132,7 @@
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
+
 
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -192,15 +194,30 @@
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-native</artifactId>
-        </dependency>
     </dependencies>
 
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>${reflections.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-social-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/io.microservices.tools.canvas/microservice-canvas-springmvc -->
+            <dependency>
+                <groupId>io.microservices.tools.canvas</groupId>
+                <artifactId>microservice-canvas-springmvc</artifactId>
+                <version>${microservice-canvas.version}</version>
+            </dependency>
+
             <!-- https://mvnrepository.com/artifact/org.apache.rocketmq/rocketmq-spring-boot-starter -->
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>
@@ -237,11 +254,6 @@
                 <groupId>org.junit.platform</groupId>
                 <artifactId>junit-platform-launcher</artifactId>
                 <version>${junit-launcher.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.experimental</groupId>
-                <artifactId>spring-native</artifactId>
-                <version>${spring-native.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -863,6 +875,11 @@
                 <artifactId>xercesImpl</artifactId>
                 <version>${xercesImpl.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-thymeleaf</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -883,7 +900,27 @@
                         <arg>java.base/jdk.internal.misc=ALL-UNNAMED</arg>
                         <arg>--add-opens</arg>
                         <arg>java.base/java.lang.invoke=ALL-UNNAMED</arg>
+                        <compilerArg>
+                            -Amapstruct.defaultComponentModel=spring
+                        </compilerArg>
                     </compilerArgs>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <dependency>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>0.2.0</version>
+                        </dependency>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>
@@ -897,14 +934,14 @@
                         <skip>true</skip>
                     </configuration>
                 </plugin>
-<!--                <plugin>-->
-<!--                    <groupId>org.codehaus.mojo</groupId>-->
-<!--                    <artifactId>flatten-maven-plugins</artifactId>-->
-<!--                    <version>${maven-flatten.version}</version>-->
-<!--                    <configuration>-->
-<!--                        <skip>true</skip>-->
-<!--                    </configuration>-->
-<!--                </plugin>-->
+                <!--                <plugin>-->
+                <!--                    <groupId>org.codehaus.mojo</groupId>-->
+                <!--                    <artifactId>flatten-maven-plugins</artifactId>-->
+                <!--                    <version>${maven-flatten.version}</version>-->
+                <!--                    <configuration>-->
+                <!--                        <skip>true</skip>-->
+                <!--                    </configuration>-->
+                <!--                </plugin>-->
                 <plugin>
                     <groupId>com.spotify</groupId>
                     <artifactId>docker-maven-plugin</artifactId>
