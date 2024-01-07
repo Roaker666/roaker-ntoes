@@ -22,6 +22,7 @@
         <module>commons</module>
         <module>flink</module>
         <module>flink/flink-learning</module>
+        <module>algorithm</module>
     </modules>
 
     <properties>
