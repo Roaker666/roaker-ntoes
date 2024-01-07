@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 给定一个整形数组arr,和一个证书num
+ * 给定一个整形数组arr,和一个整数num
  * 某个arr中的子数组sub,如果想达标,必须满足:
  * sub中的最大值-sub中的最小值<=num,返回这样的子数组数量
  *
