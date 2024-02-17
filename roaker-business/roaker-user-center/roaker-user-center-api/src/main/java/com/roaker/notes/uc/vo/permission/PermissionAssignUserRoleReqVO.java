@@ -16,6 +16,6 @@ public class PermissionAssignUserRoleReqVO {
     private String userId;
 
     @Schema(description = "角色编号列表", example = "1,3,5")
-    private Set<String> roleIds = Collections.emptySet(); // 兜底
+    private Set<Long> roleIds = Collections.emptySet(); // 兜底
 
 }

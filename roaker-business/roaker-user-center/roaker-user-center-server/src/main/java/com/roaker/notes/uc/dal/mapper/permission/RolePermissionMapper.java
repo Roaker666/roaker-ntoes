@@ -17,25 +17,29 @@ import java.util.List;
 @Mapper
 public interface RolePermissionMapper extends BaseMapperX<RolePermissionDO> {
 
-    @Repository
-    class BatchInsertMapper extends ServiceImpl<RolePermissionMapper, RolePermissionDO> {
-    }
-
-    default List<RolePermissionDO> selectListByRoleId(String roleId) {
+    default List<RolePermissionDO> selectListByRoleId(Long roleId) {
         return selectList(RolePermissionDO::getRoleId, roleId);
     }
 
-    default void deleteListByRoleIdAndPermissionIds(String roleId, Collection<String> permissionIds) {
+    default List<RolePermissionDO> selectListByRoleId(Collection<Long> roleIds) {
+        return selectList(RolePermissionDO::getRoleId, roleIds);
+    }
+
+    default List<RolePermissionDO> selectListByMenuId(Long menuId) {
+        return selectList(RolePermissionDO::getMenuId, menuId);
+    }
+
+    default void deleteListByRoleIdAndMenuIds(Long roleId, Collection<Long> menuIds) {
         delete(new LambdaQueryWrapper<RolePermissionDO>()
                 .eq(RolePermissionDO::getRoleId, roleId)
-                .in(RolePermissionDO::getPermissionId, permissionIds));
+                .in(RolePermissionDO::getMenuId, menuIds));
     }
 
-    default void deleteListByPermissionId(String permissionId) {
-        delete(new LambdaQueryWrapper<RolePermissionDO>().eq(RolePermissionDO::getPermissionId, permissionId));
+    default void deleteListByMenuId(Long menuId) {
+        delete(new LambdaQueryWrapper<RolePermissionDO>().eq(RolePermissionDO::getMenuId, menuId));
     }
 
-    default void deleteListByRoleId(String roleId) {
+    default void deleteListByRoleId(Long roleId) {
         delete(new LambdaQueryWrapper<RolePermissionDO>().eq(RolePermissionDO::getRoleId, roleId));
     }
 

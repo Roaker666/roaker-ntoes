@@ -1,13 +1,12 @@
 package com.roaker.notes.commons.web.xss.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.roaker.notes.commons.web.xss.core.json.XssStringJsonDeserializer;
 import com.roaker.notes.commons.web.xss.core.clean.JsoupXssCleaner;
 import com.roaker.notes.commons.web.xss.core.clean.XssCleaner;
 import com.roaker.notes.commons.web.xss.core.filter.XssFilter;
-import com.roaker.notes.commons.web.xss.core.json.XssStringJsonDeserializer;
 import com.roaker.notes.enums.WebFilterOrderEnum;
 import jakarta.servlet.Filter;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

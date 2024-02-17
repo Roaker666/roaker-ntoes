@@ -1,5 +1,7 @@
 package com.roaker.notes.uc.vo.permission;
 
+import com.roaker.notes.commons.validation.InEnum;
+import com.roaker.notes.enums.DataScopeEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -13,7 +15,11 @@ public class PermissionAssignRoleDataScopeReqVO {
 
     @Schema(description = "角色编号", required = true, example = "1")
     @NotNull(message = "角色编号不能为空")
-    private String roleId;
+    private Long roleId;
+
+    @Schema(description = "数据范围，参见 DataScopeEnum 枚举类", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
+    @NotNull(message = "数据范围不能为空")
+    private Integer dataScope;
 
     @Schema(description = "部门编号列表,只有范围类型为 DEPT_CUSTOM 时，该字段才需要", example = "1,3,5")
     private Set<Long> dataScopeDeptIds = Collections.emptySet(); // 兜底

@@ -15,22 +15,22 @@ import java.util.List;
 @Mapper
 public interface PermissionInfoMapper extends BaseMapperX<PermissionInfoDO> {
 
-    default PermissionInfoDO selectByParentIdAndName(String parentId, String name) {
-        return selectOne(PermissionInfoDO::getParentId, parentId, PermissionInfoDO::getPermissionName, name);
+    default PermissionInfoDO selectByParentIdAndName(Long parentId, String name) {
+        return selectOne(PermissionInfoDO::getParentId, parentId, PermissionInfoDO::getName, name);
     }
 
-    default PermissionInfoDO selectByPermissionId(String permissionId) {
-        return selectOne(PermissionInfoDO::getPermissionId, permissionId);
-    }
-
-    default Long selectCountByParentId(String parentId) {
+    default Long selectCountByParentId(Long parentId) {
         return selectCount(PermissionInfoDO::getParentId, parentId);
     }
 
     default List<PermissionInfoDO> selectList(PermissionInfoListReqVO reqVO) {
         return selectList(new LambdaQueryWrapperX<PermissionInfoDO>()
-                .likeIfPresent(PermissionInfoDO::getPermissionName, reqVO.getName())
+                .likeIfPresent(PermissionInfoDO::getName, reqVO.getName())
                 .eqIfPresent(PermissionInfoDO::getStatus, reqVO.getStatus()));
+    }
+
+    default List<PermissionInfoDO> selectListByPermission(String permission) {
+        return selectList(PermissionInfoDO::getPermission, permission);
     }
 
 }

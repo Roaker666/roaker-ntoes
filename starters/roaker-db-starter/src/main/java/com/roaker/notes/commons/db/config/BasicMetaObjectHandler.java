@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.roaker.notes.commons.db.properties.MybatisPlusAutoFillProperties;
 import org.apache.ibatis.reflection.MetaObject;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -36,13 +37,15 @@ public class BasicMetaObjectHandler implements MetaObjectHandler {
         Object updateTime = getFieldValByName(autoFillProperties.getUpdateTimeField(), metaObject);
         Object creator = getFieldValByName(autoFillProperties.getCreatorField(), metaObject);
         Object modifier = getFieldValByName(autoFillProperties.getModifierField(), metaObject);
+        Object deleted = getFieldValByName(autoFillProperties.getDeletedField(), metaObject);
+        Object version = getFieldValByName(autoFillProperties.getVersionFiled(), metaObject);
         if (createTime == null || updateTime == null) {
-            Date date = new Date();
+            LocalDateTime dateTime = LocalDateTime.now();
             if (createTime == null) {
-                setFieldValByName(autoFillProperties.getCreateTimeField(), date, metaObject);
+                setFieldValByName(autoFillProperties.getCreateTimeField(), dateTime, metaObject);
             }
             if (updateTime == null) {
-                setFieldValByName(autoFillProperties.getUpdateTimeField(), date, metaObject);
+                setFieldValByName(autoFillProperties.getUpdateTimeField(), dateTime, metaObject);
             }
         }
         if (creator == null || modifier == null) {
@@ -52,6 +55,14 @@ public class BasicMetaObjectHandler implements MetaObjectHandler {
             if (modifier == null) {
                 setFieldValByName(autoFillProperties.getModifierField(), defaultUser, metaObject);
             }
+        }
+
+        if (deleted == null) {
+            setFieldValByName(autoFillProperties.getDeletedField(), Boolean.FALSE, metaObject);
+        }
+
+        if (version == null) {
+            setFieldValByName(autoFillProperties.getVersionFiled(), 1, metaObject);
         }
     }
 

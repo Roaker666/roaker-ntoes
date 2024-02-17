@@ -1,12 +1,7 @@
 package com.roaker.notes.infra.encrypt.service.impl;
 
-import cn.hutool.core.io.IoUtil;
-import com.google.crypto.tink.BinaryKeysetWriter;
-import com.google.crypto.tink.CleartextKeysetHandle;
-import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.aead.AeadKeyTemplates;
 import com.google.crypto.tink.hybrid.HybridKeyTemplates;
-import com.google.crypto.tink.proto.Tink;
 import com.roaker.notes.exception.ServerException;
 import com.roaker.notes.exception.enums.GlobalErrorCodeConstants;
 import com.roaker.notes.infra.encrypt.TinkUtils;
@@ -19,9 +14,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Base64Utils;
-
-import java.io.ByteArrayOutputStream;
-import java.nio.charset.StandardCharsets;
 
 /**
  * @author lei.rao

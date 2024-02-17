@@ -1,6 +1,6 @@
 package com.roaker.notes.infra.encrypt.vo;
 
-import com.roaker.notes.commons.db.core.dataobject.PageParam;
+import com.roaker.notes.commons.db.PageParam;
 import com.roaker.notes.dynamic.enums.DynamicDictTypeEnums;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

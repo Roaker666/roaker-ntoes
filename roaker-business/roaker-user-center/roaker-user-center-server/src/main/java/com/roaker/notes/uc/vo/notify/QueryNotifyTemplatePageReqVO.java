@@ -1,6 +1,6 @@
 package com.roaker.notes.uc.vo.notify;
 
-import com.roaker.notes.commons.db.core.dataobject.PageParam;
+import com.roaker.notes.commons.db.PageParam;
 import com.roaker.notes.enums.NotifyRecipientTypeEnum;
 import com.roaker.notes.enums.SceneEnum;
 import lombok.Data;

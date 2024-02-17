@@ -3,16 +3,15 @@ package com.roaker.notes.uc.service.oauth2.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import com.gitee.sunchenbin.mybatis.actable.manager.handler.StartUpHandler;
 import com.google.common.annotations.VisibleForTesting;
+import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2ClientDO;
+import com.roaker.notes.uc.dal.mapper.oauth2.Oauth2ClientMapper;
+import com.roaker.notes.uc.service.oauth2.Oauth2ClientService;
 import com.roaker.notes.uc.controller.oauth2.admin.vo.client.Oauth2ClientCreateReqVO;
 import com.roaker.notes.uc.controller.oauth2.admin.vo.client.Oauth2ClientPageReqVO;
 import com.roaker.notes.uc.controller.oauth2.admin.vo.client.Oauth2ClientUpdateReqVO;
 import com.roaker.notes.uc.converter.oauth2.Oauth2ClientConvert;
-import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2ClientDO;
-import com.roaker.notes.uc.dal.mapper.oauth2.Oauth2ClientMapper;
-import com.roaker.notes.uc.service.oauth2.Oauth2ClientService;
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
+import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.commons.utils.StrUtils;
 import com.roaker.notes.enums.CommonStatusEnum;
 import jakarta.annotation.PostConstruct;
@@ -65,7 +64,7 @@ public class Oauth2ClientServiceImpl implements Oauth2ClientService {
     @PostConstruct
     public void initLocalCache() {
         // 第一步：查询数据
-        List<Oauth2ClientDO> clients = new ArrayList<>();
+        List<Oauth2ClientDO> clients = oauth2ClientMapper.selectList(Oauth2ClientDO::getStatus, CommonStatusEnum.ENABLE);
         log.info("[initLocalCache][缓存 Oauth2 客户端，数量为:{}]", clients.size());
 
         // 第二步：构建缓存。
@@ -78,6 +77,7 @@ public class Oauth2ClientServiceImpl implements Oauth2ClientService {
         // 插入
         Oauth2ClientDO oauth2Client = Oauth2ClientConvert.INSTANCE.convert(createReqVO);
         oauth2ClientMapper.insert(oauth2Client);
+        initLocalCache();
         // 发送刷新消息
 //        oauth2ClientProducer.sendOauth2ClientRefreshMessage();
         return oauth2Client.getId();
@@ -93,6 +93,7 @@ public class Oauth2ClientServiceImpl implements Oauth2ClientService {
         // 更新
         Oauth2ClientDO updateObj = Oauth2ClientConvert.INSTANCE.convert(updateReqVO);
         oauth2ClientMapper.updateById(updateObj);
+        initLocalCache();
         // 发送刷新消息
 //        oauth2ClientProducer.sendOauth2ClientRefreshMessage();
     }
@@ -103,6 +104,7 @@ public class Oauth2ClientServiceImpl implements Oauth2ClientService {
         validateOauth2ClientExists(id);
         // 删除
         oauth2ClientMapper.deleteById(id);
+        initLocalCache();
         // 发送刷新消息
 //        oauth2ClientProducer.sendOauth2ClientRefreshMessage();
     }
@@ -146,7 +148,7 @@ public class Oauth2ClientServiceImpl implements Oauth2ClientService {
         if (client == null) {
             throw exception(OAUTH2_CLIENT_NOT_EXISTS);
         }
-        if (ObjectUtil.notEqual(client.getStatus(), CommonStatusEnum.ENABLE.getCode())) {
+        if (ObjectUtil.notEqual(client.getStatus(), CommonStatusEnum.ENABLE)) {
             throw exception(OAUTH2_CLIENT_DISABLE);
         }
 

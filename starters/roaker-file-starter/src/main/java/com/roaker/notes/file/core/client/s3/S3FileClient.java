@@ -8,9 +8,6 @@ import io.minio.*;
 
 import java.io.ByteArrayInputStream;
 
-import static com.roaker.notes.file.core.client.s3.S3FileClientConfig.ENDPOINT_ALIYUN;
-import static com.roaker.notes.file.core.client.s3.S3FileClientConfig.ENDPOINT_TENCENT;
-
 /**
  * @author lei.rao
  * @since 1.0
@@ -70,15 +67,15 @@ public class S3FileClient extends AbstractFileClient<S3FileClientConfig> {
      */
     private String buildRegion() {
         // 阿里云必须有 region，否则会报错
-        if (config.getEndpoint().contains(ENDPOINT_ALIYUN)) {
+        if (config.getEndpoint().contains(S3FileClientConfig.ENDPOINT_ALIYUN)) {
             return StrUtil.subBefore(config.getEndpoint(), '.', false)
                     .replaceAll("-internal", "")// 去除内网 Endpoint 的后缀
                     .replaceAll("https://", "");
         }
         // 腾讯云必须有 region，否则会报错
-        if (config.getEndpoint().contains(ENDPOINT_TENCENT)) {
+        if (config.getEndpoint().contains(S3FileClientConfig.ENDPOINT_TENCENT)) {
             return StrUtil.subAfter(config.getEndpoint(), ".cos.", false)
-                    .replaceAll("." + ENDPOINT_TENCENT, ""); // 去除 Endpoint
+                    .replaceAll("." + S3FileClientConfig.ENDPOINT_TENCENT, ""); // 去除 Endpoint
         }
         return null;
     }

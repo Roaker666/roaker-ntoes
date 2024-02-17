@@ -2,6 +2,7 @@ package com.roaker.notes.commons.utils.date;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
 
+import java.text.ParseException;
 import java.time.*;
 import java.util.Calendar;
 import java.util.Date;
@@ -26,6 +27,11 @@ public class DateUtils {
     public static final String FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND = "yyyy-MM-dd HH:mm:ss";
 
     public static final String FORMAT_HOUR_MINUTE_SECOND = "HH:mm:ss";
+
+    private static final String[] parsePatterns = {
+            "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy-MM",
+            "yyyy/MM/dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm", "yyyy/MM",
+            "yyyy.MM.dd", "yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd HH:mm", "yyyy.MM"};
 
     /**
      * 将 LocalDateTime 转换成 Date
@@ -158,6 +164,26 @@ public class DateUtils {
         }
         c.add(field, amount);
         return c.getTime();
+    }
+
+
+    /**
+     * 日期型字符串转化为日期 格式
+     */
+    public static Date parseDate(Object str)
+    {
+        if (str == null)
+        {
+            return null;
+        }
+        try
+        {
+            return org.apache.commons.lang3.time.DateUtils.parseDate(str.toString(), parsePatterns);
+        }
+        catch (ParseException e)
+        {
+            return null;
+        }
     }
 
     /**

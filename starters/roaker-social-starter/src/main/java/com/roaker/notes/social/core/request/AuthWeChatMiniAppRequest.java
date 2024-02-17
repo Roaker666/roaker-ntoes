@@ -3,16 +3,16 @@ package com.roaker.notes.social.core.request;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.roaker.notes.commons.utils.JacksonUtils;
 import com.roaker.notes.social.core.enums.AuthExtendSource;
+import com.xingyuv.jushauth.cache.AuthStateCache;
+import com.xingyuv.jushauth.config.AuthConfig;
+import com.xingyuv.jushauth.exception.AuthException;
+import com.xingyuv.jushauth.model.AuthCallback;
+import com.xingyuv.jushauth.model.AuthToken;
+import com.xingyuv.jushauth.model.AuthUser;
+import com.xingyuv.jushauth.request.AuthDefaultRequest;
+import com.xingyuv.jushauth.utils.HttpUtils;
+import com.xingyuv.jushauth.utils.UrlBuilder;
 import lombok.Data;
-import me.zhyd.oauth.cache.AuthStateCache;
-import me.zhyd.oauth.config.AuthConfig;
-import me.zhyd.oauth.exception.AuthException;
-import me.zhyd.oauth.model.AuthCallback;
-import me.zhyd.oauth.model.AuthToken;
-import me.zhyd.oauth.model.AuthUser;
-import me.zhyd.oauth.request.AuthDefaultRequest;
-import me.zhyd.oauth.utils.HttpUtils;
-import me.zhyd.oauth.utils.UrlBuilder;
 
 /**
  * 微信小程序登陆 Request 请求
@@ -29,7 +29,7 @@ public class AuthWeChatMiniAppRequest extends AuthDefaultRequest {
     protected AuthToken getAccessToken(AuthCallback authCallback) {
         // 参见 https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/login/auth.code2Session.html 文档
         // 使用 code 获取对应的 openId、unionId 等字段
-        String response = new HttpUtils(config.getHttpConfig()).get(accessTokenUrl(authCallback.getCode()));
+        String response = new HttpUtils(config.getHttpConfig()).get(accessTokenUrl(authCallback.getCode())).getBody();
         JSCode2SessionResponse accessTokenObject = JacksonUtils.from(response, JSCode2SessionResponse.class);
         assert accessTokenObject != null;
         checkResponse(accessTokenObject);

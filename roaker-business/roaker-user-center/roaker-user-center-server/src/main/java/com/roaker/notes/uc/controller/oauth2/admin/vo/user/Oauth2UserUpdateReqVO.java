@@ -14,16 +14,16 @@ import org.hibernate.validator.constraints.Length;
 @AllArgsConstructor
 public class Oauth2UserUpdateReqVO {
 
-    @Schema(description = "用户昵称", required = true, example = "芋艿")
+    @Schema(description = "用户昵称", required = true, example = "Roaker")
     @Size(max = 30, message = "用户昵称长度不能超过 30 个字符")
     private String nickname;
 
-    @Schema(description = "用户邮箱", example = "roaker@iocoder.cn")
+    @Schema(description = "用户邮箱", example = "roaker@notes.cn")
     @Email(message = "邮箱格式不正确")
     @Size(max = 50, message = "邮箱长度不能超过 50 个字符")
     private String email;
 
-    @Schema(description = "手机号码", example = "15601691300")
+    @Schema(description = "手机号码", example = "12345678901")
     @Length(min = 11, max = 11, message = "手机号长度必须 11 位")
     private String mobile;
 

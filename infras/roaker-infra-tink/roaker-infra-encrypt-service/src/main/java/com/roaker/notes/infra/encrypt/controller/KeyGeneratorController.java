@@ -2,9 +2,9 @@ package com.roaker.notes.infra.encrypt.controller;
 
 import com.roaker.notes.infra.encrypt.enums.DataTypeEnums;
 import com.roaker.notes.infra.encrypt.enums.KeyTypeEnums;
-import com.roaker.notes.infra.encrypt.service.KeyGenerateService;
 import com.roaker.notes.infra.encrypt.vo.KeyGenerateRequestVO;
 import com.roaker.notes.vo.CommonResult;
+import com.roaker.notes.infra.encrypt.service.KeyGenerateService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

@@ -3,7 +3,7 @@ package com.roaker.notes.uc.dal.mapper.notify;
 import com.roaker.notes.commons.db.core.mapper.BaseMapperX;
 import com.roaker.notes.commons.db.core.query.LambdaQueryWrapperX;
 import com.roaker.notes.enums.SceneEnum;
-import com.roaker.notes.notify.dal.dataobject.NotifySceneChannelDO;
+import com.roaker.notes.uc.dal.dataobject.notify.NotifySceneChannelDO;
 
 import java.util.List;
 

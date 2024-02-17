@@ -17,8 +17,8 @@ import java.util.Arrays;
 @AllArgsConstructor
 public enum CommonStatusEnum implements CommonEnum, IntArrayValuable {
 
-    ENABLE(0, "开启"),
-    DISABLE(1, "关闭");
+    ENABLE(1, "开启"),
+    DISABLE(0, "关闭");
     public static final int[] ARRAYS = Arrays.stream(values()).mapToInt(CommonStatusEnum::getCode).toArray();
     /**
      * 状态值
@@ -32,7 +32,7 @@ public enum CommonStatusEnum implements CommonEnum, IntArrayValuable {
 
     @Override
     public int[] array() {
-        return new int[0];
+        return ARRAYS;
     }
 
 }

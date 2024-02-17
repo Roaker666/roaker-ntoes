@@ -16,8 +16,8 @@ import lombok.experimental.Accessors;
  * @author lei.rao
  * @since 1.0
  */
-@TableName(value = "social_user_bind", autoResultMap = true)
-@KeySequence("social_user_bind_seq")
+@TableName(value = "sys_social_user_bind", autoResultMap = true)
+@KeySequence("sys_social_user_bind_seq")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder

@@ -1,6 +1,6 @@
 package com.roaker.notes.infra.encrypt.service;
 
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
+import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.infra.encrypt.dal.dataobject.FileDO;
 import com.roaker.notes.infra.encrypt.vo.FilePageReqVO;
 

@@ -2,7 +2,7 @@ package com.roaker.notes.commons.db.config;
 
 import com.baomidou.mybatisplus.core.incrementer.DefaultIdentifierGenerator;
 import com.roaker.notes.commons.db.core.annotation.BizKey;
-import com.roaker.notes.seq.SeqClient;
+import com.roaker.notes.uc.api.seq.SeqApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.annotation.AnnotationUtils;
 
@@ -12,7 +12,7 @@ import org.springframework.core.annotation.AnnotationUtils;
  */
 @RequiredArgsConstructor
 public class SeqIdGenerator extends DefaultIdentifierGenerator {
-    private final SeqClient seqClient;
+    private final SeqApi seqApi;
 
     @Override
     public Long nextId(Object entity) {
@@ -21,7 +21,7 @@ public class SeqIdGenerator extends DefaultIdentifierGenerator {
             return super.nextId(entity);
         }
 
-        return Long.parseLong(seqClient.getSegmentId(bizKey.bizName()));
+        return Long.parseLong(seqApi.getSegmentId(bizKey.bizName()));
     }
 
     @Override

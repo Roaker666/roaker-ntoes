@@ -22,10 +22,12 @@
         <option value="$PROJECT_DIR$/roaker-business/roaker-user-authentication/roaker-user-authentication-api/pom.xml" />
         <option value="$PROJECT_DIR$/roaker-business/roaker-user-authentication/roaker-user-authentication-server/pom.xml" />
         <option value="$PROJECT_DIR$/roaker-sso/pom.xml" />
+        <option value="$PROJECT_DIR$/starters/roaker-generator/pom.xml" />
+        <option value="$PROJECT_DIR$/starters/rokaer-seq-starter/pom.xml" />
       </set>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="graalvm-17" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

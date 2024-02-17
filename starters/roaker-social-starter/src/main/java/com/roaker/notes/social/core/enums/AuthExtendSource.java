@@ -1,6 +1,8 @@
 package com.roaker.notes.social.core.enums;
 
-import me.zhyd.oauth.config.AuthSource;
+
+import com.xingyuv.jushauth.config.AuthSource;
+import com.xingyuv.jushauth.request.AuthDefaultRequest;
 
 /**
  * @author lei.rao
@@ -30,6 +32,11 @@ public enum AuthExtendSource implements AuthSource {
         public String userInfo() {
             // 参见 https://developers.weixin.qq.com/miniprogram/dev/api/open-api/user-info/wx.getUserProfile.html 文档
             throw new UnsupportedOperationException("不支持获取用户信息 url，请使用小程序内置函数 wx.getUserProfile() 获取用户信息");
+        }
+
+        @Override
+        public Class<? extends AuthDefaultRequest> getTargetClass() {
+            return null;
         }
     }
 }

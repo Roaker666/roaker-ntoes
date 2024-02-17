@@ -1,6 +1,6 @@
 package com.roaker.notes.uc.vo.permission;
 
-import com.roaker.notes.commons.db.core.dataobject.PageParam;
+import com.roaker.notes.commons.db.PageParam;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,7 +16,7 @@ import static com.roaker.notes.commons.utils.date.DateUtils.FORMAT_YEAR_MONTH_DA
 @EqualsAndHashCode(callSuper = true)
 public class RolePageReqVO extends PageParam {
 
-    @Schema(description = "角色名称,模糊匹配", example = "芋道")
+    @Schema(description = "角色名称,模糊匹配", example = "Roaker")
     private String name;
 
     @Schema(description = "角色标识,模糊匹配", example = "roaker")

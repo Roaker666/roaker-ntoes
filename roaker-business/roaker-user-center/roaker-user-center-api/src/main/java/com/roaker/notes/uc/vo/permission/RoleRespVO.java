@@ -7,7 +7,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Schema(description = "管理后台 - 角色信息 Response VO")
 @Data
@@ -15,10 +14,6 @@ import java.util.Set;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class RoleRespVO extends RoleBaseVO {
-
-    @Schema(description = "角色编号", required = true, example = "1")
-    private String roleId;
-
 
     @Schema(description = "状态,参见 CommonStatusEnum 枚举类", required = true, example = "1")
     private Integer status;

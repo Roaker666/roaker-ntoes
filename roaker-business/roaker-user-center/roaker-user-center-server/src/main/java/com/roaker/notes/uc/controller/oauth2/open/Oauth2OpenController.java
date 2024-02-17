@@ -4,23 +4,26 @@ import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import com.roaker.notes.uc.controller.oauth2.open.vo.open.Oauth2OpenAccessTokenRespVO;
-import com.roaker.notes.uc.controller.oauth2.open.vo.open.Oauth2OpenAuthorizeInfoRespVO;
-import com.roaker.notes.uc.controller.oauth2.open.vo.open.Oauth2OpenCheckTokenRespVO;
+import com.roaker.notes.commons.utils.HttpUtils;
+import com.roaker.notes.commons.utils.JacksonUtils;
+import com.roaker.notes.commons.utils.RoakerCollectionUtils;
+import com.roaker.notes.exception.enums.GlobalErrorCodeConstants;
+import com.roaker.notes.exception.util.ServiceExceptionUtil;
+import com.roaker.notes.commons.web.util.WebFrameworkUtils;
+import com.roaker.notes.uc.converter.oauth2.Oauth2OpenConvert;
 import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2AccessTokenDO;
 import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2ApproveDO;
 import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2ClientDO;
 import com.roaker.notes.uc.enums.oauth2.Oauth2GrantTypeEnum;
-import com.roaker.notes.uc.converter.oauth2.Oauth2OpenConvert;
 import com.roaker.notes.uc.service.oauth2.Oauth2ApproveService;
 import com.roaker.notes.uc.service.oauth2.Oauth2ClientService;
 import com.roaker.notes.uc.service.oauth2.Oauth2GrantService;
 import com.roaker.notes.uc.service.oauth2.Oauth2TokenService;
 import com.roaker.notes.uc.utils.Oauth2Utils;
-import com.roaker.notes.commons.utils.HttpUtils;
-import com.roaker.notes.commons.utils.JacksonUtils;
+import com.roaker.notes.uc.controller.oauth2.open.vo.open.Oauth2OpenAccessTokenRespVO;
+import com.roaker.notes.uc.controller.oauth2.open.vo.open.Oauth2OpenAuthorizeInfoRespVO;
+import com.roaker.notes.uc.controller.oauth2.open.vo.open.Oauth2OpenCheckTokenRespVO;
 import com.roaker.notes.enums.UserTypeEnum;
-import com.roaker.notes.exception.enums.GlobalErrorCodeConstants;
 import com.roaker.notes.vo.CommonResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -38,7 +41,6 @@ import java.util.Map;
 
 import static com.roaker.notes.commons.utils.RoakerCollectionUtils.convertList;
 import static com.roaker.notes.commons.web.util.WebFrameworkUtils.getLoginUserId;
-import static com.roaker.notes.exception.util.ServiceExceptionUtil.exception0;
 import static com.roaker.notes.vo.CommonResult.success;
 
 /**
@@ -81,7 +83,7 @@ public class Oauth2OpenController {
             @Parameter(name = "code", description = "授权范围", example = "userinfo.read"),
             @Parameter(name = "redirect_uri", description = "重定向 URI", example = "https://www.notes.cn"),
             @Parameter(name = "state", description = "状态", example = "1"),
-            @Parameter(name = "username", example = "raoker"),
+            @Parameter(name = "username", example = "Roaker"),
             @Parameter(name = "password", example = "notes123"),
             @Parameter(name = "scope", example = "user_info"),
             @Parameter(name = "refresh_token", example = "123424233"),
@@ -99,10 +101,10 @@ public class Oauth2OpenController {
         // 1.1 校验授权类型
         Oauth2GrantTypeEnum grantTypeEnum = Oauth2GrantTypeEnum.getByGranType(grantType);
         if (grantTypeEnum == null) {
-            throw exception0(GlobalErrorCodeConstants.BAD_REQUEST.getCode(), StrUtil.format("未知授权类型({})", grantType));
+            throw ServiceExceptionUtil.exception0(GlobalErrorCodeConstants.BAD_REQUEST.getCode(), StrUtil.format("未知授权类型({})", grantType));
         }
         if (grantTypeEnum == Oauth2GrantTypeEnum.IMPLICIT) {
-            throw exception0(GlobalErrorCodeConstants.BAD_REQUEST.getCode(), "Token 接口不支持 implicit 授权模式");
+            throw ServiceExceptionUtil.exception0(GlobalErrorCodeConstants.BAD_REQUEST.getCode(), "Token 接口不支持 implicit 授权模式");
         }
 
         // 1.2 校验客户端
@@ -170,7 +172,7 @@ public class Oauth2OpenController {
         // 1. 获得 Client 客户端的信息
         Oauth2ClientDO client = oauth2ClientService.validOAuthClientFromCache(clientId);
         // 2. 获得用户已经授权的信息
-        List<Oauth2ApproveDO> approves = oauth2ApproveService.getApproveList(getLoginUserId(), getUserType(), clientId);
+        List<Oauth2ApproveDO> approves = oauth2ApproveService.getApproveList(WebFrameworkUtils.getLoginUserId(), getUserType(), clientId);
         // 拼接返回
         return success(Oauth2OpenConvert.INSTANCE.convert(client, approves));
     }
@@ -189,7 +191,7 @@ public class Oauth2OpenController {
             @Parameter(name = "response_type", required = true, description = "响应类型", example = "code"),
             @Parameter(name = "client_id", required = true, description = "客户端编号", example = "tudou"),
             @Parameter(name = "scope", description = "授权范围", example = "userinfo.read"),
-            @Parameter(name = "redirect_uri", required = true, description = "重定向 URI", example = "https://www.iocoder.cn"),
+            @Parameter(name = "redirect_uri", required = true, description = "重定向 URI", example = "https://www.notes.cn"),
             @Parameter(name = "auto_approve", required = true, description = "用户是否接受", example = "true"),
             @Parameter(name = "state", example = "1")
     })
@@ -212,24 +214,24 @@ public class Oauth2OpenController {
         // 2.1 假设 approved 为 null，说明是场景一
         if (Boolean.TRUE.equals(autoApprove)) {
             // 如果无法自动授权通过，则返回空 url，前端不进行跳转
-            if (!oauth2ApproveService.checkForPreApproval(getLoginUserId(), getUserType(), clientId, scopes.keySet())) {
+            if (!oauth2ApproveService.checkForPreApproval(WebFrameworkUtils.getLoginUserId(), getUserType(), clientId, scopes.keySet())) {
                 return success(null);
             }
         } else { // 2.2 假设 approved 非 null，说明是场景二
             // 如果计算后不通过，则跳转一个错误链接
-            if (!oauth2ApproveService.updateAfterApproval(getLoginUserId(), getUserType(), clientId, scopes)) {
+            if (!oauth2ApproveService.updateAfterApproval(WebFrameworkUtils.getLoginUserId(), getUserType(), clientId, scopes)) {
                 return success(Oauth2Utils.buildUnsuccessfulRedirect(redirectUri, responseType, state,
                         "access_denied", "User denied access"));
             }
         }
 
         // 3.1 如果是 code 授权码模式，则发放 code 授权码，并重定向
-        List<String> approveScopes = convertList(scopes.entrySet(), Map.Entry::getKey, Map.Entry::getValue);
+        List<String> approveScopes = RoakerCollectionUtils.convertList(scopes.entrySet(), Map.Entry::getKey, Map.Entry::getValue);
         if (grantTypeEnum == Oauth2GrantTypeEnum.AUTHORIZATION_CODE) {
-            return success(getAuthorizationCodeRedirect(getLoginUserId(), client, approveScopes, redirectUri, state));
+            return success(getAuthorizationCodeRedirect(WebFrameworkUtils.getLoginUserId(), client, approveScopes, redirectUri, state));
         }
         // 3.2 如果是 token 则是 implicit 简化模式，则发送 accessToken 访问令牌，并重定向
-        return success(getImplicitGrantRedirect(getLoginUserId(), client, approveScopes, redirectUri, state));
+        return success(getImplicitGrantRedirect(WebFrameworkUtils.getLoginUserId(), client, approveScopes, redirectUri, state));
     }
 
     private String getImplicitGrantRedirect(String userId, Oauth2ClientDO client,
@@ -258,13 +260,13 @@ public class Oauth2OpenController {
         if (StrUtil.equalsAny(responseType, "token")) {
             return Oauth2GrantTypeEnum.IMPLICIT;
         }
-        throw exception0(GlobalErrorCodeConstants.BAD_REQUEST.getCode(), "response_type 参数值只允许 code 和 token");
+        throw ServiceExceptionUtil.exception0(GlobalErrorCodeConstants.BAD_REQUEST.getCode(), "response_type 参数值只允许 code 和 token");
     }
 
     private String[] obtainBasicAuthorization(HttpServletRequest request) {
         String[] clientIdAndSecret = HttpUtils.obtainBasicAuthorization(request);
         if (ArrayUtil.isEmpty(clientIdAndSecret) || clientIdAndSecret.length != 2) {
-            throw exception0(GlobalErrorCodeConstants.BAD_REQUEST.getCode(), "client_id 或 client_secret 未正确传递");
+            throw ServiceExceptionUtil.exception0(GlobalErrorCodeConstants.BAD_REQUEST.getCode(), "client_id 或 client_secret 未正确传递");
         }
         return clientIdAndSecret;
     }

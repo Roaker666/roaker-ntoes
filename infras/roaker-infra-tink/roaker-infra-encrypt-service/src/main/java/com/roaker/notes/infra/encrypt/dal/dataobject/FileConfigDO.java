@@ -18,8 +18,8 @@ import java.io.Serializable;
  * @author lei.rao
  * @since 1.0
  */
-@TableName(value = "roaker_file_config", autoResultMap = true)
-@KeySequence("roaker_file_config_seq") // 用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写。
+@TableName(value = "sys_roaker_file_config", autoResultMap = true)
+@KeySequence("sys_roaker_file_config_seq") // 用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写。
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
@@ -43,7 +43,7 @@ public class FileConfigDO extends BaseDO implements Serializable {
     /**
      * 存储器
      *
-     * 枚举 {@link com.roaker.notes.file.core.enums.FileStorageEnum}
+     * 枚举 {@link FileStorageEnum}
      */
     @TableField
     @ColumnType(MySqlTypeConstant.INT)

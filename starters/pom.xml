@@ -16,7 +16,6 @@
         <module>roaker-db-starter</module>
         <module>roaker-redis-starter</module>
         <module>roaker-web-starter</module>
-        <module>rokaer-seq-starter</module>
         <module>roaker-sms-starter</module>
         <module>roaker-loadbalancer-starter</module>
         <module>roaker-file-starter</module>
@@ -24,6 +23,9 @@
         <module>roaker-excel-starters</module>
         <module>roaker-dynamic-stater</module>
         <module>roaker-social-starter</module>
+        <module>roaker-data-permission-starters</module>
+        <module>roaker-security-starters</module>
+        <module>roaker-captcha-starters</module>
     </modules>
 
     <properties>

@@ -1,11 +1,11 @@
 package com.roaker.notes.uc.service.notify;
 
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
-import com.roaker.notes.notify.dto.NotifyTemplateDto;
-import com.roaker.notes.notify.vo.CreateNotifyTemplateVO;
-import com.roaker.notes.notify.vo.ExportNotifyTemplateReqVO;
-import com.roaker.notes.notify.vo.QueryNotifyTemplatePageReqVO;
-import com.roaker.notes.notify.vo.UpdateNotifyTemplateVO;
+import com.roaker.notes.commons.db.PageResult;
+import com.roaker.notes.uc.dto.notify.NotifyTemplateDto;
+import com.roaker.notes.uc.vo.notify.CreateNotifyTemplateVO;
+import com.roaker.notes.uc.vo.notify.ExportNotifyTemplateReqVO;
+import com.roaker.notes.uc.vo.notify.QueryNotifyTemplatePageReqVO;
+import com.roaker.notes.uc.vo.notify.UpdateNotifyTemplateVO;
 import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;

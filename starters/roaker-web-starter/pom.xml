@@ -80,5 +80,9 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.roaker.notes</groupId>
+            <artifactId>roaker-db-starter</artifactId>
+        </dependency>
     </dependencies>
 </project>

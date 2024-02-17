@@ -10,7 +10,7 @@ import com.gitee.sunchenbin.mybatis.actable.manager.handler.StartUpHandler;
 import com.gitee.sunchenbin.mybatis.actable.manager.handler.StartUpHandlerImpl;
 import com.google.common.collect.ImmutableList;
 import com.roaker.notes.commons.db.properties.MybatisPlusAutoFillProperties;
-import com.roaker.notes.seq.SeqClient;
+import com.roaker.notes.uc.api.seq.SeqApi;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -50,10 +50,10 @@ public class MybatisPlusAutoConfigure {
 
     @Bean
     @ConditionalOnProperty(prefix = "mybatis-plus.global-config.db-config", name = "id-type", havingValue = "INPUT")
-    public MybatisPlusPropertiesCustomizer plusPropertiesCustomizer(SeqClient seqClient) {
+    public MybatisPlusPropertiesCustomizer plusPropertiesCustomizer(SeqApi seqApi) {
         return plusProperties ->
                 plusProperties.getGlobalConfig()
-                        .setIdentifierGenerator(seqIdGenerator(seqClient))
+                        .setIdentifierGenerator(seqIdGenerator(seqApi))
                         .getDbConfig()
                         .setKeyGenerators(ImmutableList.of(new H2KeyGenerator()));
     }
@@ -65,8 +65,8 @@ public class MybatisPlusAutoConfigure {
     }
 
     @Bean
-    public SeqIdGenerator seqIdGenerator(SeqClient seqClient) {
-        return new SeqIdGenerator(seqClient);
+    public SeqIdGenerator seqIdGenerator(SeqApi seqApi) {
+        return new SeqIdGenerator(seqApi);
     }
 
     @Bean

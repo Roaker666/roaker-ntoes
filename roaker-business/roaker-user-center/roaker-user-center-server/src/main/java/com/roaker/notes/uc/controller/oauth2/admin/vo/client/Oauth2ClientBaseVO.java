@@ -2,6 +2,7 @@ package com.roaker.notes.uc.controller.oauth2.admin.vo.client;
 
 import cn.hutool.core.util.StrUtil;
 import com.roaker.notes.commons.utils.JacksonUtils;
+import com.roaker.notes.enums.CommonStatusEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotEmpty;
@@ -36,7 +37,7 @@ public class Oauth2ClientBaseVO {
     private String description;
     @Schema(description = "状态,参见 CommonStatusEnum 枚举", required = true, example = "1")
     @NotNull(message = "状态不能为空")
-    private Integer status;
+    private CommonStatusEnum status;
     @Schema(description = "访问令牌的有效期", required = true, example = "8640")
     @NotNull(message = "访问令牌的有效期不能为空")
     private Integer accessTokenValiditySeconds;
@@ -58,7 +59,7 @@ public class Oauth2ClientBaseVO {
     private List<String> authorities;
     @Schema(description = "资源", example = "1024")
     private List<String> resourceIds;
-    @Schema(description = "附加信息", example = "{yunai: true}")
+    @Schema(description = "附加信息", example = "{roaker: true}")
     private String additionalInformation;
     @AssertTrue(message = "附加信息必须是 JSON 格式")
     public boolean isAdditionalInformationJson() {

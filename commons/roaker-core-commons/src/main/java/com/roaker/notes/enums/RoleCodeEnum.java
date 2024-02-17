@@ -12,7 +12,7 @@ import java.util.Objects;
 public enum RoleCodeEnum implements CommonEnum {
 
     SUPER_ADMIN(1, "超级管理员"),
-    TENANT_ADMIN(2, "租户管理员"),
+    TENANT_ADMIN(2, "租户管理员")
     ;
 
     /**

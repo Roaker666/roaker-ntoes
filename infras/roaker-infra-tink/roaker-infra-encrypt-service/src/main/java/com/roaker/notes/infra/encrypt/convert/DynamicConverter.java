@@ -1,6 +1,6 @@
 package com.roaker.notes.infra.encrypt.convert;
 
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
+import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.infra.encrypt.dal.dataobject.DynamicDictDO;
 import com.roaker.notes.infra.encrypt.dto.DynamicDictDTO;
 import com.roaker.notes.infra.encrypt.vo.DynamicCreateReqVO;

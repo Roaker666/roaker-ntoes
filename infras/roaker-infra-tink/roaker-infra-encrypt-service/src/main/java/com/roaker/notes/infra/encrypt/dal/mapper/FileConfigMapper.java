@@ -1,10 +1,10 @@
 package com.roaker.notes.infra.encrypt.dal.mapper;
 
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
+import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.commons.db.core.mapper.BaseMapperX;
 import com.roaker.notes.commons.db.core.query.LambdaQueryWrapperX;
-import com.roaker.notes.infra.encrypt.dal.dataobject.FileConfigDO;
 import com.roaker.notes.infra.encrypt.vo.FileConfigPageReqVO;
+import com.roaker.notes.infra.encrypt.dal.dataobject.FileConfigDO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

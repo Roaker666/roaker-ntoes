@@ -13,9 +13,9 @@ public class PermissionAssignRolePermissionInfoReqVO {
 
     @Schema(description = "角色编号", required = true, example = "1")
     @NotNull(message = "角色编号不能为空")
-    private String roleId;
+    private Long roleId;
 
     @Schema(description = "菜单编号列表", example = "1,3,5")
-    private Set<String> permissionInfoIds = Collections.emptySet(); // 兜底
+    private Set<Long> permissionInfoIds = Collections.emptySet(); // 兜底
 
 }

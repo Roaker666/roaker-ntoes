@@ -44,4 +44,14 @@ public class MybatisPlusAutoFillProperties {
      * 更新人
      */
     private String modifierField = "modifier";
+
+    /**
+     * 逻辑删除
+     */
+    private String deletedField = "deleted";
+
+    /**
+     * 版本字段
+     */
+    private String versionFiled = "version";
 }

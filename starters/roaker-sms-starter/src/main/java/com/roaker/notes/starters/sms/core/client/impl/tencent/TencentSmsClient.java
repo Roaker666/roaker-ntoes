@@ -9,13 +9,14 @@ import com.roaker.notes.commons.core.KeyValue;
 import com.roaker.notes.commons.utils.JacksonUtils;
 import com.roaker.notes.commons.utils.RoakerArrayUtils;
 import com.roaker.notes.commons.utils.RoakerCollectionUtils;
+import com.roaker.notes.commons.utils.date.DateUtils;
 import com.roaker.notes.starters.sms.core.client.SmsCommonResult;
+import com.roaker.notes.starters.sms.core.property.SmsChannelProperties;
+import com.roaker.notes.starters.sms.core.property.SmsTemplateAuditStatusEnum;
 import com.roaker.notes.starters.sms.core.client.dto.SmsReceiveRespDTO;
 import com.roaker.notes.starters.sms.core.client.dto.SmsSendRespDTO;
 import com.roaker.notes.starters.sms.core.client.dto.SmsTemplateRespDTO;
 import com.roaker.notes.starters.sms.core.client.impl.AbstractSmsClient;
-import com.roaker.notes.starters.sms.core.property.SmsChannelProperties;
-import com.roaker.notes.starters.sms.core.property.SmsTemplateAuditStatusEnum;
 import com.tencentcloudapi.common.Credential;
 import com.tencentcloudapi.common.exception.TencentCloudSDKException;
 import com.tencentcloudapi.sms.v20210111.SmsClient;
@@ -27,9 +28,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
-
-import static com.roaker.notes.commons.utils.date.DateUtils.FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND;
-import static com.roaker.notes.commons.utils.date.DateUtils.TIME_ZONE_DEFAULT;
 
 /**
  * @author lei.rao
@@ -240,7 +238,7 @@ public class TencentSmsClient extends AbstractSmsClient {
          * 用户实际接收到短信的时间
          */
         @JsonProperty("user_receive_time")
-        @JsonFormat(pattern = FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND, timezone = TIME_ZONE_DEFAULT)
+        @JsonFormat(pattern = DateUtils.FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND, timezone = DateUtils.TIME_ZONE_DEFAULT)
         private LocalDateTime receiveTime;
 
         /**

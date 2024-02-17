@@ -44,7 +44,7 @@ public class MessageImpl implements Message {
 
     @Override
     public String getId() {
-        return getRequiredHeader(Message.ID);
+        return getRequiredHeader(ID);
     }
 
     @Override

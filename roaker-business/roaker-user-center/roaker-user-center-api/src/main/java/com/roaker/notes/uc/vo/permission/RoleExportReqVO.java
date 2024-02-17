@@ -12,7 +12,7 @@ import static com.roaker.notes.commons.utils.date.DateUtils.FORMAT_YEAR_MONTH_DA
 @Data
 public class RoleExportReqVO {
 
-    @Schema(description = "角色名称,模糊匹配", example = "芋道")
+    @Schema(description = "角色名称,模糊匹配", example = "Roaker")
     private String name;
 
     @Schema(description = "角色标识,模糊匹配", example = "roaker")

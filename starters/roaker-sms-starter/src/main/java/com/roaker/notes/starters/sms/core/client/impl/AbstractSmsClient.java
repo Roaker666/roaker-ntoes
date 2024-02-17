@@ -4,10 +4,10 @@ import com.roaker.notes.commons.core.KeyValue;
 import com.roaker.notes.starters.sms.core.client.SmsClient;
 import com.roaker.notes.starters.sms.core.client.SmsCodeMapping;
 import com.roaker.notes.starters.sms.core.client.SmsCommonResult;
+import com.roaker.notes.starters.sms.core.property.SmsChannelProperties;
 import com.roaker.notes.starters.sms.core.client.dto.SmsReceiveRespDTO;
 import com.roaker.notes.starters.sms.core.client.dto.SmsSendRespDTO;
 import com.roaker.notes.starters.sms.core.client.dto.SmsTemplateRespDTO;
-import com.roaker.notes.starters.sms.core.property.SmsChannelProperties;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;

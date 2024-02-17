@@ -19,8 +19,8 @@ import java.util.List;
  * @author lei.rao
  * @since 1.0
  */
-@TableName(value = "oauth2_code_tab", autoResultMap = true)
-@KeySequence("oauth2_code_tab_seq") // 用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写。
+@TableName(value = "sys_oauth2_code_tab", autoResultMap = true)
+@KeySequence("sys_oauth2_code_tab_seq") // 用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写。
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)

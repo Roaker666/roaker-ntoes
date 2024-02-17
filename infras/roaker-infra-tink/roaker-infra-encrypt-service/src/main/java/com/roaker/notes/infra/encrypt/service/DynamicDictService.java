@@ -1,12 +1,12 @@
 package com.roaker.notes.infra.encrypt.service;
 
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
+import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.infra.encrypt.dal.dataobject.DynamicDictDO;
-import com.roaker.notes.infra.encrypt.dto.DynamicDictDTO;
 import com.roaker.notes.infra.encrypt.vo.DynamicCreateReqVO;
 import com.roaker.notes.infra.encrypt.vo.DynamicExportReqVO;
 import com.roaker.notes.infra.encrypt.vo.DynamicPageReqVO;
 import com.roaker.notes.infra.encrypt.vo.DynamicUpdateReqVO;
+import com.roaker.notes.infra.encrypt.dto.DynamicDictDTO;
 import jakarta.validation.Valid;
 
 import java.time.LocalDateTime;

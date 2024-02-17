@@ -1,5 +1,6 @@
 package com.roaker.notes.enums;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.roaker.notes.dynamic.enums.CommonEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +19,7 @@ public enum LoginLogTypeEnum implements CommonEnum {
     /**
      * 日志类型
      */
+    @EnumValue
     private final Integer code;
 
     private final String name;

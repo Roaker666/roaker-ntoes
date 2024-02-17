@@ -1,6 +1,6 @@
 package com.roaker.notes.uc.controller.oauth2.admin.vo.client;
 
-import com.roaker.notes.commons.db.core.dataobject.PageParam;
+import com.roaker.notes.commons.db.PageParam;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

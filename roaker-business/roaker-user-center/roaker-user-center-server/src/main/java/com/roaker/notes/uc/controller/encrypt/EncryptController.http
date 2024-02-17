@@ -1,0 +1,55 @@
+### 请求 普通数据加密 => 成功
+POST {{appApi}}/encrypt/inner-call/data-encrypt
+Content-Type: application/json
+{
+  "dataList": [
+    {
+      "data": "13376548892",
+      "dataType": 1,
+      "randomKey": "0"
+    }
+  ],
+  "sysCode": "authentication-center"
+}
+
+### 请求 普通数据解密 => 成功
+POST {{appApi}}/encrypt/inner-call/data-decrypt
+Content-Type: application/json
+{
+  "encryptList": [
+    {
+      "data": "AQ+mxbv0wjoKaNhGH9Pva7FdBtJhAvQIiG1GILKHm+io6AhLdJit6nuFnYgNOMzOYZvTSa/TyxsURYv/d4FvUQ==_5_MA=="
+    }
+  ],
+  "sysCode": "authentication-center"
+}
+
+### 请求 密码加密 => 成功
+POST {{appApi}}/encrypt/inner-call/encrypt-password
+Content-Type: application/json
+{
+  "data": "password@123",
+  "randomKey": "0"
+}
+
+### 请求 密码解密 => 成功
+POST {{appApi}}/encrypt/inner-call/decrypt-password
+Content-Type: application/json
+{
+  "data": "AQ8W/kISKrVI2gA045/ToPaAef1iy5cqfBAh56TXNQ+dC1hMfZSujWGTVbM3/1qdg6yD6SILKztme6lbpnjMUGGAwsGExgvLB8jShyLdAmM0IaB1dNK+EgIPZmAD1ING/RwmY+JICxrZX45ksedrrBuj40/j4P4x39Kt+XtTGk25DFW97/L1mLgqU6EQZIqIVcOnpEOtcBTDA8UgZKcsCZ4xyEh4yzrjWp1BFuBOxv5kNdKGz+aBd6D14YAe9e+dZLFQOqYVUWDSwVRBZD7xcRg=_8_MA=="
+}
+
+### 请求 PIN加密 => 成功
+POST {{appApi}}/encrypt/inner-call/encrypt-pin
+Content-Type: application/json
+{
+  "data": "552789",
+  "randomKey": "0"
+}
+
+### 请求 PIN解密 => 成功
+POST {{appApi}}/encrypt/inner-call/decrypt-pin
+Content-Type: application/json
+{
+  "data": "ARB7Dn6st0SUXsuqsnKF3XxXddP1Y8kD4Ap6DYrgAb/OAtHLPgOQcvc0WKnLnnDZgv8c/4cu6L+jqDnPXWUCGkqXzaqSxXAcJc9vfXYt12Jmf7jB9Iu4YxFRTnBhCcIdSJv6PJ64poXPj1JN2kIng4/LpTQzDwgKVkYM5W/8cixAFy2fIjSve6dA90lq8S1ERioUEWpDVBX9mcMe1z8UWkEo9TszZE5WG45AqDh4+cxgSdsfBeHsVORxz/FhyN6uESeAaumwse+u_9_MA=="
+}

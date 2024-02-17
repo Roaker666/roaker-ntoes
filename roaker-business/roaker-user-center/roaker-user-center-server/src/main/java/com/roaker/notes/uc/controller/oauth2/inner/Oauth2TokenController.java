@@ -1,11 +1,11 @@
 package com.roaker.notes.uc.controller.oauth2.inner;
 
-import com.roaker.notes.uc.api.oauth2.Oauth2TokenApi;
+import com.roaker.notes.uc.api.oauth2.Oauth2TokenClient;
+import com.roaker.notes.uc.converter.oauth2.Oauth2TokenConvert;
+import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2AccessTokenDO;
 import com.roaker.notes.uc.dto.oauth2.Oauth2AccessTokenCheckRespDTO;
 import com.roaker.notes.uc.dto.oauth2.Oauth2AccessTokenCreateReqDTO;
 import com.roaker.notes.uc.dto.oauth2.Oauth2AccessTokenRespDTO;
-import com.roaker.notes.uc.converter.oauth2.Oauth2TokenConvert;
-import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2AccessTokenDO;
 import com.roaker.notes.uc.service.oauth2.Oauth2TokenService;
 import com.roaker.notes.vo.CommonResult;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "认证中心 —— access token API")
 @Validated
 @Slf4j
-public class Oauth2TokenController implements Oauth2TokenApi {
+public class Oauth2TokenController implements Oauth2TokenClient {
     @Resource
     private Oauth2TokenService oauth2TokenService;
 

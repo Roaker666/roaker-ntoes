@@ -22,7 +22,7 @@ import java.lang.annotation.*;
 @EnableKnife4j
 @EnableFeignInterceptor
 @EnableFeignClients(basePackages = "com.roaker.notes")
-@EnableApolloConfig(value = {"application.yml","application-db.yml","application-log.yml","application-redis.yml","application-web.yml","application-lb.yml"})
+//@EnableApolloConfig(value = {"application.yml","application-db.yml","application-log.yml","application-redis.yml","application-web.yml","application-lb.yml"})
 public @interface RoakerCloudApplication {
 
 }

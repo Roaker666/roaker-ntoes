@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.roaker.notes.commons.db.core.annotation.BizKey;
-import com.roaker.notes.notify.common.UserMessageReplaceable;
+import com.roaker.notes.uc.common.notify.UserMessageReplaceable;
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -19,8 +19,8 @@ import java.util.function.Function;
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("user_sms_tab")
-@KeySequence("user_sms_tab")
+@TableName("sys_user_sms_tab")
+@KeySequence("sys_user_sms_tab")
 @BizKey(bizName = "user-sms", bizPrefix = "US")
 @Builder
 @Accessors(chain = true)

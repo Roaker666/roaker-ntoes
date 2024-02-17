@@ -46,7 +46,7 @@ public abstract class BaseDO implements Serializable {
      * 是否删除
      */
     @TableLogic
-    @TableField
+    @TableField(fill = FieldFill.INSERT, jdbcType = JdbcType.INTEGER)
     private Boolean deleted;
 
     public void setDefault() {

@@ -4,8 +4,6 @@ import cn.hutool.core.util.ArrayUtil;
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.roaker.notes.file.core.client.FileClient;
 import com.roaker.notes.file.core.client.FileClientConfig;
-import com.roaker.notes.file.core.client.db.DBFileClient;
-import com.roaker.notes.file.core.client.db.DBFileClientConfig;
 import com.roaker.notes.file.core.client.ftp.FtpFileClient;
 import com.roaker.notes.file.core.client.ftp.FtpFileClientConfig;
 import com.roaker.notes.file.core.client.local.LocalFileClient;
@@ -14,6 +12,8 @@ import com.roaker.notes.file.core.client.s3.S3FileClient;
 import com.roaker.notes.file.core.client.s3.S3FileClientConfig;
 import com.roaker.notes.file.core.client.sftp.SftpFileClient;
 import com.roaker.notes.file.core.client.sftp.SftpFileClientConfig;
+import com.roaker.notes.file.core.client.db.DBFileClient;
+import com.roaker.notes.file.core.client.db.DBFileClientConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

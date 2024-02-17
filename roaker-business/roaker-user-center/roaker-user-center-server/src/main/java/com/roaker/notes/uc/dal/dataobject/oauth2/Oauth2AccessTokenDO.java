@@ -19,8 +19,8 @@ import java.util.List;
  * @author lei.rao
  * @since 1.0
  */
-@TableName(value = "oauth2_access_token_tab", autoResultMap = true)
-@KeySequence("oauth2_access_token_tab_seq")
+@TableName(value = "sys_oauth2_access_token_tab", autoResultMap = true)
+@KeySequence("sys_oauth2_access_token_tab_seq")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)

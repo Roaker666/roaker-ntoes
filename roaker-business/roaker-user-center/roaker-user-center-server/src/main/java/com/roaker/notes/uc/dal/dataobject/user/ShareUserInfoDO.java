@@ -26,10 +26,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @BizKey(bizName = "share_user_info", bizPrefix = "SUI")
 public class ShareUserInfoDO extends BaseDO {
-    @TableId(type = IdType.AUTO)
-    @IsAutoIncrement
-    @IsNotNull
-    private Long id;
     /**
      * 用户ID
      */

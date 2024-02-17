@@ -3,7 +3,8 @@ package com.roaker.notes.uc.service.oauth2.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
-import com.roaker.notes.uc.controller.oauth2.admin.vo.token.Oauth2AccessTokenPageReqVO;
+import com.roaker.notes.exception.enums.GlobalErrorCodeConstants;
+import com.roaker.notes.exception.util.ServiceExceptionUtil;
 import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2AccessTokenDO;
 import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2ClientDO;
 import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2RefreshTokenDO;
@@ -11,10 +12,10 @@ import com.roaker.notes.uc.dal.mapper.oauth2.Oauth2AccessTokenMapper;
 import com.roaker.notes.uc.dal.mapper.oauth2.Oauth2RefreshTokenMapper;
 import com.roaker.notes.uc.service.oauth2.Oauth2ClientService;
 import com.roaker.notes.uc.service.oauth2.Oauth2TokenService;
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
+import com.roaker.notes.uc.controller.oauth2.admin.vo.token.Oauth2AccessTokenPageReqVO;
+import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.commons.utils.date.DateUtils;
 import com.roaker.notes.enums.UserTypeEnum;
-import com.roaker.notes.exception.enums.GlobalErrorCodeConstants;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +24,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.roaker.notes.commons.utils.RoakerCollectionUtils.convertSet;
-import static com.roaker.notes.exception.util.ServiceExceptionUtil.exception0;
 
 /**
  * Oauth2.0 Token Service 实现类
@@ -59,13 +59,13 @@ public class Oauth2TokenServiceImpl implements Oauth2TokenService {
         // 查询访问令牌
         Oauth2RefreshTokenDO refreshTokenDO = oauth2RefreshTokenMapper.selectByRefreshToken(refreshToken);
         if (refreshTokenDO == null) {
-            throw exception0(GlobalErrorCodeConstants.BAD_REQUEST.getCode(), "无效的刷新令牌");
+            throw ServiceExceptionUtil.exception0(GlobalErrorCodeConstants.BAD_REQUEST.getCode(), "无效的刷新令牌");
         }
 
         // 校验 Client 匹配
         Oauth2ClientDO clientDO = oauth2ClientService.validOAuthClientFromCache(clientId);
         if (ObjectUtil.notEqual(clientId, refreshTokenDO.getClientId())) {
-            throw exception0(GlobalErrorCodeConstants.BAD_REQUEST.getCode(), "刷新令牌的客户端编号不正确");
+            throw ServiceExceptionUtil.exception0(GlobalErrorCodeConstants.BAD_REQUEST.getCode(), "刷新令牌的客户端编号不正确");
         }
 
         // 移除相关的访问令牌
@@ -78,7 +78,7 @@ public class Oauth2TokenServiceImpl implements Oauth2TokenService {
         // 已过期的情况下，删除刷新令牌
         if (DateUtils.isExpired(refreshTokenDO.getExpiresTime())) {
             oauth2RefreshTokenMapper.deleteById(refreshTokenDO.getId());
-            throw exception0(GlobalErrorCodeConstants.UNAUTHORIZED.getCode(), "刷新令牌已过期");
+            throw ServiceExceptionUtil.exception0(GlobalErrorCodeConstants.UNAUTHORIZED.getCode(), "刷新令牌已过期");
         }
 
         // 创建访问令牌
@@ -106,10 +106,10 @@ public class Oauth2TokenServiceImpl implements Oauth2TokenService {
     public Oauth2AccessTokenDO checkAccessToken(String accessToken) {
         Oauth2AccessTokenDO accessTokenDO = getAccessToken(accessToken);
         if (accessTokenDO == null) {
-            throw exception0(GlobalErrorCodeConstants.UNAUTHORIZED.getCode(), "访问令牌不存在");
+            throw ServiceExceptionUtil.exception0(GlobalErrorCodeConstants.UNAUTHORIZED.getCode(), "访问令牌不存在");
         }
         if (DateUtils.isExpired(accessTokenDO.getExpiresTime())) {
-            throw exception0(GlobalErrorCodeConstants.UNAUTHORIZED.getCode(), "访问令牌已过期");
+            throw ServiceExceptionUtil.exception0(GlobalErrorCodeConstants.UNAUTHORIZED.getCode(), "访问令牌已过期");
         }
         return accessTokenDO;
     }

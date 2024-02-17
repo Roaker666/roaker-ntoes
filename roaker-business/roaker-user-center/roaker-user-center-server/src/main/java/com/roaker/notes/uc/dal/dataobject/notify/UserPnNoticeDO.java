@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import com.roaker.notes.commons.db.core.annotation.BizKey;
-import com.roaker.notes.notify.common.UserMessageReplaceable;
+import com.roaker.notes.uc.common.notify.UserMessageReplaceable;
 import lombok.*;
 
 import java.io.Serializable;
@@ -21,8 +21,8 @@ import java.util.function.Function;
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("user_pn_notice")
-@KeySequence("user_pn_notice_seq")
+@TableName("sys_user_pn_notice")
+@KeySequence("sys_user_pn_notice_seq")
 @BizKey(bizName = "user-pn", bizPrefix = "UP")
 @Builder
 public class UserPnNoticeDO extends AbstractUserMessageDO implements Serializable, UserMessageReplaceable {

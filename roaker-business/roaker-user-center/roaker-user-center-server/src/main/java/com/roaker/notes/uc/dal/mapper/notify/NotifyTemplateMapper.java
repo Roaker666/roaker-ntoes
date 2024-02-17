@@ -1,16 +1,16 @@
 package com.roaker.notes.uc.dal.mapper.notify;
 
 import com.roaker.notes.commons.db.core.dataobject.BaseDO;
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
+import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.commons.db.core.mapper.BaseMapperX;
 import com.roaker.notes.commons.db.core.query.LambdaUpdateWrapperX;
 import com.roaker.notes.dynamic.enums.CommonEnum;
 import com.roaker.notes.enums.CommonStatusEnum;
 import com.roaker.notes.enums.NotifyRecipientTypeEnum;
-import com.roaker.notes.notify.dal.dataobject.NotifyTemplateDO;
-import com.roaker.notes.notify.vo.ExportNotifyTemplateReqVO;
-import com.roaker.notes.notify.vo.QueryNotifyTemplatePageReqVO;
-import com.roaker.notes.notify.vo.UpdateNotifyTemplateVO;
+import com.roaker.notes.uc.dal.dataobject.notify.NotifyTemplateDO;
+import com.roaker.notes.uc.vo.notify.ExportNotifyTemplateReqVO;
+import com.roaker.notes.uc.vo.notify.QueryNotifyTemplatePageReqVO;
+import com.roaker.notes.uc.vo.notify.UpdateNotifyTemplateVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.time.LocalDateTime;

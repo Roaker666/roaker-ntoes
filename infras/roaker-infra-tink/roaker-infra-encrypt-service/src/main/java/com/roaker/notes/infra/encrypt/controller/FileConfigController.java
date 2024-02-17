@@ -1,6 +1,6 @@
 package com.roaker.notes.infra.encrypt.controller;
 
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
+import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.infra.encrypt.convert.FileConfigConvert;
 import com.roaker.notes.infra.encrypt.dal.dataobject.FileConfigDO;
 import com.roaker.notes.infra.encrypt.service.FileConfigService;
@@ -12,7 +12,6 @@ import com.roaker.notes.vo.CommonResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;

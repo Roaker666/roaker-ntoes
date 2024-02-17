@@ -37,7 +37,7 @@ public class SocialUserDO extends BaseDO {
      */
     @TableField
     @ColumnType(MySqlTypeConstant.INT)
-    private SocialTypeEnum type;
+    private Integer type;
 
     /**
      * 社交 openid

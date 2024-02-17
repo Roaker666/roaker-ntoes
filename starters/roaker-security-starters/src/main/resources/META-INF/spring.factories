@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.roaker.notes.security.config.RoakerSecurityAutoConfiguration

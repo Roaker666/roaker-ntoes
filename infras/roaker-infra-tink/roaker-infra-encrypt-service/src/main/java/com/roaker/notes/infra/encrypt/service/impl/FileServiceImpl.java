@@ -3,20 +3,18 @@ package com.roaker.notes.infra.encrypt.service.impl;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
 import com.roaker.notes.commons.constants.ErrorCodeConstants;
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
+import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.commons.utils.io.FileUtils;
 import com.roaker.notes.file.core.client.FileClient;
 import com.roaker.notes.file.core.utils.FileTypeUtils;
+import com.roaker.notes.infra.encrypt.service.FileService;
 import com.roaker.notes.infra.encrypt.dal.dataobject.FileDO;
 import com.roaker.notes.infra.encrypt.dal.mapper.FileMapper;
 import com.roaker.notes.infra.encrypt.service.FileConfigService;
-import com.roaker.notes.infra.encrypt.service.FileService;
 import com.roaker.notes.infra.encrypt.vo.FilePageReqVO;
 import jakarta.annotation.Resource;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
-
-import java.io.Serializable;
 
 import static com.roaker.notes.exception.util.ServiceExceptionUtil.exception;
 

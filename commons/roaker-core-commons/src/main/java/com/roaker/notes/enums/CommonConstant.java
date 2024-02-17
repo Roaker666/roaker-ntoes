@@ -131,4 +131,15 @@ public interface CommonConstant {
      * 文件分隔符
      */
     String PATH_SPLIT = "/";
+
+
+    /**
+     * http请求
+     */
+    String HTTP = "http://";
+
+    /**
+     * https请求
+     */
+    String HTTPS = "https://";
 }

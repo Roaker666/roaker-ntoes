@@ -7,6 +7,7 @@ import com.roaker.notes.enums.CommonStatusEnum;
 import com.roaker.notes.enums.NotifyChannelEnum;
 import com.roaker.notes.enums.NotifyRecipientTypeEnum;
 import com.roaker.notes.enums.SceneEnum;
+import com.roaker.notes.uc.dal.dataobject.notify.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

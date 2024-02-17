@@ -13,8 +13,8 @@ import com.roaker.notes.enums.SceneEnum;
 import lombok.*;
 
 @Data
-@TableName("notify_scene_channel")
-@KeySequence("notify_scene_channel_seq") //用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写
+@TableName("sys_notify_scene_channel")
+@KeySequence("sys_notify_scene_channel_seq") //用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor

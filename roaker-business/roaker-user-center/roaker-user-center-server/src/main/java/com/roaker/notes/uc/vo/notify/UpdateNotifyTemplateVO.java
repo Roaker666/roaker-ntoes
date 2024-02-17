@@ -1,9 +1,9 @@
 package com.roaker.notes.uc.vo.notify;
 
-import com.roaker.notes.notify.dal.dataobject.NotifyARDO;
-import com.roaker.notes.notify.dal.dataobject.NotifyEmailDO;
-import com.roaker.notes.notify.dal.dataobject.NotifyPNDO;
-import com.roaker.notes.notify.dal.dataobject.NotifySmsDO;
+import com.roaker.notes.uc.dal.dataobject.notify.NotifyARDO;
+import com.roaker.notes.uc.dal.dataobject.notify.NotifyEmailDO;
+import com.roaker.notes.uc.dal.dataobject.notify.NotifyPNDO;
+import com.roaker.notes.uc.dal.dataobject.notify.NotifySmsDO;
 import lombok.Data;
 
 import java.util.List;

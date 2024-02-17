@@ -1,7 +1,7 @@
 package com.roaker.notes.uc.vo.user;
 
-import com.roaker.notes.commons.validation.InEnum;
 import com.roaker.notes.enums.SocialTypeEnum;
+import com.roaker.notes.commons.validation.InEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -18,7 +18,6 @@ import lombok.NoArgsConstructor;
 public class AppSocialUserBindReqVO {
 
     @Schema(description = "社交平台的类型,参见 SysUserSocialTypeEnum 枚举值", required = true, example = "10")
-    @InEnum(SocialTypeEnum.class)
     @NotNull(message = "社交平台的类型不能为空")
     private Integer type;
 

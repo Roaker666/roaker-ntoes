@@ -122,6 +122,15 @@ public class JacksonUtils {
         return mapper;
     }
 
+
+    public static <T> T parseObject(String text, TypeReference<T> typeReference) {
+        try {
+            return mapper.readValue(text, typeReference);
+        } catch (IOException e) {
+            log.error("json parse err,json:{}", text, e);
+            throw new RuntimeException(e);
+        }
+    }
     /**
      * JSON反序列化
      */

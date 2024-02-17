@@ -2,7 +2,7 @@ package com.roaker.notes.uc.dal.mapper.oauth2;
 
 import com.roaker.notes.uc.controller.oauth2.admin.vo.client.Oauth2ClientPageReqVO;
 import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2ClientDO;
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
+import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.commons.db.core.mapper.BaseMapperX;
 import com.roaker.notes.commons.db.core.query.LambdaQueryWrapperX;
 import org.apache.ibatis.annotations.Mapper;

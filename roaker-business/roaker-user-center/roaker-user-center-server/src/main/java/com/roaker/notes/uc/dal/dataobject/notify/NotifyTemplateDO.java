@@ -14,8 +14,8 @@ import com.roaker.notes.enums.SceneEnum;
 import lombok.*;
 
 @Data
-@TableName("notify_template")
-@KeySequence("notify_template_seq") //用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写
+@TableName("sys_notify_template")
+@KeySequence("sys_notify_template_seq") //用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor

@@ -1,7 +1,7 @@
 package com.roaker.notes.uc.dal.mapper.notify;
 
 import com.roaker.notes.commons.db.core.mapper.BaseMapperX;
-import com.roaker.notes.notify.dal.dataobject.UserEmailMessageDO;
+import com.roaker.notes.uc.dal.dataobject.notify.UserEmailMessageDO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

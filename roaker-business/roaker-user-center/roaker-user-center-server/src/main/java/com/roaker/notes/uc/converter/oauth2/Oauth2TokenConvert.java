@@ -1,8 +1,8 @@
 package com.roaker.notes.uc.converter.oauth2;
 
-import com.roaker.notes.uc.controller.oauth2.admin.vo.token.Oauth2AccessTokenRespVO;
 import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2AccessTokenDO;
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
+import com.roaker.notes.uc.controller.oauth2.admin.vo.token.Oauth2AccessTokenRespVO;
+import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.uc.dto.oauth2.Oauth2AccessTokenCheckRespDTO;
 import com.roaker.notes.uc.dto.oauth2.Oauth2AccessTokenRespDTO;
 import org.mapstruct.Mapper;

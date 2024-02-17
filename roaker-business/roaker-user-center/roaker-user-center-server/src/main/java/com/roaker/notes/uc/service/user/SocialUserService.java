@@ -1,9 +1,12 @@
 package com.roaker.notes.uc.service.user;
 
+import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.enums.SocialTypeEnum;
 import com.roaker.notes.exception.ServiceException;
+import com.roaker.notes.uc.api.social.dto.SocialUserBindReqDTO;
+import com.roaker.notes.uc.api.social.dto.SocialUserRespDTO;
 import com.roaker.notes.uc.dal.dataobject.user.SocialUserDO;
-import com.roaker.notes.uc.dto.user.SocialUserBindReqDTO;
+import com.roaker.notes.uc.vo.user.SocialUserPageReqVO;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
@@ -15,64 +18,73 @@ import java.util.List;
  * @author lei.rao
  */
 public interface SocialUserService {
-
-    /**
-     * 获得社交平台的授权 URL
-     *
-     * @param type 社交平台的类型 {@link SocialTypeEnum}
-     * @param redirectUri 重定向 URL
-     * @return 社交平台的授权 URL
-     */
-    String getAuthorizeUrl(Integer type, String redirectUri);
-
-    /**
-     * 授权获得对应的社交用户
-     * 如果授权失败，则会抛出 {@link ServiceException} 异常
-     *
-     * @param type 社交平台的类型 {@link SocialTypeEnum}
-     * @param code 授权码
-     * @param state state
-     * @return 授权用户
-     */
-    @NotNull
-    SocialUserDO authSocialUser(Integer type, String code, String state);
-
     /**
      * 获得指定用户的社交用户列表
      *
-     * @param userId 用户编号
+     * @param userId   用户编号
      * @param userType 用户类型
      * @return 社交用户列表
      */
-    List<SocialUserDO> getSocialUserList(Long userId, Integer userType);
+    List<SocialUserDO> getSocialUserList(String userId, Integer userType);
 
     /**
      * 绑定社交用户
      *
      * @param reqDTO 绑定信息
+     * @return 社交用户 openid
      */
-    void bindSocialUser(@Valid SocialUserBindReqDTO reqDTO);
+    String bindSocialUser(@Valid SocialUserBindReqDTO reqDTO);
 
     /**
      * 取消绑定社交用户
      *
      * @param userId 用户编号
      * @param userType 全局用户类型
-     * @param type 社交平台的类型 {@link SocialTypeEnum}
+     * @param socialType 社交平台的类型 {@link SocialTypeEnum}
      * @param openid 社交平台的 openid
      */
-    void unbindSocialUser(String userId, Integer userType, Integer type, String openid);
+    void unbindSocialUser(String userId, Integer userType, Integer socialType, String openid);
 
     /**
-     * 获得社交用户的绑定用户编号
-     * 注意，返回的是 MemberUser 或者 AdminUser 的 id 编号！
+     * 获得社交用户，基于 userId
+     *
+     * @param userType 用户类型
+     * @param userId 用户编号
+     * @param socialType 社交平台的类型
+     * @return 社交用户
+     */
+    SocialUserRespDTO getSocialUserByUserId(Integer userType, String userId, Integer socialType);
+
+    /**
+     * 获得社交用户
+     *
      * 在认证信息不正确的情况下，也会抛出 {@link ServiceException} 业务异常
      *
      * @param userType 用户类型
-     * @param type 社交平台的类型
+     * @param socialType 社交平台的类型
      * @param code 授权码
      * @param state state
-     * @return 绑定用户编号
+     * @return 社交用户
      */
-    String getBindUserId(Integer userType, Integer type, String code, String state);
+    SocialUserRespDTO getSocialUserByCode(Integer userType, Integer socialType, String code, String state);
+
+    // ==================== 社交用户 CRUD ====================
+
+    /**
+     * 获得社交用户
+     *
+     * @param id 编号
+     * @return 社交用户
+     */
+    SocialUserDO getSocialUser(Long id);
+
+    /**
+     * 获得社交用户分页
+     *
+     * @param pageReqVO 分页查询
+     * @return 社交用户分页
+     */
+    PageResult<SocialUserDO> getSocialUserPage(SocialUserPageReqVO pageReqVO);
+
+
 }

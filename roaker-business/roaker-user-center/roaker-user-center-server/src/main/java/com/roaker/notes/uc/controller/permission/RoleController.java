@@ -1,13 +1,15 @@
 package com.roaker.notes.uc.controller.permission;
 
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
+import com.roaker.notes.commons.db.PageParam;
+import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.commons.excel.utils.ExcelUtils;
+import com.roaker.notes.commons.utils.BeanUtils;
 import com.roaker.notes.enums.CommonStatusEnum;
 import com.roaker.notes.uc.converter.permission.PermissionConverter;
 import com.roaker.notes.uc.dal.dataobject.permission.RoleInfoDO;
 import com.roaker.notes.uc.service.permission.RoleService;
-import com.roaker.notes.uc.vo.permission.*;
 import com.roaker.notes.vo.CommonResult;
+import com.roaker.notes.uc.vo.permission.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -35,7 +37,7 @@ public class RoleController {
 
     @PostMapping("/create")
     @Operation(summary = "创建角色")
-    public CommonResult<String> createRole(@Valid @RequestBody RoleCreateReqVO reqVO) {
+    public CommonResult<Long> createRole(@Valid @RequestBody RoleCreateReqVO reqVO) {
         return success(roleService.createRole(reqVO, null));
     }
 
@@ -56,14 +58,14 @@ public class RoleController {
     @DeleteMapping("/delete")
     @Operation(summary = "删除角色")
     @Parameter(name = "id", description = "角色编号", required = true, example = "1024")
-    public CommonResult<Boolean> deleteRole(@RequestParam("roleId") String roleId) {
+    public CommonResult<Boolean> deleteRole(@RequestParam("roleId") Long roleId) {
         roleService.deleteRole(roleId);
         return success(true);
     }
 
     @GetMapping("/get")
     @Operation(summary = "获得角色信息")
-    public CommonResult<RoleRespVO> getRole(@RequestParam("roleId") String roleId) {
+    public CommonResult<RoleRespVO> getRole(@RequestParam("roleId") Long roleId) {
         RoleInfoDO role = roleService.getRole(roleId);
         return success(PermissionConverter.INSTANCE.convert(role));
     }
@@ -84,12 +86,14 @@ public class RoleController {
         return success(PermissionConverter.INSTANCE.convertList02(list));
     }
 
-    @GetMapping("/export")
-    public void export(HttpServletResponse response, @Validated RoleExportReqVO reqVO) throws IOException {
-        List<RoleInfoDO> list = roleService.getRoleList(reqVO);
-        List<RoleExcelVO> data = PermissionConverter.INSTANCE.convertList03(list);
+    @GetMapping("/export-excel")
+    @Operation(summary = "导出角色 Excel")
+    public void export(HttpServletResponse response, @Validated RolePageReqVO exportReqVO) throws IOException {
+        exportReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);
+        List<RoleInfoDO> list = roleService.getRolePage(exportReqVO).getList();
         // 输出
-        ExcelUtils.write(response, "角色数据.xls", "角色列表", RoleExcelVO.class, data);
+        ExcelUtils.write(response, "角色数据.xls", "数据", RoleRespVO.class,
+                BeanUtils.toBean(list, RoleRespVO.class));
     }
 
 }

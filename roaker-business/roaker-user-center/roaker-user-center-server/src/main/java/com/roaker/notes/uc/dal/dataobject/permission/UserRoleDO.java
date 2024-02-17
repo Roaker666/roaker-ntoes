@@ -14,8 +14,8 @@ import lombok.*;
  * @author lei.rao
  * @since 1.0
  */
-@TableName(value = "user_role", autoResultMap = true)
-@KeySequence("user_role_seq")
+@TableName(value = "sys_user_role", autoResultMap = true)
+@KeySequence("sys_user_role_seq")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder
@@ -32,7 +32,7 @@ public class UserRoleDO extends BaseDO {
     @ColumnType(MySqlTypeConstant.INT)
     private UserTypeEnum userType;
     @TableField
-    private String roleId;
+    private Long roleId;
     /**
      * 状态 {@link CommonStatusEnum}
      */

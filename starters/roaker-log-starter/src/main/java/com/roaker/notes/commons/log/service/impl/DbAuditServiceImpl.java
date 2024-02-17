@@ -1,18 +1,15 @@
 package com.roaker.notes.commons.log.service.impl;
 
-import com.roaker.notes.commons.log.model.Audit;
 import com.roaker.notes.commons.log.properties.LogDbProperties;
+import com.roaker.notes.commons.log.model.Audit;
 import com.roaker.notes.commons.log.service.IAuditService;
 import com.zaxxer.hikari.HikariDataSource;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 

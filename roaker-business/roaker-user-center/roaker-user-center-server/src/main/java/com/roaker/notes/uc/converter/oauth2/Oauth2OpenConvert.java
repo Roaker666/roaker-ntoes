@@ -1,17 +1,17 @@
 package com.roaker.notes.uc.converter.oauth2;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
-import com.roaker.notes.uc.controller.oauth2.open.vo.open.Oauth2OpenAccessTokenRespVO;
-import com.roaker.notes.uc.controller.oauth2.open.vo.open.Oauth2OpenAuthorizeInfoRespVO;
-import com.roaker.notes.uc.controller.oauth2.open.vo.open.Oauth2OpenCheckTokenRespVO;
 import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2AccessTokenDO;
 import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2ApproveDO;
 import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2ClientDO;
 import com.roaker.notes.uc.utils.Oauth2Utils;
+import com.roaker.notes.uc.utils.SecurityFrameworkUtils;
+import com.roaker.notes.uc.controller.oauth2.open.vo.open.Oauth2OpenAccessTokenRespVO;
+import com.roaker.notes.uc.controller.oauth2.open.vo.open.Oauth2OpenAuthorizeInfoRespVO;
+import com.roaker.notes.uc.controller.oauth2.open.vo.open.Oauth2OpenCheckTokenRespVO;
 import com.roaker.notes.commons.core.KeyValue;
 import com.roaker.notes.commons.utils.RoakerCollectionUtils;
 import com.roaker.notes.enums.UserTypeEnum;
-import com.roaker.notes.uc.utils.SecurityFrameworkUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

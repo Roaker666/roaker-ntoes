@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import com.roaker.notes.commons.db.core.annotation.BizKey;
-import com.roaker.notes.notify.dto.EmailAttachmentFile;
-import com.roaker.notes.notify.common.UserMessageReplaceable;
+import com.roaker.notes.uc.common.notify.UserMessageReplaceable;
+import com.roaker.notes.uc.dto.notify.EmailAttachmentFile;
 import lombok.*;
 
 import java.io.Serializable;
@@ -23,8 +23,8 @@ import java.util.function.Function;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@TableName("user_email_tab")
-@KeySequence("user_email_tab_seq")
+@TableName("sys_user_email_tab")
+@KeySequence("sys_user_email_tab_seq")
 @BizKey(bizName = "user_email", bizPrefix = "UE")
 public class UserEmailMessageDO extends AbstractUserMessageDO implements UserMessageReplaceable, Serializable {
 

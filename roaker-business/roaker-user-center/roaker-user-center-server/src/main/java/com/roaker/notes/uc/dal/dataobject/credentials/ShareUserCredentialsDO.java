@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
  * @author lei.rao
  * @since 1.0
  */
-@TableName(value = "share_user_credentials", autoResultMap = true)
-@KeySequence("share_user_credentials_seq")
+@TableName(value = "sys_share_user_credentials", autoResultMap = true)
+@KeySequence("sys_share_user_credentials_seq")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder

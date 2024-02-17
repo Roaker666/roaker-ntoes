@@ -1,7 +1,6 @@
 package com.roaker.notes.infra.encrypt.dal.dataobject;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.gitee.sunchenbin.mybatis.actable.annotation.Column;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.gitee.sunchenbin.mybatis.actable.annotation.IsAutoIncrement;
 import com.gitee.sunchenbin.mybatis.actable.annotation.IsNotNull;
@@ -12,10 +11,8 @@ import com.roaker.notes.infra.encrypt.enums.DataTypeEnums;
 import com.roaker.notes.infra.encrypt.enums.KeyTypeEnums;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.apache.commons.lang3.time.DateUtils;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -23,8 +20,8 @@ import java.util.UUID;
  * @since 1.0
  */
 
-@TableName(value = "key_entity_tab", autoResultMap = true)
-@KeySequence("key_entity_tab_seq")
+@TableName(value = "sys_key_entity_tab", autoResultMap = true)
+@KeySequence("sys_key_entity_tab_seq")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class KeyEntityDO extends BaseDO {

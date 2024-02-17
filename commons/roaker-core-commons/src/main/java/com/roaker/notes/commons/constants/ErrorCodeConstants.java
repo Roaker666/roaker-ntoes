@@ -10,6 +10,22 @@ import com.roaker.notes.exception.ErrorCode;
  */
 public interface ErrorCodeConstants {
 
+    // ========== 代码生成器 1-001-004-000 ==========
+    ErrorCode CODEGEN_TABLE_EXISTS = new ErrorCode(1_003_001_000, "表定义已经存在");
+    ErrorCode CODEGEN_IMPORT_TABLE_NULL = new ErrorCode(1_003_001_001, "导入的表不存在");
+    ErrorCode CODEGEN_IMPORT_COLUMNS_NULL = new ErrorCode(1_003_001_002, "导入的字段不存在");
+    ErrorCode CODEGEN_TABLE_NOT_EXISTS = new ErrorCode(1_003_001_004, "表定义不存在");
+    ErrorCode CODEGEN_COLUMN_NOT_EXISTS = new ErrorCode(1_003_001_005, "字段义不存在");
+    ErrorCode CODEGEN_SYNC_COLUMNS_NULL = new ErrorCode(1_003_001_006, "同步的字段不存在");
+    ErrorCode CODEGEN_SYNC_NONE_CHANGE = new ErrorCode(1_003_001_007, "同步失败，不存在改变");
+    ErrorCode CODEGEN_TABLE_INFO_TABLE_COMMENT_IS_NULL = new ErrorCode(1_003_001_008, "数据库的表注释未填写");
+    ErrorCode CODEGEN_TABLE_INFO_COLUMN_COMMENT_IS_NULL = new ErrorCode(1_003_001_009, "数据库的表字段({})注释未填写");
+    ErrorCode CODEGEN_MASTER_TABLE_NOT_EXISTS = new ErrorCode(1_003_001_010, "主表(id={})定义不存在，请检查");
+    ErrorCode CODEGEN_SUB_COLUMN_NOT_EXISTS = new ErrorCode(1_003_001_011, "子表的字段(id={})不存在，请检查");
+    ErrorCode CODEGEN_MASTER_GENERATION_FAIL_NO_SUB_TABLE = new ErrorCode(1_003_001_012, "主表生成代码失败，原因：它没有子表");
+    ErrorCode CODEGEN_MASTER_GENERATION_FAIL_NO_SUB_COLUMN = new ErrorCode(1_003_001_013, "主表生成代码失败，原因：它的子表({})没有字段");
+
+
     // ========== AUTH 模块 1002000000 ==========
     ErrorCode AUTH_LOGIN_BAD_CREDENTIALS = new ErrorCode(1002000000, "登录失败，账号密码不正确");
     ErrorCode AUTH_LOGIN_USER_DISABLED = new ErrorCode(1002000001, "登录失败，账号被禁用");
@@ -176,5 +192,13 @@ public interface ErrorCodeConstants {
     // ========== 数据源配置 1001007000 ==========
     ErrorCode DATA_SOURCE_CONFIG_NOT_EXISTS = new ErrorCode(1001007000, "数据源配置不存在");
     ErrorCode DATA_SOURCE_CONFIG_NOT_OK = new ErrorCode(1001007001, "数据源配置不正确，无法进行连接");
+
+    // ========= 数据库参数错误 1001008000 ========
+    ErrorCode SQL_QUERY_PARAM_INVALID = new ErrorCode(1001008000, "参数不符合规范，不能进行查询");
+
+    // ========== 社交用户 1-002-018-000 ==========
+    ErrorCode SOCIAL_CLIENT_WEIXIN_MINI_APP_PHONE_CODE_ERROR = new ErrorCode(1_002_018_200, "获得手机号失败");
+    ErrorCode SOCIAL_CLIENT_NOT_EXISTS = new ErrorCode(1_002_018_201, "社交客户端不存在");
+    ErrorCode SOCIAL_CLIENT_UNIQUE = new ErrorCode(1_002_018_201, "社交客户端已存在配置");
 
 }

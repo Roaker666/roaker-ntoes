@@ -3,8 +3,6 @@ package com.roaker.notes.commons.log.service.impl;
 import com.roaker.notes.commons.log.model.Audit;
 import com.roaker.notes.commons.log.service.IAuditService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
 

@@ -6,7 +6,6 @@ import com.roaker.notes.commons.utils.io.FileUtils;
 import com.roaker.notes.file.core.client.AbstractFileClient;
 
 import java.io.File;
-import java.io.Serializable;
 
 /**
  * @author lei.rao

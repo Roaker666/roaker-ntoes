@@ -1,8 +1,8 @@
 package com.roaker.notes.uc.service.oauth2;
 
-import com.roaker.notes.uc.controller.oauth2.admin.vo.token.Oauth2AccessTokenPageReqVO;
 import com.roaker.notes.uc.dal.dataobject.oauth2.Oauth2AccessTokenDO;
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
+import com.roaker.notes.uc.controller.oauth2.admin.vo.token.Oauth2AccessTokenPageReqVO;
+import com.roaker.notes.commons.db.PageResult;
 
 import java.util.List;
 

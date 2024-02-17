@@ -10,8 +10,8 @@ import lombok.*;
  * @author lei.rao
  * @since 1.0
  */
-@TableName(value = "role_permission_info", autoResultMap = true)
-@KeySequence("role_permission_info_seq")
+@TableName(value = "sys_role_permission_info", autoResultMap = true)
+@KeySequence("sys_role_permission_info_seq")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder
@@ -22,8 +22,15 @@ public class RolePermissionDO extends BaseDO {
     @IsAutoIncrement
     @IsNotNull
     private Long id;
+    /**
+     * 角色ID
+     */
     @TableField
-    private String roleId;
+    private Long roleId;
+    /**
+     * 菜单ID
+     */
     @TableField
-    private String permissionId;
+    private Long menuId;
+
 }

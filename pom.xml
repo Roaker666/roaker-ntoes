@@ -21,8 +21,8 @@
         <module>infras</module>
         <module>commons</module>
         <module>flink</module>
-        <module>flink/flink-learning</module>
         <module>algorithm</module>
+        <module>cloud-tencent</module>
     </modules>
 
     <properties>
@@ -40,10 +40,10 @@
         <spring.cloud.version>4.0.1</spring.cloud.version>
         <!-- Web 相关 -->
         <springdoc.version>1.6.14</springdoc.version>
-        <knife4j.version>4.1.0</knife4j.version>
+        <knife4j.version>4.4.0</knife4j.version>
         <servlet.versoin>2.5</servlet.versoin>
         <!-- DB 相关 -->
-        <druid.version>1.2.15</druid.version>
+        <druid.version>1.2.21</druid.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <mybatis-plus-generator.version>3.5.3.1</mybatis-plus-generator.version>
         <dynamic-datasource.version>3.6.1</dynamic-datasource.version>
@@ -86,10 +86,11 @@
         <aliyun-java-sdk-core.version>4.6.3</aliyun-java-sdk-core.version>
         <aliyun-java-sdk-dysmsapi.version>2.2.1</aliyun-java-sdk-dysmsapi.version>
         <tencentcloud-sdk-java.version>3.1.676</tencentcloud-sdk-java.version>
-        <justauth.version>1.4.0</justauth.version>
+        <justauth.version>1.0.8</justauth.version>
         <jimureport.version>1.5.6</jimureport.version>
         <xercesImpl.version>2.12.2</xercesImpl.version>
-        <wx-java-mp.version>4.3.0</wx-java-mp.version>
+        <wx-java-mp.version>4.6.0</wx-java-mp.version>
+        <wx-java-miniapp.version>4.6.0</wx-java-miniapp.version>
         <docker-maven-plugin.version>1.2.2</docker-maven-plugin.version>
         <feign.version>12.1</feign.version>
         <jakarta.version>6.0.0</jakarta.version>
@@ -106,7 +107,7 @@
         <mysql.version>8.0.31</mysql.version>
         <log4j.version>2.7</log4j.version>
         <nacos.version>2021.1</nacos.version>
-        <swagger-annotation.version>2.2.2</swagger-annotation.version>
+        <swagger-annotation.version>2.2.8</swagger-annotation.version>
         <tink.version>1.2.2</tink.version>
         <actable.version>1.5.0.RELEASE</actable.version>
         <maven-compiler.version>3.10.1</maven-compiler.version>
@@ -202,6 +203,65 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.xingyuv</groupId>
+                <artifactId>spring-boot-starter-justauth</artifactId> <!-- 社交登陆（例如说，个人微信、企业微信等等） -->
+                <version>${justauth.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>cn.hutool</groupId>
+                        <artifactId>hutool-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.xkcoding.justauth</groupId>
+                <artifactId>justauth-spring-boot-starter</artifactId>
+                <version>1.4.0</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>cn.hutool</groupId>
+                        <artifactId>hutool-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- 积木报表-->
+            <dependency>
+                <groupId>org.jeecgframework.jimureport</groupId>
+                <artifactId>jimureport-spring-boot-starter</artifactId>
+                <version>${jimureport.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.alibaba</groupId>
+                        <artifactId>druid</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>xerces</groupId>
+                <artifactId>xercesImpl</artifactId>
+                <version>${xercesImpl.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.xingyuv</groupId>
+                <artifactId>spring-boot-starter-justauth</artifactId> <!-- 社交登陆（例如说，个人微信、企业微信等等） -->
+                <version>${justauth.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>cn.hutool</groupId>
+                        <artifactId>hutool-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- UReport2 报表-->
+            <dependency>
+                <groupId>com.bstek.ureport</groupId>
+                <artifactId>ureport2-console</artifactId>
+                <version>${ureport2.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.reflections</groupId>
@@ -212,6 +272,16 @@
             <dependency>
                 <groupId>com.roaker.notes</groupId>
                 <artifactId>roaker-social-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-security-starters</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-data-permission-starters</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/io.microservices.tools.canvas/microservice-canvas-springmvc -->
@@ -426,6 +496,12 @@
 
             <dependency>
                 <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-captcha-starters</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
                 <artifactId>roaker-log-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -544,7 +620,7 @@
 
             <dependency>
                 <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
+                <artifactId>druid-spring-boot-3-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
             <dependency>
@@ -850,8 +926,8 @@
             <!-- SMS SDK end -->
 
             <dependency>
-                <groupId>com.xkcoding.justauth</groupId>
-                <artifactId>justauth-spring-boot-starter</artifactId> <!-- 社交登陆（例如说，个人微信、企业微信等等） -->
+                <groupId>com.xingyuv</groupId>
+                <artifactId>spring-boot-starter-justauth</artifactId> <!-- 社交登陆（例如说，个人微信、企业微信等等） -->
                 <version>${justauth.version}</version>
             </dependency>
 
@@ -859,6 +935,12 @@
                 <groupId>com.github.binarywang</groupId>
                 <artifactId>wx-java-mp-spring-boot-starter</artifactId>
                 <version>${wx-java-mp.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>wx-java-miniapp-spring-boot-starter</artifactId>
+                <version>${wx-java-miniapp.version}</version>
             </dependency>
 
             <!-- 积木报表-->
@@ -895,17 +977,16 @@
                 <configuration>
                     <fork>true</fork>
                     <compilerArgs>
-<!--                        <arg>&#45;&#45;add-opens</arg>-->
-<!--                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>-->
-<!--                        <arg>&#45;&#45;add-exports</arg>-->
-<!--                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>-->
-<!--                        <arg>&#45;&#45;add-exports</arg>-->
-<!--                        <arg>java.base/jdk.internal.misc=ALL-UNNAMED</arg>-->
-<!--                        <arg>&#45;&#45;add-opens</arg>-->
-<!--                        <arg>java.base/java.lang.invoke=ALL-UNNAMED</arg>-->
-<!--                        <compilerArg>-->
-<!--                            -Amapstruct.defaultComponentModel=spring-->
-<!--                        </compilerArg>-->
+                        <arg>--add-opens</arg>
+                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>
+                        <arg>--add-exports</arg>
+                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>
+                        <arg>--add-exports</arg>
+                        <arg>java.base/jdk.internal.misc=ALL-UNNAMED</arg>
+                        <arg>--add-opens</arg>
+                        <compilerArg>
+                            -Amapstruct.defaultComponentModel=spring
+                        </compilerArg>
                     </compilerArgs>
                     <annotationProcessorPaths>
                         <path>

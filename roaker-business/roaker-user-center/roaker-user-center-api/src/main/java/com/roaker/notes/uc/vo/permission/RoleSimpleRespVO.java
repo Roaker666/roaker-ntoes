@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 public class RoleSimpleRespVO {
 
     @Schema(description = "角色编号", required = true, example = "1024")
-    private String roleId;
+    private Long id;
 
-    @Schema(description = "角色名称", required = true, example = "芋道")
-    private String roleName;
+    @Schema(description = "角色名称", required = true, example = "Roaker")
+    private String name;
 
 }

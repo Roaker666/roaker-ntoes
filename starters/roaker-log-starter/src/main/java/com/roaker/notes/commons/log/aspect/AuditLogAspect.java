@@ -1,9 +1,9 @@
 package com.roaker.notes.commons.log.aspect;
 
 import com.roaker.notes.commons.log.annotation.AuditLog;
-import com.roaker.notes.commons.log.model.Audit;
 import com.roaker.notes.commons.log.properties.AuditLogProperties;
 import com.roaker.notes.commons.log.service.IAuditService;
+import com.roaker.notes.commons.log.model.Audit;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -16,7 +16,6 @@ import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.Expression;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 

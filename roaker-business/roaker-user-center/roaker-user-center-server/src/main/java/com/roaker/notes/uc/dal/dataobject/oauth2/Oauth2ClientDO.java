@@ -18,8 +18,8 @@ import java.util.List;
  * @author lei.rao
  * @since 1.0
  */
-@TableName(value = "oauth2_client_tab", autoResultMap = true)
-@KeySequence("oauth2_client_tab_seq")
+@TableName(value = "sys_oauth2_client_tab", autoResultMap = true)
+@KeySequence("sys_oauth2_client_tab_seq")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Oauth2ClientDO extends BaseDO {

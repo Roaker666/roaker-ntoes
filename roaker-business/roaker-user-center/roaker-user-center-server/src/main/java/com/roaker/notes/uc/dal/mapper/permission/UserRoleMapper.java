@@ -1,5 +1,6 @@
 package com.roaker.notes.uc.dal.mapper.permission;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.roaker.notes.commons.db.core.mapper.BaseMapperX;
 import com.roaker.notes.commons.db.core.query.LambdaQueryWrapperX;
 import com.roaker.notes.enums.UserTypeEnum;
@@ -16,34 +17,27 @@ import java.util.List;
 @Mapper
 public interface UserRoleMapper extends BaseMapperX<UserRoleDO> {
 
-    default List<UserRoleDO> selectListByUserId(String userId, UserTypeEnum userType) {
-        return selectList(new LambdaQueryWrapperX<UserRoleDO>()
-                .eq(UserRoleDO::getUid, userId)
-                .eq(UserRoleDO::getUserType, userType));
+    default List<UserRoleDO> selectListByUserId(String userId) {
+        return selectList(UserRoleDO::getUid, userId);
     }
 
-    default void deleteListByUserIdAndRoleIdIds(String userId, UserTypeEnum userType, Collection<String> roleIds) {
-        delete(new LambdaQueryWrapperX<UserRoleDO>()
+    default void deleteListByUserIdAndRoleIdIds(String userId, Collection<Long> roleIds) {
+        delete(new LambdaQueryWrapper<UserRoleDO>()
                 .eq(UserRoleDO::getUid, userId)
-                .eq(UserRoleDO::getUserType, userType)
                 .in(UserRoleDO::getRoleId, roleIds));
     }
 
-    default void deleteListByUserId(String userId, UserTypeEnum userType) {
-        delete(new LambdaQueryWrapperX<UserRoleDO>()
-                .eq(UserRoleDO::getUid, userId)
-                .eq(UserRoleDO::getUserType, userType));
-
+    default void deleteListByUserId(String userId) {
+        delete(new LambdaQueryWrapper<UserRoleDO>().eq(UserRoleDO::getUid, userId));
     }
 
-    default void deleteListByRoleId(String roleId) {
-        delete(new LambdaQueryWrapperX<UserRoleDO>().eq(UserRoleDO::getRoleId, roleId));
+    default void deleteListByRoleId(Long roleId) {
+        delete(new LambdaQueryWrapper<UserRoleDO>().eq(UserRoleDO::getRoleId, roleId));
     }
 
-    default List<UserRoleDO> selectListByRoleIds(Collection<String> roleIds, UserTypeEnum userType) {
-        return selectList(new LambdaQueryWrapperX<UserRoleDO>()
-                .in(UserRoleDO::getRoleId, roleIds)
-                .eq(UserRoleDO::getUserType, userType));
+    default List<UserRoleDO> selectListByRoleIds(Collection<Long> roleIds) {
+        return selectList(UserRoleDO::getRoleId, roleIds);
     }
+
 
 }

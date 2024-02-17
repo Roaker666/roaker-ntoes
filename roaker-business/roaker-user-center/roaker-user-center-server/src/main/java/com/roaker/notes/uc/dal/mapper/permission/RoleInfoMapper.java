@@ -1,7 +1,7 @@
 package com.roaker.notes.uc.dal.mapper.permission;
 
 import com.roaker.notes.commons.db.core.dataobject.BaseDO;
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
+import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.commons.db.core.mapper.BaseMapperX;
 import com.roaker.notes.commons.db.core.query.LambdaQueryWrapperX;
 import com.roaker.notes.uc.dal.dataobject.permission.RoleInfoDO;
@@ -22,27 +22,19 @@ public interface RoleInfoMapper extends BaseMapperX<RoleInfoDO> {
 
     default PageResult<RoleInfoDO> selectPage(RolePageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<RoleInfoDO>()
-                .likeIfPresent(RoleInfoDO::getRoleName, reqVO.getName())
-                .likeIfPresent(RoleInfoDO::getRoleId, reqVO.getCode())
+                .likeIfPresent(RoleInfoDO::getName, reqVO.getName())
+                .likeIfPresent(RoleInfoDO::getCode, reqVO.getCode())
                 .eqIfPresent(RoleInfoDO::getStatus, reqVO.getStatus())
                 .betweenIfPresent(BaseDO::getCreateTime, reqVO.getCreateTime())
                 .orderByDesc(RoleInfoDO::getId));
     }
 
-    default List<RoleInfoDO> selectList(RoleExportReqVO reqVO) {
-        return selectList(new LambdaQueryWrapperX<RoleInfoDO>()
-                .likeIfPresent(RoleInfoDO::getRoleName, reqVO.getName())
-                .likeIfPresent(RoleInfoDO::getRoleId, reqVO.getCode())
-                .eqIfPresent(RoleInfoDO::getStatus, reqVO.getStatus())
-                .betweenIfPresent(BaseDO::getCreateTime, reqVO.getCreateTime()));
-    }
-
     default RoleInfoDO selectByName(String name) {
-        return selectOne(RoleInfoDO::getRoleName, name);
+        return selectOne(RoleInfoDO::getName, name);
     }
 
     default RoleInfoDO selectByCode(String code) {
-        return selectOne(RoleInfoDO::getRoleId, code);
+        return selectOne(RoleInfoDO::getCode, code);
     }
 
     default List<RoleInfoDO> selectListByStatus(@Nullable Collection<Integer> statuses) {

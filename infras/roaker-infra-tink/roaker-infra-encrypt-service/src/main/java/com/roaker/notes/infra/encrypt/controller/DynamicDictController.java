@@ -1,6 +1,6 @@
 package com.roaker.notes.infra.encrypt.controller;
 
-import com.roaker.notes.commons.db.core.dataobject.PageResult;
+import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.commons.excel.utils.ExcelUtils;
 import com.roaker.notes.infra.encrypt.convert.DynamicConverter;
 import com.roaker.notes.infra.encrypt.dal.dataobject.DynamicDictDO;

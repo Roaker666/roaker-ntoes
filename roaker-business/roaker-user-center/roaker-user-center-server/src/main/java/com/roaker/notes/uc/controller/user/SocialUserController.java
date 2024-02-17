@@ -1,11 +1,7 @@
 package com.roaker.notes.uc.controller.user;
 
-import com.roaker.notes.enums.SocialTypeEnum;
 import com.roaker.notes.enums.UserTypeEnum;
-import com.roaker.notes.exception.ServiceException;
 import com.roaker.notes.uc.converter.user.UserCenterConvert;
-import com.roaker.notes.uc.dto.user.SocialUserBindReqDTO;
-import com.roaker.notes.uc.dto.user.SocialUserUnbindReqDTO;
 import com.roaker.notes.uc.service.user.SocialUserService;
 import com.roaker.notes.uc.vo.user.SocialUserBindReqVO;
 import com.roaker.notes.uc.vo.user.SocialUserUnbindReqVO;

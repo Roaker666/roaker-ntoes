@@ -2,10 +2,10 @@ package com.roaker.notes.uc.api.notify;
 
 import com.roaker.notes.exception.ServerException;
 import com.roaker.notes.exception.enums.GlobalErrorCodeConstants;
-import com.roaker.notes.notify.api.vo.MessageSendReq;
-import com.roaker.notes.notify.api.vo.MessageSendResp;
-import com.roaker.notes.notify.api.vo.NotifyResp;
-import com.roaker.notes.notify.api.vo.SmsSendReq;
+import com.roaker.notes.uc.vo.notify.MessageSendReq;
+import com.roaker.notes.uc.vo.notify.MessageSendResp;
+import com.roaker.notes.uc.vo.notify.NotifyResp;
+import com.roaker.notes.uc.vo.notify.SmsSendReq;
 import com.roaker.notes.vo.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;
