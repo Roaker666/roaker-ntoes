@@ -15,7 +15,10 @@ public class LocalFileClient extends AbstractFileClient<LocalFileClientConfig> {
     public LocalFileClient(Long id, LocalFileClientConfig config) {
         super(id, config);
     }
-
+    @Override
+    public String getPath(String fileUrl) {
+        return super.getPath(config.getDomain(), fileUrl);
+    }
     @Override
     protected void doInit() {
         // 补全风格。例如说 Linux 是 /，Windows 是 \

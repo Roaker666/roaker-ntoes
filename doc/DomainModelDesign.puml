@@ -1,0 +1,77 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class DomainEntityId<<T>> {
+    T innerId
+}
+
+interface DomainEntity {
+    DomainEntityId<?> getEntityId()
+}
+
+abstract AbstractDomainEntity implements DomainEntity {
+    DomainEntityId<?> innerEntityId
+    AbstractDomainEntity originEntity
+    AtomicBoolean isDirty
+
+    boolean save()
+    boolean discard()
+}
+
+class DomainAggregateRoot extends AbstractDomainEntity {
+    Map<DomainEntityId<?>, Class<? extends AbstractDomainEntity>> entities
+}
+
+interface Repository<K,V> {
+    V load(K domainId)
+    boolean save(V entity)
+}
+
+interface DomainRepository<<K extends DomainEntityId, V extends DomainEntity>> extends Repository{}
+
+interface DomainBufferManager {
+    <K extends DomainEntityId<?>, V extends AbstractDomainEntity> V load(K entityId, Class<V> domainEntity, DomainBufferLoader<K, V> loader)
+    <K extends DomainEntityId<?>, V extends AbstractDomainEntity> V load(K entityId, Class<V> domainEntity)
+}
+
+class SimpleBufferManager implements DomainBufferManager {
+    Map<DomainEntityId<?>, AbstractDomainEntity> bufferMap
+
+    void save()
+}
+
+class DomainEntiFactory {
+    ThreadLocal<DomainBufferManager> bufferPool
+
+    V load(K key, Class<V> clazz)
+}
+
+class ApplicantId extends DomainEntityId {}
+
+class CorpApplicationAggregateRoot #red-green  extends DomainAggregateRoot{
+    ApplicantId applicationId
+    String userType
+    String productType
+    Long shareUserId
+    String applicationStatus
+    ...
+}
+
+class CorpApplicationDomainRepository #red-green implements DomainRepository {
+    DbDao corpApplicationTabDao;
+
+    load(ApplicantId applicantId)
+    save(CorpApplicationAggregateRoot entity)
+}
+
+class BatchCorpApplicationAggregate #red-green extends DomainAggregateRoot {
+    BatchParentApplicationId parentApplicationId
+    List<CorpApplicationAggregateRoot> corpApplicationList
+}
+
+AbstractDomainEntity --* Repository
+DomainEntity --* DomainEntityId
+DomainBufferManager --* AbstractDomainEntity
+DomainEntiFactory --* DomainBufferManager
+
+@enduml

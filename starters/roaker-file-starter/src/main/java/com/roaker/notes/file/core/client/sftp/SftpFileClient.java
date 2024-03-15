@@ -17,7 +17,10 @@ public class SftpFileClient extends AbstractFileClient<SftpFileClientConfig> {
     public SftpFileClient(Long id, SftpFileClientConfig config) {
         super(id, config);
     }
-
+    @Override
+    public String getPath(String fileUrl) {
+        return super.getPath(config.getDomain(), fileUrl);
+    }
     @Override
     protected void doInit() {
         // 补全风格。例如说 Linux 是 /，Windows 是 \

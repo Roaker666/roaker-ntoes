@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/algorithm/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/algorithm/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cloud-tencent/Roaker-Cloud-Learning1/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cloud-tencent/Roaker-Cloud-Learning1/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cloud-tencent/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cloud-tencent/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic-learning/algorithm/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic-learning/algorithm/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic-learning/cloud-tencent/Roaker-Cloud-Learning1/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic-learning/cloud-tencent/Roaker-Cloud-Learning1/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic-learning/cloud-tencent/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic-learning/cloud-tencent/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic-learning/flink/flink-learning/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic-learning/flink/flink-learning/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic-learning/flink/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic-learning/flink/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic-learning/hello-blockchain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic-learning/hello-blockchain/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic-learning/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/basic-learning/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/commons/roaker-core-commons/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/commons/roaker-core-commons/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/commons/roaker-core-domain/src/main/java" charset="UTF-8" />
@@ -25,14 +33,8 @@
     <file url="file://$PROJECT_DIR$/commons/roaker-leaf/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/commons/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/commons/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/flink/flink-learning/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/flink/flink-learning/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/flink/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/flink/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/future-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/future-common/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/hello-blockchain/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/hello-blockchain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/infras/roaker-infra-seq/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/infras/roaker-infra-seq/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/infras/roaker-infra-tink/roaker-infra-encrypt-api/src/main/java" charset="UTF-8" />
@@ -43,6 +45,12 @@
     <file url="file://$PROJECT_DIR$/infras/roaker-infra-tink/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/infras/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/infras/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-system/roaker-module-system-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-system/roaker-module-system-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-system/roaker-module-system-biz/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-system/roaker-module-system-biz/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-system/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-system/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-business/roaker-notify-center/roaker-notify-center-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-business/roaker-notify-center/roaker-notify-center-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-business/roaker-notify-center/roaker-notify-center-server/src/main/java" charset="UTF-8" />
@@ -61,12 +69,6 @@
     <file url="file://$PROJECT_DIR$/roaker-business/roaker-user-authentication/roaker-user-authentication-server/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-business/roaker-user-authentication/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-business/roaker-user-authentication/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/roaker-business/roaker-user-center/roaker-user-center-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/roaker-business/roaker-user-center/roaker-user-center-api/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/roaker-business/roaker-user-center/roaker-user-center-server/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/roaker-business/roaker-user-center/roaker-user-center-server/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/roaker-business/roaker-user-center/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/roaker-business/roaker-user-center/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-business/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-core-commons/src/main/java" charset="UTF-8" />
@@ -97,6 +99,8 @@
     <file url="file://$PROJECT_DIR$/starters/roaker-loadbalancer-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/starters/roaker-log-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/starters/roaker-log-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/starters/roaker-pay-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/starters/roaker-pay-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/starters/roaker-protection-starters/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/starters/roaker-protection-starters/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/starters/roaker-redis-starter/src/main/java" charset="UTF-8" />

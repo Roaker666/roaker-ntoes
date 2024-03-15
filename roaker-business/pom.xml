@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>roaker-user-center</module>
+        <module>roaker-module-system</module>
     </modules>
 
     <properties>

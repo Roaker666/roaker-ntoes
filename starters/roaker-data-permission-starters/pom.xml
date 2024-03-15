@@ -25,7 +25,7 @@
 
         <dependency>
             <groupId>com.roaker.notes</groupId>
-            <artifactId>roaker-user-center-api</artifactId>
+            <artifactId>roaker-module-system-api</artifactId>
         </dependency>
         <dependency>
             <groupId>com.roaker.notes</groupId>

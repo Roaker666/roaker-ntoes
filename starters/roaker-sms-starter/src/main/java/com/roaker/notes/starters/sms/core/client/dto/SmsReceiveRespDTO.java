@@ -43,5 +43,5 @@ public class SmsReceiveRespDTO {
      * <p>
      * 对应 SysSmsLogDO 的编号
      */
-    private Long logId;
+    private String logId;
 }

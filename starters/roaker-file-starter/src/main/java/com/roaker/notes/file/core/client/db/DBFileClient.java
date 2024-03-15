@@ -38,6 +38,11 @@ public class DBFileClient extends AbstractFileClient<DBFileClientConfig> impleme
         return getDao().selectContent(getId(), path);
     }
 
+    @Override
+    public String getPath(String fileUrl) {
+        return super.getPath(config.getDomain(), fileUrl);
+    }
+
     private DBFileContentFrameworkDAO getDao() {
         // 延迟获取，因为 SpringUtil 初始化太慢
         if (dao == null) {

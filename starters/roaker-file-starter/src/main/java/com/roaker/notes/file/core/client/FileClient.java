@@ -36,4 +36,6 @@ public interface FileClient {
      */
     byte[] getContent(String path) throws Exception;
 
+    String getPath(String fileUrl);
+
 }

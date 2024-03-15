@@ -43,12 +43,12 @@ public class DebugDingTalkSmsClient extends AbstractSmsClient {
     }
 
     @Override
-    protected SmsCommonResult<SmsSendRespDTO> doSendSms(Long sendLogId, String mobile, String apiTemplateId, List<KeyValue<String, Object>> templateParams) throws Throwable {
+    protected SmsCommonResult<SmsSendRespDTO> doSendSms(String sendLogId, String mobile, String apiTemplateId, List<KeyValue<String, Object>> templateParams) throws Throwable {
         // 构建请求
         String url = buildUrl("robot/send");
         Map<String, Object> params = new HashMap<>();
         params.put("msgtype", "text");
-        String content = String.format("【模拟短信】\n手机号：%s\n短信日志编号：%d\n模板参数：%s",
+        String content = String.format("【模拟短信】\n手机号：%s\n短信日志编号：%s\n模板参数：%s",
                 mobile, sendLogId, RoakerMapUtils.convertMap(templateParams));
         params.put("text", MapUtil.builder().put("content", content).build());
         // 执行请求

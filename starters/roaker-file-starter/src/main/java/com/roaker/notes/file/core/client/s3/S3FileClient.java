@@ -18,7 +18,10 @@ public class S3FileClient extends AbstractFileClient<S3FileClientConfig> {
     public S3FileClient(Long id, S3FileClientConfig config) {
         super(id, config);
     }
-
+    @Override
+    public String getPath(String fileUrl) {
+        return super.getPath(config.getDomain(), fileUrl);
+    }
     @Override
     protected void doInit() {
         // 补全 domain

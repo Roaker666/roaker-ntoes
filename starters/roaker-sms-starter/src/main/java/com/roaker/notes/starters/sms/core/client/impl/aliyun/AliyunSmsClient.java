@@ -63,13 +63,13 @@ public class AliyunSmsClient extends AbstractSmsClient {
     }
 
     @Override
-    protected SmsCommonResult<SmsSendRespDTO> doSendSms(Long sendLogId, String mobile, String apiTemplateId, List<KeyValue<String, Object>> templateParams) throws Throwable {
+    protected SmsCommonResult<SmsSendRespDTO> doSendSms(String sendLogId, String mobile, String apiTemplateId, List<KeyValue<String, Object>> templateParams) throws Throwable {
         SendSmsRequest request = new SendSmsRequest();
         request.setPhoneNumbers(mobile);
         request.setSignName(properties.getSignature());
         request.setTemplateCode(apiTemplateId);
         request.setTemplateParam(JacksonUtils.toJSON(RoakerMapUtils.convertMap(templateParams)));
-        request.setOutId(String.valueOf(sendLogId));
+        request.setOutId(sendLogId);
         // 执行请求
         return invoke(request, response -> new SmsSendRespDTO().setSerialNo(response.getBizId()));
     }
@@ -82,7 +82,7 @@ public class AliyunSmsClient extends AbstractSmsClient {
             resp.setSuccess(status.getSuccess());
             resp.setErrorCode(status.getErrCode()).setErrorMsg(status.getErrMsg());
             resp.setMobile(status.getPhoneNumber()).setReceiveTime(status.getReportTime());
-            resp.setSerialNo(status.getBizId()).setLogId(Long.valueOf(status.getOutId()));
+            resp.setSerialNo(status.getBizId()).setLogId(status.getOutId());
             return resp;
         }).collect(Collectors.toList());
     }

@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/roaker-business/roaker-user-center/pom.xml" />
+        <option value="$PROJECT_DIR$/basic-learning/algorithm/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

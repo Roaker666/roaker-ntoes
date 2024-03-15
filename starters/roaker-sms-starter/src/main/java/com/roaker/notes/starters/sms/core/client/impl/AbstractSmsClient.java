@@ -73,7 +73,7 @@ public abstract class AbstractSmsClient implements SmsClient {
     }
 
     @Override
-    public final SmsCommonResult<SmsSendRespDTO> sendSms(Long logId, String mobile,
+    public final SmsCommonResult<SmsSendRespDTO> sendSms(String logId, String mobile,
                                                          String apiTemplateId, List<KeyValue<String, Object>> templateParams) {
         // 执行短信发送
         SmsCommonResult<SmsSendRespDTO> result;
@@ -89,7 +89,7 @@ public abstract class AbstractSmsClient implements SmsClient {
         return result;
     }
 
-    protected abstract SmsCommonResult<SmsSendRespDTO> doSendSms(Long sendLogId, String mobile,
+    protected abstract SmsCommonResult<SmsSendRespDTO> doSendSms(String sendLogId, String mobile,
                                                                  String apiTemplateId, List<KeyValue<String, Object>> templateParams)
             throws Throwable;
 

@@ -26,6 +26,7 @@
         <module>roaker-data-permission-starters</module>
         <module>roaker-security-starters</module>
         <module>roaker-captcha-starters</module>
+        <module>roaker-pay-starter</module>
     </modules>
 
     <properties>

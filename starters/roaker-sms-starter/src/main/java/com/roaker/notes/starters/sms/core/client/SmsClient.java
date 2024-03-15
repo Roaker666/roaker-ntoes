@@ -27,7 +27,7 @@ public interface SmsClient {
      * @param templateParams 短信模板参数。通过 List 数组，保证参数的顺序
      * @return 短信发送结果
      */
-    SmsCommonResult<SmsSendRespDTO> sendSms(Long logId,
+    SmsCommonResult<SmsSendRespDTO> sendSms(String logId,
                                             String mobile,
                                             String apiTemplateId,
                                             List<KeyValue<String, Object>> templateParams);

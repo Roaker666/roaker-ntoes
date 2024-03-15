@@ -15,14 +15,11 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>hello-blockchain</module>
         <module>starters</module>
         <module>roaker-business</module>
         <module>infras</module>
         <module>commons</module>
-        <module>flink</module>
-        <module>algorithm</module>
-        <module>cloud-tencent</module>
+        <module>basic-learning</module>
     </modules>
 
     <properties>
@@ -128,6 +125,7 @@
         <rocketmq-starter.version>2.2.3</rocketmq-starter.version>
         <microservice-canvas.version>0.10.0.RELEASE</microservice-canvas.version>
         <reflections.version>0.10.2</reflections.version>
+        <pulsar-boot.version>0.2.0</pulsar-boot.version>
     </properties>
 
     <dependencies>
@@ -203,6 +201,18 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-sms-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.springframework.pulsar/spring-pulsar-spring-boot-starter -->
+            <dependency>
+                <groupId>org.springframework.pulsar</groupId>
+                <artifactId>spring-pulsar-spring-boot-starter</artifactId>
+                <version>${pulsar-boot.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.xingyuv</groupId>
                 <artifactId>spring-boot-starter-justauth</artifactId> <!-- 社交登陆（例如说，个人微信、企业微信等等） -->
@@ -375,11 +385,6 @@
             </dependency>
 
             <dependency>
-                <groupId>com.roaker.notes</groupId>
-                <artifactId>roaker-user-authentication-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
                 <version>${spring-cloud-alibaba-dependencies.version}</version>
@@ -475,7 +480,13 @@
 
             <dependency>
                 <groupId>com.roaker.notes</groupId>
-                <artifactId>roaker-user-center-api</artifactId>
+                <artifactId>roaker-module-system-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-module-system-biz</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

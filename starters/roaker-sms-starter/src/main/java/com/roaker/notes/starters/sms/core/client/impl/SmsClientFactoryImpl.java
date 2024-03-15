@@ -3,6 +3,9 @@ package com.roaker.notes.starters.sms.core.client.impl;
 import cn.hutool.core.lang.Assert;
 import com.roaker.notes.starters.sms.core.client.SmsClient;
 import com.roaker.notes.starters.sms.core.client.SmsClientFactory;
+import com.roaker.notes.starters.sms.core.client.impl.aliyun.AliyunSmsClient;
+import com.roaker.notes.starters.sms.core.client.impl.debug.DebugDingTalkSmsClient;
+import com.roaker.notes.starters.sms.core.client.impl.tencent.TencentSmsClient;
 import com.roaker.notes.starters.sms.core.enums.SmsChannelEnum;
 import com.roaker.notes.starters.sms.core.property.SmsChannelProperties;
 import lombok.extern.slf4j.Slf4j;
@@ -41,12 +44,12 @@ public class SmsClientFactoryImpl implements SmsClientFactory {
     }
 
     @Override
-    public SmsClient getSmsClient(String channelCode) {
+    public SmsClient getSmsClient(Integer channelCode) {
         return channelCodeClients.get(channelCode);
     }
 
     @Override
-    public void createOrUpdateSmsClient(SmsChannelProperties properties) {
+    public SmsClient createOrUpdateSmsClient(SmsChannelProperties properties) {
         AbstractSmsClient client = channelIdClients.get(properties.getId());
         if (client == null) {
             client = this.createSmsClient(properties);
@@ -55,6 +58,7 @@ public class SmsClientFactoryImpl implements SmsClientFactory {
         } else {
             client.refresh(properties);
         }
+        return client;
     }
 
 
@@ -63,9 +67,9 @@ public class SmsClientFactoryImpl implements SmsClientFactory {
         Assert.notNull(channelEnum, String.format("渠道类型(%s) 为空", channelEnum));
 
         switch (channelEnum) {
-            case ALIYUN:
-            case DEBUG_DING_TALK:
-            case TENCENT:
+            case ALIYUN: return new AliyunSmsClient(properties);
+            case DEBUG_DING_TALK: return new DebugDingTalkSmsClient(properties);
+            case TENCENT: return new TencentSmsClient(properties);
         }
         // 创建失败，错误日志 + 抛出异常
         log.error("[createSmsClient][配置({}) 找不到合适的客户端实现]", properties);

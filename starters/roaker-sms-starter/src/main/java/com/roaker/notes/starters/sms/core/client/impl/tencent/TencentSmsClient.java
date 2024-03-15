@@ -83,7 +83,7 @@ public class TencentSmsClient extends AbstractSmsClient {
     }
 
     @Override
-    protected SmsCommonResult<SmsSendRespDTO> doSendSms(Long sendLogId, String mobile, String apiTemplateId, List<KeyValue<String, Object>> templateParams) throws Throwable {
+    protected SmsCommonResult<SmsSendRespDTO> doSendSms(String sendLogId, String mobile, String apiTemplateId, List<KeyValue<String, Object>> templateParams) throws Throwable {
         return invoke(() -> buildSendSmsRequest(sendLogId, mobile, apiTemplateId, templateParams),
                 this::doSendSms0,
                 response -> {
@@ -114,7 +114,7 @@ public class TencentSmsClient extends AbstractSmsClient {
      * @param templateParams 短信模板参数。通过 List 数组，保证参数的顺序
      * @return 腾讯云发送短信请求
      */
-    private SendSmsRequest buildSendSmsRequest(Long sendLogId,
+    private SendSmsRequest buildSendSmsRequest(String sendLogId,
                                                String mobile,
                                                String apiTemplateId,
                                                List<KeyValue<String, Object>> templateParams) {
@@ -137,7 +137,7 @@ public class TencentSmsClient extends AbstractSmsClient {
             data.setReceiveTime(status.getReceiveTime()).setSuccess(SmsReceiveStatus.SUCCESS_CODE.equalsIgnoreCase(status.getStatus()));
             data.setMobile(status.getMobile()).setSerialNo(status.getSerialNo());
             SessionContext context;
-            Long logId;
+            String logId;
             Assert.notNull(context = status.getSessionContext(), "回执信息中未解析出 context，请联系腾讯云小助手");
             Assert.notNull(logId = context.getLogId(), "回执信息中未解析出 logId，请联系腾讯云小助手");
             data.setLogId(logId);
@@ -293,7 +293,7 @@ public class TencentSmsClient extends AbstractSmsClient {
         /**
          * 发送短信记录id
          */
-        private Long logId;
+        private String logId;
     }
 
     private interface SdkFunction<T, R> {

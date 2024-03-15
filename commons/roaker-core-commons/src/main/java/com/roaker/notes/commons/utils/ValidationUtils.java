@@ -1,8 +1,10 @@
 package com.roaker.notes.commons.utils;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.lang.Assert;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import org.springframework.util.StringUtils;
 
@@ -37,6 +39,12 @@ public class ValidationUtils {
         if (CollUtil.isNotEmpty(constraintViolations)) {
             throw new ConstraintViolationException(constraintViolations);
         }
+    }
+
+    public static void validate(Object object, Class<?>... groups) {
+        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+        Assert.notNull(validator);
+        validate(validator, object, groups);
     }
 
 }

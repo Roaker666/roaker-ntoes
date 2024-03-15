@@ -23,12 +23,12 @@ public interface SmsClientFactory {
      * @param channelCode 渠道编码
      * @return 短信 Client
      */
-    SmsClient getSmsClient(String channelCode);
+    SmsClient getSmsClient(Integer channelCode);
 
     /**
      * 创建短信 Client
      *
      * @param properties 配置对象
      */
-    void createOrUpdateSmsClient(SmsChannelProperties properties);
+    SmsClient createOrUpdateSmsClient(SmsChannelProperties properties);
 }

@@ -38,6 +38,11 @@ public class FtpFileClient extends AbstractFileClient<FtpFileClientConfig> {
     }
 
     @Override
+    public String getPath(String fileUrl) {
+        return super.getPath(config.getDomain(), fileUrl);
+    }
+
+    @Override
     public String upload(byte[] content, String path, String type) throws Exception {
         // 执行写入
         String filePath = getFilePath(path);

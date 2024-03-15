@@ -1,0 +1,21 @@
+@startuml
+title "ekyc-center实体持久化调用关系图"
+
+note over user: 状态机的特殊Action,从A->B时执行完业务Action后,可以进入B时执行的Action
+actor "entryAction" as user
+participant FiniteStateMachineRepository as fsr
+participant OnboardStateMachinePersist as osp
+participant DomainEntityFactory as df
+participant DomainBufferManager as dfm
+participant AbstractDomainEntity as ade
+participant DomainRepository as dr
+participant DataBase as db
+
+user -> fsr: persist(machine, extendedState.getProcessId())
+fsr -> osp: osp.write(buildStateMachineContext(stateMachine), contextObj)
+osp -> df: DomainEntityFactory.getBuffer().save()
+df -> dfm: save()
+dfm -> ade:  save()
+ade -> dr: save(entity)
+dr -> db: update/insert(entity)
+@enduml

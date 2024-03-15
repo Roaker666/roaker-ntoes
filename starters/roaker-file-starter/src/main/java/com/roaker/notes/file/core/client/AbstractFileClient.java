@@ -2,6 +2,7 @@ package com.roaker.notes.file.core.client;
 
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author lei.rao
@@ -51,10 +52,15 @@ public abstract class AbstractFileClient<Config extends FileClientConfig> implem
      * 使用场景：local、ftp、db，通过 FileController 的 getFile 来获取文件内容
      *
      * @param domain 自定义域名
-     * @param path 文件路径
+     * @param path   文件路径
      * @return URL 访问地址
      */
     protected String formatFileUrl(String domain, String path) {
         return StrUtil.format("{}/admin-api/infra/file/{}/get/{}", domain, getId(), path);
+    }
+
+
+    protected String getPath(String domain, String fileUrl) {
+        return StringUtils.substring(fileUrl, StrUtil.format("{}/admin-api/infra/file/{}/get/", domain, getId()).length());
     }
 }

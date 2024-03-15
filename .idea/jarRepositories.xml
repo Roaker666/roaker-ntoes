@@ -32,6 +32,11 @@
       <option name="url" value="https://maven.aliyun.com/repository/public" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="sg-release" />
+      <option name="name" value="Nexus Central" />
+      <option name="url" value="https://nexus.npt.seabank.io/repository/sg-group/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="spring-release" />
       <option name="name" value="Spring release" />
       <option name="url" value="http://nexus-nonlive.uat.sg.maribank.io/repository/maven-public/" />
