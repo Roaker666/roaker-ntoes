@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
@@ -18,6 +19,7 @@ import java.util.Map;
  * @since 1.0
  */
 @Data
+@Accessors(chain = true)
 public class PayTransferUnifiedReqDTO implements Serializable {
     /**
      * 转账类型

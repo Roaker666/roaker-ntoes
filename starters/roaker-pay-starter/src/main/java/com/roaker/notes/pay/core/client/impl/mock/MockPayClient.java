@@ -22,7 +22,7 @@ public class MockPayClient extends AbstractPayClient<NonePayClientConfig> {
     private static final String MOCK_RESP_SUCCESS_DATA = "MOCK_SUCCESS";
 
     public MockPayClient(Long channelId, NonePayClientConfig config) {
-        super(channelId, PayChannelEnum.MOCK.getCode(), config);
+        super(channelId, PayChannelEnum.MOCK.getChannelCode(), config);
     }
     @Override
     protected void doInit() {

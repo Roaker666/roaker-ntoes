@@ -1,5 +1,6 @@
 package com.roaker.notes.dynamic.enums;
 
+import com.roaker.notes.enums.CommonStatusEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,10 +20,10 @@ import java.time.LocalDateTime;
 @Schema(name = "动态字典表", description = "")
 public class DynamicDictDO {
     /**
-     * 配置类型;{@link DynamicDictTypeEnums}
+     * 配置类型;
      */
     @Schema(name = "配置类型", description = "1:模板枚举配置 2:下拉筛选配置 3:国家编码配置")
-    private Integer type;
+    private String type;
     /**
      * 配置业务名称
      */
@@ -49,15 +50,42 @@ public class DynamicDictDO {
     @Schema(name = "业务描述名称", description = "")
     private String name;
     /**
-     * 上游业务码
+     * 标签
      */
-    @Schema(name = "上游业务码", description = "")
-    private String originCode;
+    @Schema(name = "标签", description = "")
+    private String label;
     /**
-     * 上游业务描述名称
+     * 标签
      */
-    @Schema(name = "上游业务描述名称", description = "")
-    private String originName;
+    @Schema(name = "标签描述名称", description = "")
+    private String value;
+    /**
+     * 状态
+     * 枚举 {@link CommonStatusEnum}
+     */
+    @Schema(name = "状态", description = "")
+    private CommonStatusEnum status;
+    /**
+     * 颜色类型
+     * 对应到 element-ui 为 default、primary、success、info、warning、danger
+     */
+    @Schema(name = "颜色类型", description = "对应到 element-ui 为 default、primary、success、info、warning、danger")
+    private String colorType;
+    /**
+     * css 样式
+     */
+    @Schema(name = "css 样式", description = "")
+    private String cssClass;
+    /**
+     * 字典排序
+     */
+    @Schema(name = "字典排序", description = "")
+    private Integer sort;
+    /**
+     * 备注
+     */
+    @Schema(name = "备注", description = "")
+    private String remark;
 
     private LocalDateTime updateTime;
 

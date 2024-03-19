@@ -1,10 +1,11 @@
 package com.roaker.notes.dynamic.starter.loader;
 
 import cn.hutool.core.collection.CollUtil;
-import com.roaker.notes.dynamic.starter.core.DynamicApi;
 import com.roaker.notes.commons.utils.date.DateUtils;
+import com.roaker.notes.dynamic.enums.DynamicDictConfigLoader;
 import com.roaker.notes.dynamic.enums.DynamicDictDO;
 import com.roaker.notes.dynamic.enums.DynamicDictTypeEnums;
+import com.roaker.notes.uc.api.dict.DynamicApi;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -40,7 +41,7 @@ public class DynamicLoaderImpl implements DynamicLoader {
 
     private void loadDynamicDict0() {
         // 加载错误码
-        List<DynamicDictDO> dynamicDictList = dynamicApi.getDynamicDictList(maxUpdateTime);
+        List<DynamicDictDO> dynamicDictList = dynamicApi.loadDataList(maxUpdateTime);
         if (CollUtil.isEmpty(dynamicDictList)) {
             return;
         }
@@ -50,9 +51,9 @@ public class DynamicLoaderImpl implements DynamicLoader {
             if (DynamicDictTypeEnums.ERROR_CODE.getCode().equals(dynamicDictDO.getCode()) &&
                     StringUtils.equalsIgnoreCase(applicationName, dynamicDictDO.getBizName())) {
                 putErrorCode(dynamicDictDO.getCode(), dynamicDictDO.getName());
-
             }
             maxUpdateTime = DateUtils.max(maxUpdateTime, dynamicDictDO.getUpdateTime());
         });
+        DynamicDictConfigLoader.initEnumClass(dynamicDictList);
     }
 }

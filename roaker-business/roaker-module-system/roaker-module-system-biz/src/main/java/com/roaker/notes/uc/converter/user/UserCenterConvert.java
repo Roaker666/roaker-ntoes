@@ -35,7 +35,7 @@ public interface UserCenterConvert {
 
 
     @Mapping(source = "reqVO.type", target = "socialType")
-    SocialUserBindReqDTO convert(Long userId, Integer userType, SocialUserBindReqVO reqVO);
+    SocialUserBindReqDTO convert(String userId, Integer userType, SocialUserBindReqVO reqVO);
 
     default List<UserRespVO> convertList(List<AdminUserInfoDO> list, Map<Long, DeptDO> deptMap) {
         return RoakerCollectionUtils.convertList(list, user -> convert(user, deptMap.get(user.getDeptId())));
@@ -98,5 +98,10 @@ public interface UserCenterConvert {
     AdminUserRespDTO convert4(AdminUserInfoDO bean);
 
     List<AdminUserRespDTO> convertList4(List<AdminUserInfoDO> users);
+
+    AdminUserRespDTO convert2(AdminUserInfoDO bean);
+
+    List<AdminUserRespDTO> convertList2(List<AdminUserInfoDO> list);
+
 
 }

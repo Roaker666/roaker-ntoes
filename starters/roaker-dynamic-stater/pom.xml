@@ -19,18 +19,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.roaker.notes</groupId>
-            <artifactId>roaker-loadbalancer-starter</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.roaker.notes</groupId>
             <artifactId>roaker-core-commons</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.roaker.notes</groupId>
+            <artifactId>roaker-module-system-api</artifactId>
         </dependency>
     </dependencies>
 

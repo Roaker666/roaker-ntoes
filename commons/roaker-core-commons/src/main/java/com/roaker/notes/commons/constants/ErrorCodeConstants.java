@@ -195,10 +195,10 @@ public interface ErrorCodeConstants {
 
     // ========= 数据库参数错误 1001008000 ========
     ErrorCode SQL_QUERY_PARAM_INVALID = new ErrorCode(1001008000, "参数不符合规范，不能进行查询");
+    ErrorCode REQUIRE_LOCK_ERROR = new ErrorCode(1001008001, "获取分布式锁失败");
 
     // ========== 社交用户 1-002-018-000 ==========
     ErrorCode SOCIAL_CLIENT_WEIXIN_MINI_APP_PHONE_CODE_ERROR = new ErrorCode(1_002_018_200, "获得手机号失败");
     ErrorCode SOCIAL_CLIENT_NOT_EXISTS = new ErrorCode(1_002_018_201, "社交客户端不存在");
     ErrorCode SOCIAL_CLIENT_UNIQUE = new ErrorCode(1_002_018_201, "社交客户端已存在配置");
-
 }

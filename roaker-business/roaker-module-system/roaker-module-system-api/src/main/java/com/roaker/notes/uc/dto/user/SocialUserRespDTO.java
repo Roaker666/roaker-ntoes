@@ -30,6 +30,6 @@ public class SocialUserRespDTO {
     /**
      * 关联的用户编号
      */
-    private Long userId;
+    private String userId;
 
 }

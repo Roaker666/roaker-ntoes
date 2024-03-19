@@ -203,6 +203,16 @@
         <dependencies>
             <dependency>
                 <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-lock-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-dynamic-stater</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
                 <artifactId>roaker-sms-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -490,6 +500,30 @@
                 <version>${project.version}</version>
             </dependency>
 
+
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-module-pay-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-module-pay-biz</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-pay-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-job-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!-- 统一依赖管理 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>

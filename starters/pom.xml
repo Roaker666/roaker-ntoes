@@ -27,6 +27,8 @@
         <module>roaker-security-starters</module>
         <module>roaker-captcha-starters</module>
         <module>roaker-pay-starter</module>
+        <module>roaker-job-starter</module>
+        <module>roaker-lock-starter</module>
     </modules>
 
     <properties>

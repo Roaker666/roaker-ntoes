@@ -2,6 +2,7 @@ package com.roaker.notes.dynamic.enums;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ public class DynamicDictConfigLoader {
         }
         // 1.对查询的数据按照类名进行分组
         Map<String, List<DynamicDictDO>> groupListDO = dictDOList.stream()
+                .filter(dynamicDictDO -> StringUtils.isNotEmpty(dynamicDictDO.getBizClass()))
                 .collect(Collectors.groupingBy(DynamicDictDO::getBizClass));
 
         // 2.按照类名分组后去初始化枚举配置

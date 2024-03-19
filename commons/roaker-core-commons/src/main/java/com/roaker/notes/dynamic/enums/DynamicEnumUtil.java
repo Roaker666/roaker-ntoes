@@ -52,7 +52,7 @@ public class DynamicEnumUtil {
         //4、枚举实例参数值
         List<Object[]> additionalValuesList = dynamicDictList.stream().map(dictDO ->
                         new Object[]{dictDO.getCode(), dictDO.getName(),
-                                dictDO.getOriginCode(), dictDO.getOriginName()})
+                                dictDO.getLabel(), dictDO.getValue()})
                 .collect(Collectors.toList());
 
         Field[] allFields = clazz.getDeclaredFields();

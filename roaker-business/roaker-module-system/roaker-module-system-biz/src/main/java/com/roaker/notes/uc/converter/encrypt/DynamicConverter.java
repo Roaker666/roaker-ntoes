@@ -1,11 +1,11 @@
 package com.roaker.notes.uc.converter.encrypt;
 
 import com.roaker.notes.commons.db.PageResult;
-import com.roaker.notes.uc.dal.dataobject.encrypt.DynamicDictDO;
+import com.roaker.notes.uc.dal.dataobject.dict.DynamicDictDO;
 import com.roaker.notes.uc.dto.encrypt.DynamicDictDTO;
-import com.roaker.notes.uc.vo.encrypt.DynamicCreateReqVO;
-import com.roaker.notes.uc.vo.encrypt.DynamicExportRespVO;
-import com.roaker.notes.uc.vo.encrypt.DynamicUpdateReqVO;
+import com.roaker.notes.uc.vo.dict.data.DynamicCreateReqVO;
+import com.roaker.notes.uc.vo.dict.data.DynamicExportRespVO;
+import com.roaker.notes.uc.vo.dict.data.DynamicUpdateReqVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

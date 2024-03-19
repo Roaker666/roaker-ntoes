@@ -90,6 +90,7 @@ public class RoakerCollectionUtils {
         return convertMap(from, keyFunc, Function.identity(), supplier);
     }
 
+
     public static <T, K, V> Map<K, V> convertMap(Collection<T> from, Function<T, K> keyFunc, Function<T, V> valueFunc) {
         if (CollUtil.isEmpty(from)) {
             return new HashMap<>();
