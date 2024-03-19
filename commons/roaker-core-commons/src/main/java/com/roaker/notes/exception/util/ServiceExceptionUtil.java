@@ -3,6 +3,7 @@ package com.roaker.notes.exception.util;
 import com.google.common.annotations.VisibleForTesting;
 import com.roaker.notes.exception.ErrorCode;
 import com.roaker.notes.exception.ServiceException;
+import com.roaker.notes.exception.enums.GlobalErrorCodeConstants;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
@@ -78,6 +79,10 @@ public class ServiceExceptionUtil {
     public static ServiceException exception0(Integer code, String messagePattern, Object... params) {
         String message = doFormat(code, messagePattern, params);
         return new ServiceException(code, message);
+    }
+
+    public static ServiceException invalidParamException(String messagePattern, Object... params) {
+        return exception0(GlobalErrorCodeConstants.BAD_REQUEST.getCode(), messagePattern, params);
     }
 
     // ========== 格式化方法 ==========

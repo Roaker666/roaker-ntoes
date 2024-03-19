@@ -15,8 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Base64Utils;
 
-import static com.roaker.notes.uc.enums.encrypt.KeyTypeEnums.*;
-
 /**
  * @author lei.rao
  * @since 1.0

@@ -37,12 +37,12 @@ public class DynamicDictDTO implements Serializable {
      */
     private String name;
     /**
-     * 上游业务码
+     * 标签
      */
-    private String originCode;
+    private String label;
     /**
-     * 上游业务描述名称
+     * 标签值
      */
-    private String originName;
+    private String value;
     private LocalDateTime updateTime;
 }

@@ -3,6 +3,7 @@ package com.roaker.notes.uc.service.user.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.io.IoUtil;
+import cn.hutool.core.lang.Assert;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
 import com.roaker.notes.commons.db.PageResult;
@@ -11,8 +12,11 @@ import com.roaker.notes.commons.utils.RoakerCollectionUtils;
 import com.roaker.notes.datapermission.core.util.DataPermissionUtils;
 import com.roaker.notes.dynamic.enums.CommonEnum;
 import com.roaker.notes.enums.CommonStatusEnum;
+import com.roaker.notes.enums.UserTypeEnum;
 import com.roaker.notes.exception.ServiceException;
 import com.roaker.notes.uc.api.encrypt.FileApi;
+import com.roaker.notes.uc.api.social.SocialClientApi;
+import com.roaker.notes.uc.api.social.dto.SocialWxPhoneNumberInfoRespDTO;
 import com.roaker.notes.uc.converter.user.UserCenterConvert;
 import com.roaker.notes.uc.dal.dataobject.credentials.ShareUserCredentialsDO;
 import com.roaker.notes.uc.dal.dataobject.dept.DeptDO;
@@ -71,6 +75,9 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Resource
     private FileApi fileApi;
+
+    @Resource
+    private SocialClientApi socialClientApi;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -153,6 +160,19 @@ public class AdminUserServiceImpl implements AdminUserService {
         // 执行更新
         shareUserCredentialsDO.setCredentials(encodePassword(reqVO.getNewPassword()));
         shareUserCredentialsMapper.updateById(shareUserCredentialsDO);
+    }
+
+    @Override
+    public void updateUserMobileByWeixin(String userId, AppUserUpdateMobileByWeixinReqVO reqVO) {
+        // 1.1 获得对应的手机号信息
+        SocialWxPhoneNumberInfoRespDTO wxMaPhoneNumberInfo = socialClientApi.getWxMaPhoneNumberInfo(
+                UserTypeEnum.MEMBER.getCode(), reqVO.getCode());
+        Assert.notNull(wxMaPhoneNumberInfo, "获得手机信息失败，结果为空");
+        // 1.2 校验新手机是否已经被绑定
+        validateMobileUnique(userId, wxMaPhoneNumberInfo.getPhoneNumber());
+
+        // 2. 更新用户手机
+        adminUserInfoMapper.updateById(AdminUserInfoDO.builder().uid(userId).mobile(wxMaPhoneNumberInfo.getPhoneNumber()).build());
     }
 
     @Override
@@ -384,7 +404,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     /**
      * 校验旧密码
      *
-     * @param uid          用户 uid
+     * @param uid         用户 uid
      * @param oldPassword 旧密码
      */
     @VisibleForTesting

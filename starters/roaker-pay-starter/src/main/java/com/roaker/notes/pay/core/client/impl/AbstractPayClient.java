@@ -251,8 +251,4 @@ public abstract class AbstractPayClient<Config extends PayClientConfig> implemen
         }
         throw new PayException(ex);
     }
-
-    protected LocalDateTime parseTime(String str) {
-        return LocalDateTimeUtil.parse(str, NORM_DATETIME_FORMATTER);
-    }
 }

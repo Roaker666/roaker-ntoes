@@ -66,4 +66,19 @@ public interface AdminUserApi {
      */
     void validateUserList(Collection<String> uidList);
 
+    /**
+     * 基于用户昵称，模糊匹配用户列表
+     *
+     * @param nickname 用户昵称，模糊匹配
+     * @return 用户信息的列表
+     */
+    List<AdminUserRespDTO> getUserListByNickname(String nickname);
+
+    /**
+     * 基于手机号，精准匹配用户
+     *
+     * @param mobile 手机号
+     * @return 用户信息
+     */
+    AdminUserRespDTO getUserByMobile(String mobile);
 }

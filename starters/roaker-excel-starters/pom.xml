@@ -27,6 +27,11 @@
             <groupId>com.roaker.notes</groupId>
             <artifactId>roaker-core-commons</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.roaker.notes</groupId>
+            <artifactId>roaker-module-system-api</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

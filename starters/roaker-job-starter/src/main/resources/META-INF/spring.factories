@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.roaker.notes.quartz.config.RoakerQuartzAutoConfiguration\
+com.roaker.notes.quartz.config.RoakerAsyncAutoConfiguration

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
@@ -17,6 +18,7 @@ import java.util.Map;
  * @since 1.0
  */
 @Data
+@Accessors(chain = true)
 public class PayOrderUnifiedReqDTO implements Serializable {
     @NotEmpty(message = "用户 IP 不能为空")
     private String userIp;

@@ -55,6 +55,15 @@ public interface AdminUserService {
     void updateUserPassword(String uid, @Valid UserProfileUpdatePasswordReqVO reqVO);
 
     /**
+     * 【会员】修改手机，基于微信小程序的授权码
+     *
+     * @param userId 用户编号
+     * @param reqVO 请求信息
+     */
+    void updateUserMobileByWeixin(String userId, AppUserUpdateMobileByWeixinReqVO reqVO);
+
+
+    /**
      * 更新用户头像
      *
      * @param uid         用户 uid

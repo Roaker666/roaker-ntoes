@@ -46,4 +46,14 @@ public class AdminUserApiImpl implements AdminUserApi {
         userService.validateUserList(uidList);
     }
 
+    @Override
+    public List<AdminUserRespDTO> getUserListByNickname(String nickname) {
+        return UserCenterConvert.INSTANCE.convertList2(userService.getUserListByNickname(nickname));
+    }
+
+    @Override
+    public AdminUserRespDTO getUserByMobile(String mobile) {
+        return UserCenterConvert.INSTANCE.convert2(userService.getUserByMobile(mobile));
+    }
+
 }

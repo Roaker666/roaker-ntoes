@@ -3,6 +3,7 @@ package com.roaker.notes.uc.controller.user;
 import cn.hutool.core.collection.CollUtil;
 import com.roaker.notes.datapermission.core.annotation.DataPermission;
 import com.roaker.notes.enums.UserTypeEnum;
+import com.roaker.notes.security.core.annotations.PreAuthenticated;
 import com.roaker.notes.uc.converter.user.UserCenterConvert;
 import com.roaker.notes.uc.dal.dataobject.dept.DeptDO;
 import com.roaker.notes.uc.dal.dataobject.dept.PostDO;
@@ -15,19 +16,19 @@ import com.roaker.notes.uc.service.permission.RolePermissionCoreService;
 import com.roaker.notes.uc.service.permission.RoleService;
 import com.roaker.notes.uc.service.user.AdminUserService;
 import com.roaker.notes.uc.service.user.SocialUserService;
+import com.roaker.notes.uc.vo.user.AppUserUpdateMobileByWeixinReqVO;
 import com.roaker.notes.uc.vo.user.UserProfileRespVO;
 import com.roaker.notes.uc.vo.user.UserProfileUpdatePasswordReqVO;
 import com.roaker.notes.uc.vo.user.UserProfileUpdateReqVO;
 import com.roaker.notes.vo.CommonResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import jakarta.annotation.Resource;
 
 import java.util.List;
 
@@ -84,6 +85,15 @@ public class UserProfileController {
     @Operation(summary = "修改用户个人密码")
     public CommonResult<Boolean> updateUserProfilePassword(@Valid @RequestBody UserProfileUpdatePasswordReqVO reqVO) {
         userService.updateUserPassword(getLoginUserId(), reqVO);
+        return success(true);
+    }
+
+
+    @PutMapping("/update-mobile-by-weixin")
+    @Operation(summary = "基于微信小程序的授权码，修改用户手机")
+    @PreAuthenticated
+    public CommonResult<Boolean> updateUserMobileByWeixin(@RequestBody @Valid AppUserUpdateMobileByWeixinReqVO reqVO) {
+        userService.updateUserMobileByWeixin(getLoginUserId(), reqVO);
         return success(true);
     }
 

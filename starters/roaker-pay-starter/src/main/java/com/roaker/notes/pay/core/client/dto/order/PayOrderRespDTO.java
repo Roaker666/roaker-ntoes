@@ -4,6 +4,7 @@ import com.roaker.notes.pay.core.client.exception.PayException;
 import com.roaker.notes.pay.core.enums.order.PayOrderDisplayModeEnum;
 import com.roaker.notes.pay.core.enums.order.PayOrderStatusRespEnum;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
  * @since 1.0
  */
 @Data
+@Accessors(chain = true)
 public class PayOrderRespDTO implements Serializable {
     /**
      * 支付状态

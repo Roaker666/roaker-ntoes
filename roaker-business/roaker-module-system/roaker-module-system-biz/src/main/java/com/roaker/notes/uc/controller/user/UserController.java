@@ -6,6 +6,7 @@ import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.commons.excel.utils.ExcelUtils;
 import com.roaker.notes.enums.CommonStatusEnum;
 import com.roaker.notes.enums.UserSexEnum;
+import com.roaker.notes.security.core.annotations.PreAuthenticated;
 import com.roaker.notes.uc.converter.user.UserCenterConvert;
 import com.roaker.notes.uc.dal.dataobject.dept.DeptDO;
 import com.roaker.notes.uc.dal.dataobject.user.AdminUserInfoDO;
@@ -31,6 +32,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.roaker.notes.commons.utils.RoakerCollectionUtils.convertList;
+import static com.roaker.notes.commons.web.util.WebFrameworkUtils.getLoginUserId;
 import static com.roaker.notes.vo.CommonResult.success;
 
 
@@ -60,6 +62,7 @@ public class UserController {
         userService.updateUser(reqVO);
         return success(true);
     }
+
 
     @DeleteMapping("/delete")
     @Operation(summary = "删除用户")
