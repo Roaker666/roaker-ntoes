@@ -45,8 +45,8 @@
         <module name="roaker-security-starters" />
         <module name="roaker-data-permission-starters" />
         <module name="roaker-web-starter" />
-        <module name="flink-learning" />
         <module name="roaker-infra-encrypt-api" />
+        <module name="flink-learning" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
