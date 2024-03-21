@@ -11,6 +11,8 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/basic-learning/cloud-tencent/Roaker-Cloud-Learning1/pom.xml" />
+        <option value="$PROJECT_DIR$/basic-learning/cloud-tencent/pom.xml" />
         <option value="$PROJECT_DIR$/commons/roaker-leaf/leaf-server/pom.xml" />
         <option value="$PROJECT_DIR$/future-common/pom.xml" />
         <option value="$PROJECT_DIR$/roaker-business/roaker-notify-center/pom.xml" />

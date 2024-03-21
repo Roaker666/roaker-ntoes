@@ -82,7 +82,7 @@ public class DynamicDictTypeServiceImpl implements DynamicDictTypeService {
         // 校验是否存在
         DynamicDictTypeDO dictType = validateDictTypeExists(id);
         // 校验是否有字典数据
-        if (dynamicDictService.getDictDataCountByDictType(dictType.getType()) > 0) {
+        if (dynamicDictService.getDictDataCountByDictType(dictType.getDictType()) > 0) {
             throw exception(DICT_TYPE_HAS_CHILDREN);
         }
         // 删除字典类型

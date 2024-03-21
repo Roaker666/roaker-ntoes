@@ -20,9 +20,11 @@
         <module>infras</module>
         <module>commons</module>
         <module>basic-learning</module>
+        <module>roaker-server</module>
     </modules>
 
     <properties>
+
         <curator.version>2.6.0</curator.version>
         <flogger.version>0.7.4</flogger.version>
         <jdk15on.version>1.70</jdk15on.version>
@@ -32,17 +34,17 @@
         <lombok.version>1.18.24</lombok.version>
         <revision>1.7.0-snapshot</revision>
         <!-- 统一依赖管理 -->
-        <spring.boot.version>3.0.2</spring.boot.version>
-        <spring.version>5.3.27</spring.version>
-        <spring.cloud.version>4.0.1</spring.cloud.version>
+        <spring.boot.version>3.2.3</spring.boot.version>
+        <spring.version>6.1.5</spring.version>
+        <spring.cloud.version>4.1.0</spring.cloud.version>
         <!-- Web 相关 -->
         <springdoc.version>1.6.14</springdoc.version>
         <knife4j.version>4.4.0</knife4j.version>
         <servlet.versoin>2.5</servlet.versoin>
         <!-- DB 相关 -->
         <druid.version>1.2.21</druid.version>
-        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
-        <mybatis-plus-generator.version>3.5.3.1</mybatis-plus-generator.version>
+        <mybatis-plus.version>3.5.5</mybatis-plus.version>
+        <mybatis-plus-generator.version>3.5.5</mybatis-plus-generator.version>
         <dynamic-datasource.version>3.6.1</dynamic-datasource.version>
         <redisson.version>3.18.0</redisson.version>
         <!-- 服务保障相关 -->
@@ -97,17 +99,17 @@
         <commons-collections4.version>4.4</commons-collections4.version>
         <hibernate.version>7.0.5.Final</hibernate.version>
         <perf4j.version>0.9.16</perf4j.version>
-        <mybatis.version>3.5.11</mybatis.version>
+        <mybatis.version>3.5.15</mybatis.version>
         <commons-io.version>2.11.0</commons-io.version>
         <jackson.version>2.14.1</jackson.version>
-        <mybatis-spring.version>3.0.1</mybatis-spring.version>
+        <mybatis-spring.version>3.0.3</mybatis-spring.version>
         <mysql.version>8.0.31</mysql.version>
         <log4j.version>2.7</log4j.version>
         <nacos.version>2021.1</nacos.version>
         <swagger-annotation.version>2.2.8</swagger-annotation.version>
         <tink.version>1.2.2</tink.version>
         <actable.version>1.5.0.RELEASE</actable.version>
-        <maven-compiler.version>3.10.1</maven-compiler.version>
+        <maven-compiler.version>3.13.0</maven-compiler.version>
         <jansi.version>1.18</jansi.version>
         <apollo.version>2.1.0</apollo.version>
         <maven-gpg.version>1.6</maven-gpg.version>
@@ -203,6 +205,11 @@
         <dependencies>
             <dependency>
                 <groupId>com.roaker.notes</groupId>
+                <artifactId>roaker-module-product-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.roaker.notes</groupId>
                 <artifactId>roaker-lock-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -218,9 +225,9 @@
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.springframework.pulsar/spring-pulsar-spring-boot-starter -->
             <dependency>
-                <groupId>org.springframework.pulsar</groupId>
-                <artifactId>spring-pulsar-spring-boot-starter</artifactId>
-                <version>${pulsar-boot.version}</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-pulsar</artifactId>
+                <version>${spring.boot.version}</version>
             </dependency>
 
             <dependency>
@@ -1020,19 +1027,19 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler.version}</version>
                 <configuration>
-                    <fork>true</fork>
-                    <compilerArgs>
-                        <arg>--add-opens</arg>
-                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>
-                        <arg>--add-exports</arg>
-                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>
-                        <arg>--add-exports</arg>
-                        <arg>java.base/jdk.internal.misc=ALL-UNNAMED</arg>
-                        <arg>--add-opens</arg>
-                        <compilerArg>
-                            -Amapstruct.defaultComponentModel=spring
-                        </compilerArg>
-                    </compilerArgs>
+<!--                    <fork>true</fork>-->
+<!--                    <compilerArgs>-->
+<!--                        <arg>&#45;&#45;add-opens</arg>-->
+<!--                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>-->
+<!--                        <arg>&#45;&#45;add-exports</arg>-->
+<!--                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>-->
+<!--                        <arg>&#45;&#45;add-exports</arg>-->
+<!--                        <arg>java.base/jdk.internal.misc=ALL-UNNAMED</arg>-->
+<!--                        <arg>&#45;&#45;add-opens</arg>-->
+<!--                        <compilerArg>-->
+<!--                            -Amapstruct.defaultComponentModel=spring-->
+<!--                        </compilerArg>-->
+<!--                    </compilerArgs>-->
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.mapstruct</groupId>
@@ -1154,14 +1161,6 @@
     </profiles>
     <pluginRepositories>
         <pluginRepository>
-            <id>spring-release</id>
-            <name>Spring release</name>
-            <url>https://repo.spring.io/release</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
             <id>spring-milestone</id>
             <name>Spring milestone</name>
             <url>https://repo.spring.io/milestone</url>
@@ -1169,6 +1168,15 @@
                 <enabled>false</enabled>
             </snapshots>
         </pluginRepository>
+        <pluginRepository>
+            <id>spring-release</id>
+            <name>Spring release</name>
+            <url>https://repo.spring.io/release</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+
         <pluginRepository>
             <id>spring-snapshot</id>
             <name>Spring Snapshots</name>
@@ -1180,21 +1188,22 @@
     </pluginRepositories>
     <repositories>
         <repository>
-            <id>spring-release</id>
-            <name>Spring release</name>
-            <url>https://repo.spring.io/release</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
             <id>spring-milestone</id>
             <name>Spring milestone</name>
             <url>https://repo.spring.io/milestone</url>
             <snapshots>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>spring-release</id>
+            <name>Spring release</name>
+            <url>https://repo.spring.io/release</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
         <repository>
             <id>spring-snapshot</id>
             <name>Spring Snapshots</name>

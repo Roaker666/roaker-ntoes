@@ -9,6 +9,7 @@ import com.roaker.notes.pay.vo.app.PayAppPageItemRespVO;
 import com.roaker.notes.pay.vo.app.PayAppRespVO;
 import com.roaker.notes.pay.vo.app.PayAppUpdateReqVO;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -24,12 +25,14 @@ public interface PayAppConvert {
 
     PayAppConvert INSTANCE = Mappers.getMapper(PayAppConvert.class);
 
+    @Mapping(target = "status", expression = "java(bean.getStatus().getCode())")
     PayAppPageItemRespVO pageConvert (PayAppDO bean);
-
+    @Mapping(target = "status", expression = "java(com.roaker.notes.dynamic.enums.CommonEnum.of(bean.getStatus(), com.roaker.notes.enums.CommonStatusEnum.class))")
     PayAppDO convert(PayAppCreateReqVO bean);
-
+    @Mapping(target = "status", expression = "java(com.roaker.notes.dynamic.enums.CommonEnum.of(bean.getStatus(), com.roaker.notes.enums.CommonStatusEnum.class))")
     PayAppDO convert(PayAppUpdateReqVO bean);
 
+    @Mapping(target = "status", expression = "java(bean.getStatus().getCode())")
     PayAppRespVO convert(PayAppDO bean);
 
     List<PayAppRespVO> convertList(List<PayAppDO> list);

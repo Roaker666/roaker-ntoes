@@ -1,0 +1,19 @@
+@startuml
+title "当前Admin-Portal SME申请单数据操作"
+
+actor "Admin-Portal" as user
+participant "ekyc-center" as ekyc
+participant "DB_CorpApplication" as dc
+participant "DB_SmeApplication" as ds
+
+user -> ekyc++: query application list/details
+user++
+ekyc -> dc++: query application list/details
+dc --> ekyc--: result from "New Tables"
+ekyc x-[#red]> ds++: <font color=red>query application list/details
+ds x-[#red]-> ekyc--: <font color=red>result from "Old Tables"
+ekyc -> ekyc++: combine above result
+ekyc--
+ekyc --> user--: return
+user--
+@enduml

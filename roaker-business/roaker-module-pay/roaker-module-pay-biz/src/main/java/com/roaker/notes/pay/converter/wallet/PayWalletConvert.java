@@ -7,6 +7,7 @@ import com.roaker.notes.pay.vo.wallet.wallet.AppPayWalletRespVO;
 import com.roaker.notes.pay.vo.wallet.wallet.PayWalletRespVO;
 import com.roaker.notes.uc.vo.user.AdminUserRespDTO;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.Map;
@@ -17,9 +18,10 @@ public interface PayWalletConvert {
     PayWalletConvert INSTANCE = Mappers.getMapper(PayWalletConvert.class);
 
     AppPayWalletRespVO convert(PayWalletDO bean);
-
+    @Mapping(target = "userType", expression = "java(bean.getUserType().getCode())")
+    PayWalletRespVO convert03(PayWalletDO bean);
+    @Mapping(target = "userType", expression = "java(bean.getUserType().getCode())")
     PayWalletRespVO convert02(String nickname, String avatar, PayWalletDO bean);
-
     PageResult<PayWalletRespVO> convertPage(PageResult<PayWalletDO> page);
     default PageResult<PayWalletRespVO> convertPage(PageResult<PayWalletDO> page, Map<String, AdminUserRespDTO> userMap) {
         PageResult<PayWalletRespVO> pageResult = convertPage(page);

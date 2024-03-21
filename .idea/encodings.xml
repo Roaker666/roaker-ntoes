@@ -51,6 +51,12 @@
     <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-pay/roaker-module-pay-biz/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-pay/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-pay/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-product/roaker-module-product-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-product/roaker-module-product-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-product/roaker-module-product-biz/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-product/roaker-module-product-biz/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-product/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-product/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-system/roaker-module-system-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-system/roaker-module-system-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-business/roaker-module-system/roaker-module-system-biz/src/main/java" charset="UTF-8" />
@@ -79,6 +85,8 @@
     <file url="file://$PROJECT_DIR$/roaker-business/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-core-commons/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-core-commons/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/roaker-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/roaker-server/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-sso/roaker-sso-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-sso/roaker-sso-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/roaker-sso/roaker-sso-server/src/main/java" charset="UTF-8" />

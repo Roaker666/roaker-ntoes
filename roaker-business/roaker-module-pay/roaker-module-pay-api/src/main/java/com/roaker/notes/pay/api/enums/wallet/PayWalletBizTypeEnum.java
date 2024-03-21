@@ -1,5 +1,6 @@
 package com.roaker.notes.pay.api.enums.wallet;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.roaker.notes.commons.core.IntArrayValuable;
 import com.roaker.notes.dynamic.enums.CommonEnum;
 import lombok.AllArgsConstructor;
@@ -20,9 +21,11 @@ public enum PayWalletBizTypeEnum implements CommonEnum, IntArrayValuable {
     RECHARGE_REFUND(2, "充值退款"),
     PAYMENT(3, "支付"),
     PAYMENT_REFUND(4, "支付退款");
+
     /**
      * 业务分类
      */
+    @EnumValue
     private final Integer code;
     /**
      * 说明

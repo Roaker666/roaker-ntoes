@@ -53,7 +53,7 @@ public class AdminUserApiImpl implements AdminUserApi {
 
     @Override
     public AdminUserRespDTO getUserByMobile(String mobile) {
-        return UserCenterConvert.INSTANCE.convert2(userService.getUserByMobile(mobile));
+        return UserCenterConvert.INSTANCE.convert4(userService.getUserByMobile(mobile));
     }
 
 }

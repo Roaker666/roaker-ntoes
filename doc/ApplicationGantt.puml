@@ -1,0 +1,6 @@
+@startgantt
+title "SME申请单迁移时间线"
+[Restarting Server] requires 2 day and is colored in Fuchsia/FireBrick
+ [Excuting Migrating Job] requires 15 days and starts at [Restarting Server]'s end
+[Excuting Migrating Job] is colored in Coral/Green
+@endgantt

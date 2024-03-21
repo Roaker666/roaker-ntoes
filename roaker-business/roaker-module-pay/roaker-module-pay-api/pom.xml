@@ -13,8 +13,10 @@
 
     <name>${project.artifactId}</name>
     <properties>
+        <maven.compiler.release>17</maven.compiler.release>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -23,6 +25,11 @@
     </description>
 
     <dependencies>
+        <dependency>
+            <groupId>com.roaker.notes</groupId>
+            <artifactId>roaker-pay-starter</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.roaker.notes</groupId>
             <artifactId>roaker-core-commons</artifactId>

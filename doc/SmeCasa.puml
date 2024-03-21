@@ -1,0 +1,58 @@
+@startuml
+
+title "Multi User Onboarding"
+
+
+state Pin_SetUp #line.bold;line:red;text:red{
+}
+state Sub_Process_Success #line.bold;line:red;text:red{
+}
+
+[*] -> Process_Start
+Process_Start -right-> Connected_With_Shopee: connect  with shopee
+Connected_With_Shopee -right-> Applicant_Verified: submit myinfo
+Applicant_Verified -right-> Company_Verified: submit company myinfo
+Company_Verified -right-> CREDIT_LIMIT_SUBMITTED: submit credit limit
+CREDIT_LIMIT_SUBMITTED --> Business_Activity_Submitted: submit business activities
+Business_Activity_Submitted -left-> Personal_Tax_Submitted: submit personal tax info[SOLE&&PTE&&LLP&&PTR&&NoTax]
+Personal_Tax_Submitted --> Company_Tax_Submitted: submit company tax info[PTE&&LLP&&PTR&&needCompanyTax]
+Company_Tax_Submitted --> Account_Details_Submitted: submits account details[SOLE&&PTE&&LLP&&PTR]
+Personal_Tax_Submitted --> Account_Details_Submitted: submits account details[SOLE&&PTE&&LLP&&PTR&&HaveTax]
+Account_Details_Submitted --> BR_Signed: sign BR[PTE&&LLP&&PTR]
+Account_Details_Submitted --> Account_Details_Submitted: edit application info[SOLE]
+BR_Signed --> BR_Signed:  edit application info[PTE&&LLP&&PTR]
+BR_Signed --> Declaration_Submitted: sign open account contract[PTE&&LLP&&PTR]
+Account_Details_Submitted --> Declaration_Submitted: sign open account contract[SOLE]
+Declaration_Submitted -right-> PG_SIGNED: sign PG contract[PTE&&LLP&&PTR]
+PG_SIGNED --> Pin_SetUp: submit user's pin
+Pin_SetUp -[#red]--> Created_Sub_Process: <font color=red>created sub process</font>
+Pin_SetUp -[#red]--> Sub_Process_Success: <font color=red>all sub process success(Sole Proprietorship)</font>
+state Created_Sub_Process #line.bold;line:red;text:red{
+    state Pending_For_Review #line.bold;line:red;text:red{
+    }
+    state Personal_Details_Confirmed #line.bold;line:red;text:red{
+    }
+    state Tax_Info_Submitted #line.bold;line:red;text:red{
+    }
+    state ASR_Signed #line.bold;line:red;text:red{
+    }
+    state SUB_PG_SIGNED #line.bold;line:red;text:red{
+    }
+    state Sub_Pin_SetUp #line.bold;line:red;text:red{
+    }
+    [*] -[#red]right--> Pending_For_Review
+    Pending_For_Review -[#red]right--> Personal_Details_Confirmed
+    Personal_Details_Confirmed -[#red]right--> Tax_Info_Submitted
+    Tax_Info_Submitted -[#red]right--> ASR_Signed
+    ASR_Signed -[#red]--> SUB_PG_SIGNED
+    SUB_PG_SIGNED -[#red]left--> Sub_Pin_SetUp
+    Sub_Pin_SetUp -[#red]left--> [*]: success
+}
+Created_Sub_Process -[#red]--> Sub_Process_Success: all sub process success
+Sub_Process_Success -right-> CASA_Account_Opened: open sme casa account(shop is locked and aml succeed)
+CASA_Account_Opened -right-> Role_Permission: create role permission mapping
+Role_Permission -right-> Sign_Condition: sign condition
+Sign_Condition --> LOAN_Account_Opened: open loan account
+LOAN_Account_Opened -left-> Finalize_Contract: finalize ASR and contract
+Finalize_Contract -left-> [*]: Process_Success
+@enduml

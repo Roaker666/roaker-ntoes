@@ -6,6 +6,7 @@ import com.gitee.sunchenbin.mybatis.actable.annotation.IsAutoIncrement;
 import com.gitee.sunchenbin.mybatis.actable.annotation.IsNotNull;
 import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import com.roaker.notes.commons.db.core.dataobject.BaseDO;
+import com.roaker.notes.dynamic.enums.DynamicDictTypeEnums;
 import com.roaker.notes.enums.CommonStatusEnum;
 import lombok.*;
 
@@ -33,7 +34,8 @@ public class DynamicDictDO extends BaseDO {
      * 配置类型{@link DynamicDictTypeDO#getDictType()} ()}
      */
     @TableField
-    private String type;
+    @ColumnType(value = MySqlTypeConstant.VARCHAR, length = 32)
+    private DynamicDictTypeEnums type;
     /**
      * 配置业务名称
      */

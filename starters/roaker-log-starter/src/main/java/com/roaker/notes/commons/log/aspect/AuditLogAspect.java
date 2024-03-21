@@ -50,7 +50,7 @@ public class AuditLogAspect {
      */
     private DefaultParameterNameDiscoverer nameDiscoverer = new DefaultParameterNameDiscoverer();
 
-    @Before("@within(auditLog) || @annotation(auditLog)")
+    @Before("@annotation(auditLog)")
     public void beforeMethod(JoinPoint joinPoint, AuditLog auditLog) {
         //判断功能是否开启
         if (auditLogProperties.getEnable()) {

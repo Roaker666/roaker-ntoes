@@ -21,7 +21,7 @@ public class RoakerAsyncAutoConfiguration {
         return new BeanPostProcessor() {
 
             @Override
-            public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+            public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
                 if (!(bean instanceof ThreadPoolTaskExecutor)) {
                     return bean;
                 }

@@ -7,11 +7,13 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.stereotype.Component;
 
 /**
  * @author lei.rao
  * @since 1.0
  */
+@Component
 public class VersionRegisterBeanPostProcessor implements BeanPostProcessor {
     @Value("${roaker.loadbalance.version}")
     private String version;

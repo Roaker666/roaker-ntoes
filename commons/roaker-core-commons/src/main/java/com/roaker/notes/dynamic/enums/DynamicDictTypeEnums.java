@@ -31,4 +31,11 @@ public enum DynamicDictTypeEnums implements CommonEnum{
                 .findFirst()
                 .orElseThrow();
     }
+
+    public static DynamicDictTypeEnums codeOf(String type) {
+        return Arrays.stream(DynamicDictTypeEnums.values())
+                .filter(dynamicDictTypeEnums -> dynamicDictTypeEnums.getCode().equals(Integer.parseInt(type)))
+                .findFirst()
+                .orElseThrow();
+    }
 }

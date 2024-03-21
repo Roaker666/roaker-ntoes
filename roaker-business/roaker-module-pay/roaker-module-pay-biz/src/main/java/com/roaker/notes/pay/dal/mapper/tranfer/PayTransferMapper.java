@@ -5,6 +5,7 @@ import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.commons.db.core.mapper.BaseMapperX;
 import com.roaker.notes.commons.db.core.query.LambdaQueryWrapperX;
 import com.roaker.notes.dynamic.enums.CommonEnum;
+import com.roaker.notes.pay.api.enums.transfer.PayTransferStatusEnum;
 import com.roaker.notes.pay.core.enums.transfer.PayTransferTypeEnum;
 import com.roaker.notes.pay.dal.dataobject.tranfer.PayTransferDO;
 import com.roaker.notes.pay.vo.tranfer.PayTransferPageReqVO;

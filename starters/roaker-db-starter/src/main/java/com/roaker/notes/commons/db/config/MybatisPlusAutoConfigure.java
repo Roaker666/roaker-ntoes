@@ -35,6 +35,7 @@ import org.springframework.core.annotation.Order;
         "com.gitee.sunchenbin.mybatis.actable.dao",
         "com.roaker.notes.infra.encrypt.dal.mapper",
         "com.roaker.notes.uc.dal.mapper",
+        "com.roaker.notes.pay.dal.mapper"
 })
 public class MybatisPlusAutoConfigure {
 

@@ -4,7 +4,7 @@ import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.commons.utils.RoakerCollectionUtils;
 import com.roaker.notes.commons.utils.RoakerMapUtils;
 import com.roaker.notes.pay.api.core.order.dto.PayOrderCreateReqDTO;
-import com.roaker.notes.pay.api.core.order.dto.PayOrderRespDTO;
+import com.roaker.notes.pay.core.client.dto.order.PayOrderRespDTO;
 import com.roaker.notes.pay.core.client.dto.order.PayOrderUnifiedReqDTO;
 import com.roaker.notes.pay.dal.dataobject.app.PayAppDO;
 import com.roaker.notes.pay.dal.dataobject.order.PayOrderDO;
@@ -28,7 +28,7 @@ public interface PayOrderConvert {
 
     PayOrderRespVO convert(PayOrderDO bean);
 
-    PayOrderRespDTO convert2(PayOrderDO order);
+    com.roaker.notes.pay.api.core.order.dto.PayOrderRespDTO  convert2(PayOrderDO order);
 
     default PayOrderDetailsRespVO convert(PayOrderDO order, PayOrderExtensionDO orderExtension, PayAppDO app) {
         PayOrderDetailsRespVO respVO = convertDetail(order);
@@ -64,7 +64,7 @@ public interface PayOrderConvert {
 
     PayOrderUnifiedReqDTO convert2(PayOrderSubmitReqVO reqVO, String userIp);
 
-    @Mapping(source = "order.status", target = "status")
+    @Mapping(expression = "java(order.getPayOrderStatus().getCode())", target = "status")
     PayOrderSubmitRespVO convert(PayOrderDO order, PayOrderRespDTO respDTO);
 
     AppPayOrderSubmitRespVO convert3(PayOrderSubmitRespVO bean);

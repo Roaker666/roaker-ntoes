@@ -1,5 +1,6 @@
 package com.roaker.notes.pay.vo.wallet.transaction;
 
+import com.roaker.notes.pay.api.enums.wallet.PayWalletBizTypeEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -16,7 +17,7 @@ public class PayWalletTransactionRespVO {
     private Long walletId;
 
     @Schema(description = "业务分类", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
-    private Integer bizType;
+    private PayWalletBizTypeEnum bizType;
 
     @Schema(description = "交易金额，单位分", requiredMode = Schema.RequiredMode.REQUIRED, example = "100")
     private Long price;

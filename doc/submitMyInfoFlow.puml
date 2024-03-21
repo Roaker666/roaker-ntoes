@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+
+if (param check failed?) is (yes) then
+  :throw Param InValid;
+else (no)
+    if (SME Status is Closed Or Active && ignoreError?) is (yes) then
+        :throw Customer Status InValid;
+    else (no)
+        if (principal is ETB?) is (yes) then
+          :check Data Consistency with Cif;
+        else (no)
+          :check OnGoing Application(idNumber);
+          :check principal Customer Status(idNumber);
+        endif
+        :Loads all "Eligible check Items" and process;
+        switch (errorType)
+            case (corpEtb=null(表示NTB_SME第一次提交MyInfo,但是MyInfo.UEN = Cif'UEN && Cif.UEN_TYPE=CURRENT))
+                : proceed to corresponding Warning page;
+            case (other eligible check failed (except MyInfo.UEN = Cif'UEN && Cif.UEN_TYPE=CURRENT))
+                : application failed;
+            case (corpEtb=false(表示用户不接受基于CASA开LOAN,MyInfo.UEN = Cif'UEN && Cif.UEN_TYPE=CURRENT))
+                : application failed;
+                : proceed to failed page;
+            case (No Error)
+                :bind user email to user-center;
+                :save myinfo into db and update application status;
+        endswitch
+    endif
+endif
+
+stop
+
+@enduml

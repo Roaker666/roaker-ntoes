@@ -1,264 +1,441 @@
-version: '3.1'
-
+version: '3.8'
 services:
-  #  db:
-  #    image: mysql:8.0.32
-  #    container_name: db
+  #  zookeeper1:
+  #    image: confluentinc/cp-zookeeper:latest
+  #    container_name: zoo1
+  #    restart: always
+  #    hostname: zoo1
+  #    ports:
+  #      - 2181:2181
+  #    environment:
+  #      ZOOKEEPER_CLIENT_PORT: 2181
+  #      ZOOKEEPER_TICK_TIME: 2000
+  #    networks:
+  #      backend:
+  #        aliases:
+  #          - zoo1
+  #
+  #  mongo:
+  #    image: mongo
   #    restart: always
   #    environment:
-  #      TZ: Asia/Shanghai
-  #      MYSQL_ROOT_PASSWORD: root
+  #      MONGO_INITDB_ROOT_USERNAME: root
+  #      MONGO_INITDB_ROOT_PASSWORD: root
   #    ports:
-  #      - "3306:3306"
+  #      - 27017:27017
   #    volumes:
-  #      - /Users/raolei/docker/mysql/data/:/var/lib/mysql/
-  #      - /Users/raolei/docker/mysql/conf/:/etc/mysql/conf.d/
-  #      - /Users/raolei/docker/mysql/conf/my.cnf:/etc/my.cnf
-  #    command:
-  #      --default-authentication-plugin=mysql_native_password
-  #      --character-set-server=utf8mb4
-  #      --collation-server=utf8mb4_general_ci
-  #      --explicit_defaults_for_timestamp=true
-  #      --lower_case_table_names=1
+  #      - /Users/lei.rao/docker/mongo/db/data:/data/db
   #    networks:
-  #      - mynetwork
-  #
-  #  xxl-job-admin:
-  #    image: roaker/xxl-job-admin:2.4.1
+  #      backend:
+  #        aliases:
+  #          - mongo
+  #  mongo-express:
+  #    image: mongo-express
   #    restart: always
-  #    container_name: xxl-job-admin
+  #    ports:
+  #      - 8099:8081
+  #    environment:
+  #      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+  #      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+  #      ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
+  #    networks:
+  #      backend:
+  #        aliases:
+  #          - mongo-express
+
+  #mysql
+  db:
+    image: mysql:8.0.24
+    restart: always
+    container_name: db
+    privileged: true
+    userns_mode: "keep-id:uid=503"
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_MAX_CONNECTIONS: 4
+    volumes:
+      - /Users/lei.rao/docker/mysql/data:/var/lib/mysql
+      - /Users/lei.rao/docker/mysql/conf:/etc/mysql/conf.d
+      - /Users/lei.rao/docker/mysql/logs:/var/log/mysql
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
+    networks:
+      backend:
+        aliases:
+          - db
+  #  cat:
+  #    image: roaker/cat:latest
+  #    container_name: cat
+  #    privileged: true
+  #    userns_mode: "keep-id:uid=0"
+  #    environment:
+  #      - MYSQL_URL=10.12.196.88
+  #      - MYSQL_PORT=3307
+  #      - MYSQL_USERNAME=root
+  #      - MYSQL_PASSWD=root
+  #      - MYSQL_SCHEMA=cat
+  #      - SERVER_IP=10.12.196.88
+  #    volumes:
+  #      # 默认127.0.0.1，可以修改为自己真实的服务器集群地址
+  #      - "/Users/lei.rao/docker/cat:/root/.cat"
+  #      # 默认使用环境变量设置。可以启用本注解，并修改为自己的配置
+  #    #      - "./datasources.xml:/data/appdatas/cat/datasources.xml"
+  #    command: /bin/sh -c 'catalina.sh run'
   #    links:
   #      - db
-  #    environment:
-  #      SPRING_DATASOURCE_URL: 'jdbc:mysql://db:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai'
-  #      SPRING_DATASOURCE_USERNAME: 'root'
-  #      SPRING_DATASOURCE_PASSWORD: 'root'
-  #      JAVA_OPTS: "-Xms64M -Xmx64M -Xmn32M"
+  #    depends_on:
+  #      - db
   #    ports:
-  #      - "8020:8080"
-  #    volumes:
-  #      - /Users/raolei/docker/xxl-job-admin/data/applogs:/data/applogs
+  #      - "9090:8080"
+  #      - "2280:2280"
   #    networks:
-  #      - mynetwork
-  #
-  #  #参考 https://jlovec.net/2021/03/17/shi-yong-docker-da-jian-smtp-fu-wu/
+  #      - backend
+
+  pulsar-standalone:
+    image: "apachepulsar/pulsar:latest"
+    command: sh -c "bin/apply-config-from-env.py conf/standalone.conf && bin/pulsar standalone"
+    restart: always
+    userns_mode: "keep-id:uid=503"
+    container_name: pulsar-standalone
+    hostname: pulsar-standalone
+    ports:
+      - "6650:6650"
+      - "8880:8080"
+    volumes:
+      - /Users/lei.rao/docker/pulsar/data:/pulsar/data
+      - /Users/lei.rao/docker/pulsar/conf:/pulsar/conf
+    environment:
+      - advertisedAddress=pulsar-standalone
+  pulsar-manager:
+    image: "apachepulsar/pulsar-manager:latest"
+    restart: always
+    userns_mode: "keep-id:uid=503"
+    container_name: pulsar-manager
+    ports:
+      - "9527:9527"
+      - "7750:7750"
+    depends_on:
+      - pulsar-standalone
+    links:
+      - pulsar-standalone
+    environment:
+      - SPRING_CONFIGURATION_FILE=/pulsar-manager/pulsar-manager/application.properties
+  #xxl-job-admin
+  xxl-job-admin:
+    image: xuxueli/xxl-job-admin:2.1.2
+    restart: always
+    container_name: xxl-job-admin
+    privileged: true
+    userns_mode: "keep-id:uid=503"
+    links:
+      - db
+    environment:
+      PARAMS: '--spring.datasource.url=jdbc:mysql://db:3306/xxl_job?Unicode=true&characterEncoding=UTF-8 --spring.datasource.username=root --spring.datasource.password=root'
+    ports:
+      - 8020:8080
+    volumes:
+      - /Users/lei.rao/docker/xxl-job-admin/data/applogs:/data/applogs
+    networks:
+      backend:
+        aliases:
+          - xxl-job-admin
+
+  #mail
   #  smtp-mail:
-  #    image: ixdotai/smtp:latest
+  #    image: namshi/smtp
   #    container_name: smtp-mail
+  #    privileged: true
   #    restart: always
   #    ports:
+  #      #没用加密,25端口即可
   #      - "10025:25"
   #    environment:
-  #      #负责发件请求的拦截,当前表示任意客户端皆可发起发件请求
-  #      RELAY_NETWORKS: "0.0.0.0/0"
+  #        #负责发件请求的拦截，当前表示任意客户端皆可发起发件请求
+  #      RELAY_NETWORKS: ":0.0.0.0/0"
   #    volumes:
-  #      - /Users/raolei/docker/smtp/conf/hosts:/etc/hosts
-  #      - /Users/raolei/docker/smtp/conf/resolve.conf:/etc/resolve.conf
+  #      #指定主机域
+  #      - /Users/lei.rao/docker/smtp/conf/hosts:/etc/hosts
+  #      - /Users/lei.rao/docker/smtp/conf/resolv.conf:/etc/resolv.conf
   #    networks:
-  #      - mynetwork
-  #
-  #  redis:
-  #    image: redis:latest
-  #    container_name: redis
-  #    restart: always
-  #    ports:
-  #      - "6379:6379"
-  #    networks:
-  #      - mynetwork
-  #    volumes:
-  #      - /Users/raolei/docker/redis/data:/data:rw
-  #      - /Users/raolei/docker/redis/conf/redis.conf:/etc/redis/redis.conf
-  #      - /Users/raolei/docker/redis/logs:/logs
-  #    command: "redis-server /etc/redis/redis.conf"
-  #
-  #  elasticsearch:
-  #    image: elasticsearch:8.2.3
-  #    container_name: es_823
-  #    environment:
-  #      - cluster.name=docker-cluster
-  #      - node.name=es_c
-  #      - discovery.type=single-node
-  #      - bootstrap.memory_lock=true
-  #      - xpack.license.self_generated.type=basic
-  #      - xpack.security.enabled=false
-  #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-  #      - "ELASTICSEARCH_USERNAME=root"
-  #      - "ELASTICSEARCH_PASSWORD=root"
-  #    ulimits:
-  #      memlock:
-  #        soft: -1
-  #        hard: -1
-  #    volumes:
-  #      - /Users/raolei/docker/elasticsearch/data:/usr/share/elasticsearch/data
-  #      - /Users/raolei/docker/elasticsearch/plugins:/usr/share/elasticsearch/plugins
-  #      - /Users/raolei/docker/elasticsearch/logs:/usr/share/elasticsearch/logs
-  #    ports:
-  #      - "9200:9200"
-  #      - "9300:9300"
-  #    networks:
-  #      - mynetwork
-  #
-  #  kinana:
-  #    image: library/kibana:8.2.3
-  #    container_name: kinaba823
-  #    environment:
-  #      - XPACK_GRAPH_ENABLED=true
-  #      - TIMELION_ENABLED=true
-  #      - XPACK_MONITORING_COLLECTION_ENABLED=true
-  #      - "ELASTICSEARCH_HOSTS=http://elasticsearch:9200"
-  #      - "ELASTICSEARCH_USERNAME=root"
-  #      - "ELASTICSEARCH_PASSWORD=root"
-  #    ports:
-  #      - "5601:5601"
-  #    networks:
-  #      - mynetwork
-  #
+  #      backend:
+  #        aliases:
+  #          - smtp-mail
+
+  #Service for nameserver
+  rocketmq-namesrv:
+    image: foxiswho/rocketmq:4.8.0
+    container_name: rocketmq-namesrv
+    privileged: true
+    userns_mode: "keep-id:uid=503"
+    restart: always
+    ports:
+      - 9876:9876
+    environment:
+      JAVA_OPT_EXT: "-Duser.home=/home/rocketmq -Xms512M -Xmx512M -Xmn128m"
+    volumes:
+      - /Users/lei.rao/docker/rocketmq/data/namesrv/logs:/home/rocketmq/logs
+      - /Users/lei.rao/docker/rocketmq/data/namesrv/store:/home/rocketmq/store
+    command: [ "sh","mqnamesrv" ]
+    networks:
+      backend:
+        aliases:
+          - rocketmq-namesrv
+
+
+  #Service for broker
+  broker:
+    image: foxiswho/rocketmq:4.8.0
+    container_name: rocketmq-broker
+    privileged: true
+    userns_mode: "keep-id:uid=503"
+    restart: always
+    links:
+      - rocketmq-namesrv
+    ports:
+      - 10909:10909
+      - 10911:10911
+      - 10912:10912
+    environment:
+      JAVA_OPT_EXT: "-Duser.home=/home/rocketmq -Xms512M -Xmx512M -Xmn128m"
+    volumes:
+      - /Users/lei.rao/docker/rocketmq/data/broker/logs:/home/rocketmq/logs
+      #      - /Users/lei.rao/docker/rocketmq/data/broker/store:/home/rocketmq/store
+      - /Users/lei.rao/docker/rocketmq/etc/broker/conf/broker.conf:/etc/rocketmq/broker.conf
+    command: [ "sh","mqbroker","-c","/etc/rocketmq/broker.conf","-n","rocketmq-namesrv:9876","autoCreateTopicEnable=true" ]
+    networks:
+      backend:
+        aliases:
+          - rocketmq-broker
+
+
+  #Service for rocketmq-dashboard
+  rocketmq-console:
+    image: styletang/rocketmq-console-ng
+    privileged: true
+    userns_mode: "keep-id:uid=503"
+    container_name: rocketmq-console
+    ports:
+      - 8180:8080
+    links:
+      - rocketmq-namesrv
+    environment:
+      JAVA_OPTS: "-Drocketmq.namesrv.addr=rocketmq-namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+    volumes:
+      - /Users/lei.rao/docker/rocketmq/data/console:/logs
+    networks:
+      backend:
+        aliases:
+          - rocketmq-console
+
+
+  #Service for redis
+  redis:
+    image: redis:latest
+    container_name: redis
+    privileged: true
+    userns_mode: "keep-id:uid=503"
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - backend
+    volumes:
+      - /Users/lei.rao/docker/redis/data:/data
+    environment:
+      REDIS_PASSWORD: root
+    command: redis-server --requirepass root
   #  cerebro:
-  #    image: wesdobry/cerebro:latest
+  #    image: lmenezes/cerebro:0.9.2
   #    container_name: cerebro
+  #    privileged: true
   #    ports:
   #      - "9000:9000"
   #    command:
   #      - -Dhosts.0.host=http://elasticsearch:9200
   #    networks:
-  #      - mynetwork
-  #
-  #  apollo-configservice:
-  #    image: apolloconfig/apollo-configservice:latest
-  #    container_name: apollo-configservice
-  #    ports:
-  #      - "8080:8080"
-  #    volumes:
-  #      #日志挂载
-  #      - /Users/raolei/docker/apollo/servers/server2/logs/apollo-configservice:/opt/logs
+  #      - backend
+  #  kibana:
+  #    image: docker.elastic.co/kibana/kibana:7.9.3
+  #    container_name: kibana793
+  #    privileged: true
   #    environment:
-  #      SERVER_PORT: 8080
-  #      JAVA_OPTS: "-Dapollo_profile=github -Deureka.instance.homePageUrl=http://192.168.0.126:8080"
-  #      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/ApolloConfigDB?characterEncoding=utf8"
-  #      SPRING_DATASOURCE_USERNAME: 'root'
-  #      SPRING_DATASOURCE_PASSWORD: 'root'
-  #    links:
-  #      - db
-  #  apollo-adminservice:
-  #    image: apolloconfig/apollo-adminservice:latest
-  #    container_name: apollo-adminservice
+  #      - I18N_LOCALE=zh-CN
+  #      - XPACK_GRAPH_ENABLED=true
+  #      - TIMELION_ENABLED=true
+  #      - XPACK_MONITORING_COLLECTION_ENABLED="true"
   #    ports:
-  #      - "8090:8090"
-  #    volumes:
-  #      - /Users/raolei/docker/apollo/servers/server2/logs/apollo-adminservice:/opt/logs
+  #      - "5601:5601"
+  #    networks:
+  #      - backend
+  #  elasticsearch:
+  #    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
+  #    container_name: es_793
+  #    privileged: true
   #    environment:
-  #      JAVA_OPTS: "-Dapollo_profile=github -Deureka.instance.homePageUrl=http://192.168.0.126:8090"
-  #      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/ApolloConfigDB?characterEncoding=utf8"
-  #      SPRING_DATASOURCE_USERNAME: 'root'
-  #      SPRING_DATASOURCE_PASSWORD: 'root'
-  #    links:
-  #      - apollo-configservice
-  #      - db
-  #  apollo-portal:
-  #    image: apolloconfig/apollo-portal:latest
-  #    container_name: apollo-portal
+  #      - cluster.name=dockeres
+  #      - node.name=es_c
+  #      - bootstrap.memory_lock=true
+  #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  #      - discovery.type=single-node
+  #    ulimits:
+  #      memlock:
+  #        soft: -1
+  #        hard: -1
+  #    volumes:
+  #      - /Users/lei.rao/docker/elasticsearch/data:/usr/share/elasticsearch/data
+  #      - /Users/lei.rao/docker/elasticsearch/plugins:/usr/share/elasticsearch/plugins
   #    ports:
-  #      - "8070:8070"
-  #    volumes:
-  #      - /Users/raolei/docker/apollo/servers/server2/logs/apollo-portal:/opt/logs
-  #    environment:
-  #      JAVA_OPTS: "-Dapollo_profile=github"
-  #      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/ApolloPortalDB?characterEncoding=utf8"
-  #      SPRING_DATASOURCE_USERNAME: 'root'
-  #      SPRING_DATASOURCE_PASSWORD: 'root'
-  #      APOLLO_PORTAL_ENVS: DEV
-  #      DEV_META: http://192.168.0.126:8080
-  #      SERVER_SERVLET_CONTEXT_PATH: "/"
-  #    links:
-  #      - apollo-adminservice
-  #      - db
-  zoo1:
-    image: confluentinc/cp-zookeeper:latest
-    hostname: zoo1
-    container_name: zoo1
-    ports:
-      - "2181:2181"
-    volumes:
-      - /Users/raolei/docker/zk/data:/var/lib/zookeeper/data
-      - /Users/raolei/docker/zk/logs:/var/lib/zookeeper/log
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_SERVER_ID: 1
-      ZOOKEEPER_SERVERS: zoo1:2888:3888
+  #      - 9200:9200
+  #    networks:
+  #      backend:
+  #        aliases:
+  #          - es
 
-  kafka1:
-    image: confluentinc/cp-kafka:latest
-    hostname: kafka1
-    container_name: kafka1
+  apollo-configservice:
+    image: apolloconfig/apollo-configservice:latest # 镜像地址，这里使用的是直接在当前主机上构建的镜像
+    privileged: true
+    userns_mode: "keep-id:uid=503"
+    container_name: apollo-configservice
     ports:
-      - "9092:9092"
-      - "29092:29092"
-      - "9999:9999"
+      - "8080:8080"
     volumes:
-      - /Users/raolei/docker/kafka/data:/var/lib/kafka/data
+      # 日志挂载
+      - /Users/lei.rao/docker/apollo/servers/server2/logs/apollo-configservice:/opt/logs
     environment:
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:19092,EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092,DOCKER://host.docker.internal:29092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,DOCKER:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181"
-      KAFKA_BROKER_ID: 1
-      KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
-      KAFKA_JMX_PORT: 9999
-      KAFKA_JMX_HOSTNAME: ${DOCKER_HOST_IP:-127.0.0.1}
-      KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.authorizer.AclAuthorizer
-      KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
-    depends_on:
-      - zoo1
-  kafka-schema-registry:
-    image: confluentinc/cp-schema-registry:latest
-    hostname: kafka-schema-registry
-    container_name: kafka-schema-registry
-    depends_on:
-      - zoo1
-      - kafka1
-    ports:
-      - "8082:8081"
-    environment:
-      SCHEMA_REGISTRY_HOST_NAME: kafka-schema-registry
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'PLAINTEXT://kafka1:19092'
-      SCHEMA_REGISTRY_LISTENERS: http://kafka-schema-registry:8081
-  kafka-ui:
-    container_name: kafka-ui
-    image: provectuslabs/kafka-ui:latest
-    ports:
-      - 8088:8080
-    depends_on:
-      - zoo1
-      - kafka1
-    environment:
-      KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka1:29092
-  jobmanager:
-    image: flink:java17
-    ports:
-      - "8081:8081"
-    command: jobmanager
-    environment:
-      - |
-        FLINK_PROPERTIES=
-        jobmanager.rpc.address: jobmanager        
+      # 可通过 SERVER_PORT 指定默认启动端口，ports 也需要对应修改
+      SERVER_PORT: 8080
+      # 指定 homePageUrl 为当前宿主的 apollo-configservice 地址，不然会出现无法访问
+      JAVA_OPTS: "-Deureka.instance.homePageUrl=http://10.12.196.88:8080"
+      # 数据库连接地址
+      SPRING_DATASOURCE_URL: 'jdbc:mysql://db:3306/ApolloConfigDB?characterEncoding=utf8'
+      SPRING_DATASOURCE_USERNAME: 'root'
+      SPRING_DATASOURCE_PASSWORD: 'root'
+    links:
+      - db
+    networks:
+      backend:
+        aliases:
+          - apollo-config
 
-  taskmanager:
-    image: flink:java17
-    depends_on:
-      - jobmanager
-    command: taskmanager
+  apollo-adminservice:
+    image: apolloconfig/apollo-adminservice:latest # 镜像地址，这里使用的是直接在当前主机上构建的镜像
+    privileged: true
+    userns_mode: "keep-id:uid=503"
+    container_name: apollo-adminservice
+    ports:
+      - "8090:8090"
+    volumes:
+      # 日志挂载
+      - /Users/lei.rao/docker/apollo/servers/server2/logs/apollo-adminservice:/opt/logs
     environment:
-      - |
-        FLINK_PROPERTIES=
-        jobmanager.rpc.address: jobmanager
-        taskmanager.numberOfTaskSlots: 3
+      # 指定 homePageUrl 为当前宿主的 apollo-adminservice 地址，不然会出现无法访问
+      JAVA_OPTS: "-Deureka.instance.homePageUrl=http://10.12.196.88:8090"
+      # 数据库连接地址
+      SPRING_DATASOURCE_URL: 'jdbc:mysql://db:3306/ApolloConfigDB?characterEncoding=utf8'
+      SPRING_DATASOURCE_USERNAME: 'root'
+      SPRING_DATASOURCE_PASSWORD: 'root'
+    links:
+      - apollo-configservice
+      - db
+
+  apollo-portal:
+    image: apolloconfig/apollo-portal:latest # 镜像地址，这里使用的是直接在当前主机上构建的镜像
+    privileged: true
+    userns_mode: "keep-id:uid=503"
+    container_name: apollo-portal
+    ports:
+      - "8070:8070"
+    volumes:
+      # 日志挂载
+      - /Users/lei.rao/docker/apollo/servers/server1/logs/apollo-portal:/opt/logs
+    environment:
+      # 数据库连接地址
+      DS_URL: "jdbc:mysql://db:3306/ApolloPortalDB?characterEncoding=utf8"
+      # 数据库用户名
+      DS_USERNAME: "root"
+      # 数据库密码
+      DS_PASSWORD: "root"
+      # META_SERVER 地址
+      PRO_META: "http://10.12.196.88:8080"
+      DEV_META: "http://10.12.196.88:8080"
+      #自定义相对路径
+      SERVER_SERVLET_CONTEXT_PATH: "/"
+    links:
+      - apollo-adminservice
+      - db
+#  flink-jobmanager:
+#    image: flink:latest
+#    container_name: flink-jobmanager
+#    privileged: true
+#    ports:
+#      - "8081:8081"
+#    command: jobmanager
+#    environment:
+#      - |
+#        FLINK_PROPERTIES= jobmanager.rpc.address: jobmanager
+#    networks:
+#      backend:
+#        aliases:
+#          - jobmanager
+#  flink-taskmanager:
+#    image: flink:latest
+#    container_name: flink-taskmanager
+#    privileged: true
+#    depends_on:
+#      - flink-jobmanager
+#    command: taskmanager
+#    scale: 1
+#    environment:
+#      - |
+#        FLINK_PROPERTIES=
+#        jobmanager.rpc.address: jobmanager
+#        taskmanager.numberOfTaskSlots: 2
+#    networks:
+#      - backend
+#  #kafka
+#  kafka:
+#    image: confluentinc/cp-kafka:latest
+#    container_name: kafka
+#    hostname: kafka-broker
+#    privileged: true
+#    ports:
+#      - "19092:19092"
+#      - "9092:9092"
+#    volumes:
+#      - /Users/lei.rao/docker/kafka:/var/lib/confluent-control-center
+#    environment:
+#      KAFKA_BROKER_ID: 1
+#      KAFKA_ZOOKEEPER_CONNECT: 'zoo1:2181'
+#      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-broker:9092,PLAINTEXT_INTERNAL://kafka-broker:19092
+#      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+#    networks:
+#      backend:
+#        aliases:
+#          - kafka-broker
+#    depends_on:
+#      - zookeeper1
+#
+#  kafka-manager:
+#    image: 'scjtqs/kafka-manager'
+#    container_name: kafka-manager
+#    privileged: true
+#    ports:
+#      - '9005:9000'
+#    environment:
+#      APPLICATION_SECRET: "123456"
+#      ZK_HOSTS: "zoo1:2181"
+#    networks:
+#      - backend
+#    depends_on:
+#      - kafka
+#      - zookeeper1
+
 networks:
-  mynetwork:
-    driver: bridge
-    external: true
-
-
+  backend:

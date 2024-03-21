@@ -1,10 +1,11 @@
 package com.roaker.notes.pay.vo.order;
-
-import cn.iocoder.yudao.framework.excel.core.annotations.DictFormat;
-import cn.iocoder.yudao.framework.excel.core.convert.DictConvert;
-import cn.iocoder.yudao.framework.excel.core.convert.MoneyConvert;
-import cn.iocoder.yudao.module.pay.enums.DictTypeConstants;
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.roaker.notes.commons.excel.annoatations.DictFormat;
+import com.roaker.notes.commons.excel.convert.DictConvert;
+import com.roaker.notes.commons.excel.convert.MoneyConvert;
+import com.roaker.notes.dynamic.enums.DynamicDictTypeEnums;
+import com.roaker.notes.pay.api.enums.DictTypeConstants;
+import com.roaker.notes.pay.core.enums.channel.PayChannelEnum;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -42,11 +43,11 @@ public class PayOrderExcelVO {
     private String channelOrderNo;
 
     @ExcelProperty(value = "支付状态", converter = DictConvert.class)
-    @DictFormat(DictTypeConstants.ORDER_STATUS)
-    private Integer status;
+    @DictFormat(DynamicDictTypeEnums.class)
+    private DynamicDictTypeEnums status;
 
     @ExcelProperty(value = "渠道编号名称", converter = DictConvert.class)
-    @DictFormat(DictTypeConstants.CHANNEL_CODE)
+    @DictFormat(PayChannelEnum.class)
     private String channelCode;
 
     @ExcelProperty("订单支付成功时间")

@@ -69,8 +69,6 @@ public interface UserCenterConvert {
     }
     ShareUserDTO convert(ShareUserInfoDO bean);
 
-    SocialUserBindReqDTO convert(String userId, Integer userType, SocialUserBindReqVO reqVO);
-
     SocialUserUnbindReqDTO convert(String userId, Integer userType, SocialUserUnbindReqVO reqVO);
 
     UserPageItemRespVO convert(AdminUserInfoDO bean);
@@ -98,8 +96,6 @@ public interface UserCenterConvert {
     AdminUserRespDTO convert4(AdminUserInfoDO bean);
 
     List<AdminUserRespDTO> convertList4(List<AdminUserInfoDO> users);
-
-    AdminUserRespDTO convert2(AdminUserInfoDO bean);
 
     List<AdminUserRespDTO> convertList2(List<AdminUserInfoDO> list);
 

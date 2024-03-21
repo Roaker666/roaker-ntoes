@@ -6,7 +6,6 @@ import com.roaker.notes.commons.db.PageResult;
 import com.roaker.notes.commons.excel.utils.ExcelUtils;
 import com.roaker.notes.enums.CommonStatusEnum;
 import com.roaker.notes.enums.UserSexEnum;
-import com.roaker.notes.security.core.annotations.PreAuthenticated;
 import com.roaker.notes.uc.converter.user.UserCenterConvert;
 import com.roaker.notes.uc.dal.dataobject.dept.DeptDO;
 import com.roaker.notes.uc.dal.dataobject.user.AdminUserInfoDO;
