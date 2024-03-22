@@ -8,6 +8,7 @@ import com.roaker.notes.starters.sms.core.client.impl.debug.DebugDingTalkSmsClie
 import com.roaker.notes.starters.sms.core.client.impl.tencent.TencentSmsClient;
 import com.roaker.notes.starters.sms.core.enums.SmsChannelEnum;
 import com.roaker.notes.starters.sms.core.property.SmsChannelProperties;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 
@@ -21,6 +22,7 @@ import java.util.concurrent.ConcurrentMap;
  */
 @Validated
 @Slf4j
+@ToString
 public class SmsClientFactoryImpl implements SmsClientFactory {
 
     private final ConcurrentMap<Long, AbstractSmsClient> channelIdClients = new ConcurrentHashMap<>();
@@ -66,13 +68,11 @@ public class SmsClientFactoryImpl implements SmsClientFactory {
         SmsChannelEnum channelEnum = SmsChannelEnum.getByCode(properties.getCode());
         Assert.notNull(channelEnum, String.format("渠道类型(%s) 为空", channelEnum));
 
-        switch (channelEnum) {
-            case ALIYUN: return new AliyunSmsClient(properties);
-            case DEBUG_DING_TALK: return new DebugDingTalkSmsClient(properties);
-            case TENCENT: return new TencentSmsClient(properties);
-        }
+        return switch (channelEnum) {
+            case ALIYUN -> new AliyunSmsClient(properties);
+            case DEBUG_DING_TALK -> new DebugDingTalkSmsClient(properties);
+            case TENCENT -> new TencentSmsClient(properties);
+        };
         // 创建失败，错误日志 + 抛出异常
-        log.error("[createSmsClient][配置({}) 找不到合适的客户端实现]", properties);
-        throw new IllegalArgumentException(String.format("配置(%s) 找不到合适的客户端实现", properties));
     }
 }

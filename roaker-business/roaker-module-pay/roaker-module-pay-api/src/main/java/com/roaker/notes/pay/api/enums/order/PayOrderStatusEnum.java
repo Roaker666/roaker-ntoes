@@ -1,5 +1,6 @@
 package com.roaker.notes.pay.api.enums.order;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.roaker.notes.commons.core.IntArrayValuable;
 import com.roaker.notes.commons.utils.ObjectUtils;
 import com.roaker.notes.dynamic.enums.CommonEnum;
@@ -24,6 +25,7 @@ public enum PayOrderStatusEnum implements CommonEnum, IntArrayValuable {
     CLOSED(30, "支付关闭"), // 注意：全部退款后，还是 REFUND 状态
     ;
 
+    @EnumValue
     private final Integer code;
     private final String name;
 

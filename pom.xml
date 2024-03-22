@@ -46,7 +46,6 @@
         <mybatis-plus.version>3.5.5</mybatis-plus.version>
         <mybatis-plus-generator.version>3.5.5</mybatis-plus-generator.version>
         <dynamic-datasource.version>3.6.1</dynamic-datasource.version>
-        <redisson.version>3.18.0</redisson.version>
         <!-- 服务保障相关 -->
         <lock4j.version>2.2.3</lock4j.version>
         <resilience4j.version>1.7.1</resilience4j.version>
@@ -696,11 +695,6 @@
                 <version>${dynamic-datasource.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.redisson</groupId>
-                <artifactId>redisson-spring-boot-starter</artifactId>
-                <version>${redisson.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -1025,39 +1019,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler.version}</version>
-                <configuration>
-<!--                    <fork>true</fork>-->
-<!--                    <compilerArgs>-->
-<!--                        <arg>&#45;&#45;add-opens</arg>-->
-<!--                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>-->
-<!--                        <arg>&#45;&#45;add-exports</arg>-->
-<!--                        <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>-->
-<!--                        <arg>&#45;&#45;add-exports</arg>-->
-<!--                        <arg>java.base/jdk.internal.misc=ALL-UNNAMED</arg>-->
-<!--                        <arg>&#45;&#45;add-opens</arg>-->
-<!--                        <compilerArg>-->
-<!--                            -Amapstruct.defaultComponentModel=spring-->
-<!--                        </compilerArg>-->
-<!--                    </compilerArgs>-->
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.mapstruct</groupId>
-                            <artifactId>mapstruct-processor</artifactId>
-                            <version>${mapstruct.version}</version>
-                        </path>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
-                        </path>
-                        <dependency>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok-mapstruct-binding</artifactId>
-                            <version>0.2.0</version>
-                        </dependency>
-                    </annotationProcessorPaths>
-                </configuration>
             </plugin>
         </plugins>
         <pluginManagement>
@@ -1095,6 +1056,43 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler.version}</version>
+                    <configuration>
+                        <fork>true</fork>
+                        <compilerArgs>
+                            <arg>--add-opens</arg>
+                            <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>
+                            <arg>--add-exports</arg>
+                            <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>
+                            <arg>--add-exports</arg>
+                            <arg>java.base/jdk.internal.misc=ALL-UNNAMED</arg>
+                            <arg>--add-opens</arg>
+                            <compilerArg>
+                                -Amapstruct.defaultComponentModel=spring
+                            </compilerArg>
+                        </compilerArgs>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>${mapstruct.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+                            <dependency>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok-mapstruct-binding</artifactId>
+                                <version>0.2.0</version>
+                            </dependency>
+                        </annotationProcessorPaths>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>

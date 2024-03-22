@@ -5,12 +5,14 @@ import com.xingyuv.http.HttpUtil;
 import com.xingyuv.http.support.hutool.HutoolImpl;
 import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.justauth.autoconfigure.JustAuthProperties;
+import com.xingyuv.justauth.support.cache.RedisStateCache;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.redis.core.RedisTemplate;
 
 /**
  * @author lei.rao
@@ -29,5 +31,11 @@ public class RoakerSocialAutoConfiguration {
         HttpUtil.setHttp(new HutoolImpl());
         // 创建 roakerAuthRequestFactory
         return new RoakerAuthRequestFactory(properties, authStateCache);
+    }
+
+
+    @Bean
+    public AuthStateCache authStateCache(RedisTemplate<String, String> redisTemplate, JustAuthProperties justAuthProperties) {
+        return new RedisStateCache(redisTemplate, justAuthProperties.getCache());
     }
 }

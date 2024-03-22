@@ -6,20 +6,14 @@ import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.extension.incrementer.H2KeyGenerator;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
-import com.gitee.sunchenbin.mybatis.actable.manager.handler.StartUpHandler;
-import com.gitee.sunchenbin.mybatis.actable.manager.handler.StartUpHandlerImpl;
 import com.google.common.collect.ImmutableList;
 import com.roaker.notes.commons.db.properties.MybatisPlusAutoFillProperties;
 import com.roaker.notes.uc.api.seq.SeqApi;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.core.annotation.Order;
 
 /**
  * @author lei.rao
@@ -28,15 +22,6 @@ import org.springframework.core.annotation.Order;
 
 @Configuration
 @EnableConfigurationProperties(MybatisPlusAutoFillProperties.class)
-@ComponentScan(
-        basePackages = {"com.gitee.sunchenbin.mybatis.actable.manager", "com.roaker.notes"},
-        excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = StartUpHandlerImpl.class)})
-@MapperScan(basePackages = {
-        "com.gitee.sunchenbin.mybatis.actable.dao",
-        "com.roaker.notes.infra.encrypt.dal.mapper",
-        "com.roaker.notes.uc.dal.mapper",
-        "com.roaker.notes.pay.dal.mapper"
-})
 public class MybatisPlusAutoConfigure {
 
     /**
@@ -57,12 +42,6 @@ public class MybatisPlusAutoConfigure {
                         .setIdentifierGenerator(seqIdGenerator(seqApi))
                         .getDbConfig()
                         .setKeyGenerators(ImmutableList.of(new H2KeyGenerator()));
-    }
-
-    @Bean
-    @Order(-1)
-    public StartUpHandler startUpHandler() {
-        return new CreateTableStartUpHandlerImpl();
     }
 
     @Bean

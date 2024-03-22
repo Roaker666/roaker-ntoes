@@ -12,7 +12,7 @@
     <artifactId>roaker-social-starter</artifactId>
 
     <properties>
-        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.release />
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
 
@@ -29,6 +29,11 @@
         <dependency>
             <groupId>com.roaker.notes</groupId>
             <artifactId>roaker-core-commons</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.roaker.notes</groupId>
+            <artifactId>roaker-redis-starter</artifactId>
         </dependency>
     </dependencies>
 

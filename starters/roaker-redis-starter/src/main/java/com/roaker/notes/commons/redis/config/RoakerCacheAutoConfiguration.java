@@ -55,6 +55,7 @@ public class RoakerCacheAutoConfiguration {
      * 创建 RedisTemplate Bean，使用 JSON 序列化方式
      */
     @Bean
+    @Primary
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         // 创建 RedisTemplate 对象
         RedisTemplate<String, Object> template = new RedisTemplate<>();

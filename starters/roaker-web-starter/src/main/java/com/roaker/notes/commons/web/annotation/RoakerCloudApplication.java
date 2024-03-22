@@ -1,6 +1,5 @@
 package com.roaker.notes.commons.web.annotation;
 
-import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import com.roaker.notes.commons.lb.annotation.EnableFeignInterceptor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +16,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@SpringBootApplication(scanBasePackages = "com.roaker.notes")
 @EnableDiscoveryClient
 @EnableKnife4j
 @EnableFeignInterceptor

@@ -68,19 +68,19 @@ public class FileConfigServiceImpl implements FileConfigService {
     @Override
     @PostConstruct
     public void initLocalCache() {
-        // 先加载
-        applicationContext.getBean(StartUpHandler.class);
-        // 第一步：查询数据
-        List<FileConfigDO> configs = fileConfigMapper.selectList();
-        log.info("[initLocalCache][缓存文件配置，数量为:{}]", configs.size());
-        // 第二步：构建缓存：创建或更新文件 Client
-        configs.forEach(config -> {
-            fileClientFactory.createOrUpdateFileClient(config.getId(), config.getStorage(), config.getConfig());
-            // 如果是 master，进行设置
-            if (Boolean.TRUE.equals(config.getMaster())) {
-                masterFileClient = fileClientFactory.getFileClient(config.getId());
-            }
-        });
+//        // 先加载
+//        applicationContext.getBean(StartUpHandler.class);
+//        // 第一步：查询数据
+//        List<FileConfigDO> configs = fileConfigMapper.selectList();
+//        log.info("[initLocalCache][缓存文件配置，数量为:{}]", configs.size());
+//        // 第二步：构建缓存：创建或更新文件 Client
+//        configs.forEach(config -> {
+//            fileClientFactory.createOrUpdateFileClient(config.getId(), config.getStorage(), config.getConfig());
+//            // 如果是 master，进行设置
+//            if (Boolean.TRUE.equals(config.getMaster())) {
+//                masterFileClient = fileClientFactory.getFileClient(config.getId());
+//            }
+//        });
     }
 
     @Override

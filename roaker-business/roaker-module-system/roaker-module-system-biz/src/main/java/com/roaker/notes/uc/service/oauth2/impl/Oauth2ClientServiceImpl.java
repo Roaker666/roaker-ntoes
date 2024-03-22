@@ -63,12 +63,12 @@ public class Oauth2ClientServiceImpl implements Oauth2ClientService {
     @Override
     @PostConstruct
     public void initLocalCache() {
-        // 第一步：查询数据
-        List<Oauth2ClientDO> clients = oauth2ClientMapper.selectList(Oauth2ClientDO::getStatus, CommonStatusEnum.ENABLE);
-        log.info("[initLocalCache][缓存 Oauth2 客户端，数量为:{}]", clients.size());
-
-        // 第二步：构建缓存。
-        clientCache = convertMap(clients, Oauth2ClientDO::getClientId);
+//        // 第一步：查询数据
+//        List<Oauth2ClientDO> clients = oauth2ClientMapper.selectList(Oauth2ClientDO::getStatus, CommonStatusEnum.ENABLE);
+//        log.info("[initLocalCache][缓存 Oauth2 客户端，数量为:{}]", clients.size());
+//
+//        // 第二步：构建缓存。
+//        clientCache = convertMap(clients, Oauth2ClientDO::getClientId);
     }
 
     @Override
