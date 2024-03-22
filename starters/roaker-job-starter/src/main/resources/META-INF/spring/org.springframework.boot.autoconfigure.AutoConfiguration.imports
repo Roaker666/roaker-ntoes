@@ -1,0 +1,2 @@
+com.roaker.notes.quartz.config.RoakerQuartzAutoConfiguration
+com.roaker.notes.quartz.config.RoakerAsyncAutoConfiguration

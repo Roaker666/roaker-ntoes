@@ -1,0 +1,2 @@
+com.roaker.notes.commons.lb.RestTemplateAutoConfigure
+com.roaker.notes.commons.lb.config.VersionIsolationAutoConfig
