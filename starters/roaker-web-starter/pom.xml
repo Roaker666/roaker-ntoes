@@ -49,11 +49,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.roaker.notes</groupId>
             <artifactId>roaker-core-commons</artifactId>
         </dependency>

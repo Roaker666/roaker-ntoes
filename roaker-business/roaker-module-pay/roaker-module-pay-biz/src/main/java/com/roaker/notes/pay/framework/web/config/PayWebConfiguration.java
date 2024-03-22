@@ -1,7 +1,7 @@
 package com.roaker.notes.pay.framework.web.config;
 
 import com.roaker.notes.commons.web.swagger.config.RoakerSwaggerAutoConfiguration;
-import org.springdoc.core.GroupedOpenApi;
+import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

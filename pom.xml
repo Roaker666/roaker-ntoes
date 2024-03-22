@@ -38,7 +38,7 @@
         <spring.version>6.1.5</spring.version>
         <spring.cloud.version>4.1.0</spring.cloud.version>
         <!-- Web 相关 -->
-        <springdoc.version>1.6.14</springdoc.version>
+        <springdoc.version>2.3.0</springdoc.version>
         <knife4j.version>4.4.0</knife4j.version>
         <servlet.versoin>2.5</servlet.versoin>
         <!-- DB 相关 -->
@@ -650,11 +650,6 @@
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-ui</artifactId>
-                <version>${springdoc.version}</version>
             </dependency>
 
             <dependency>
