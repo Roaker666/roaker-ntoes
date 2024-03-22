@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.roaker.notes.datapermission.config.RoakerDataPermissionAutoConfiguration,\
-com.roaker.notes.datapermission.config.RoakerDeptDataPermissionAutoConfiguration

@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.roaker.notes.commons.db.config.MybatisPlusAutoConfigure
