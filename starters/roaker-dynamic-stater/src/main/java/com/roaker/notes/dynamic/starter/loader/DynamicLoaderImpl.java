@@ -31,12 +31,12 @@ public class DynamicLoaderImpl implements DynamicLoader {
 
     @EventListener(ApplicationReadyEvent.class)
     public void loadDynamicDict() {
-        loadDynamicDict0();
+//        loadDynamicDict0();
     }
 
     @Scheduled(fixedDelay = REFRESH_PERIOD, initialDelay = REFRESH_PERIOD)
     public void refreshDynamicDict() {
-        loadDynamicDict0();
+//        loadDynamicDict0();
     }
 
     private void loadDynamicDict0() {
