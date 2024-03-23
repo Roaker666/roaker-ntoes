@@ -88,6 +88,7 @@ public class PayOrderExtensionDO extends BaseDO {
      * 参见 <a href="https://www.pingxx.com/api/支付渠道%20extra%20参数说明.html">参数说明</>
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
+    @ColumnType(MySqlTypeConstant.JSON)
     private Map<String, String> channelExtras;
 
     /**

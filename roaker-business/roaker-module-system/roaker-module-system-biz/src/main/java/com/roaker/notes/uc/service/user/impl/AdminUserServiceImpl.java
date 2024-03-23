@@ -34,6 +34,7 @@ import com.roaker.notes.uc.vo.user.*;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -64,7 +65,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     private PostService postService;
     @Resource
     private RolePermissionCoreService rolePermissionCoreService;
-    @Resource
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Resource

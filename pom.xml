@@ -39,7 +39,7 @@
         <spring.cloud.version>4.1.0</spring.cloud.version>
         <!-- Web 相关 -->
         <springdoc.version>2.3.0</springdoc.version>
-        <knife4j.version>4.4.0</knife4j.version>
+        <knife4j.version>4.5.0</knife4j.version>
         <servlet.versoin>2.5</servlet.versoin>
         <!-- DB 相关 -->
         <druid.version>1.2.21</druid.version>
@@ -1065,7 +1065,10 @@
                             <arg>java.base/jdk.internal.reflect=ALL-UNNAMED</arg>
                             <arg>--add-exports</arg>
                             <arg>java.base/jdk.internal.misc=ALL-UNNAMED</arg>
+                            <arg>--add-exports</arg>
+                            <arg>java.base/sun.net=ALL-UNNAMED</arg>
                             <arg>--add-opens</arg>
+                            <arg>java.management/sun.management=ALL-UNNAMED</arg>
                             <compilerArg>
                                 -Amapstruct.defaultComponentModel=spring
                             </compilerArg>

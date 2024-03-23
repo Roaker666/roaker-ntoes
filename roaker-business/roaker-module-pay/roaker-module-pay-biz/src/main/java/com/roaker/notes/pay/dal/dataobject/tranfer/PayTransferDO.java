@@ -163,6 +163,7 @@ public class PayTransferDO extends BaseDO {
      * 渠道的额外参数
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
+    @ColumnType(MySqlTypeConstant.JSON)
     private Map<String, String> channelExtras;
 
     /**

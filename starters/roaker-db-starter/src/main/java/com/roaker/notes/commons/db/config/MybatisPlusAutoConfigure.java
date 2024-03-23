@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.extension.incrementer.H2KeyGenerator;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.gitee.sunchenbin.mybatis.actable.manager.handler.StartUpHandler;
 import com.google.common.collect.ImmutableList;
 import com.roaker.notes.commons.db.properties.MybatisPlusAutoFillProperties;
 import com.roaker.notes.uc.api.seq.SeqApi;
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 /**
  * @author lei.rao
@@ -42,6 +44,12 @@ public class MybatisPlusAutoConfigure {
                         .setIdentifierGenerator(seqIdGenerator(seqApi))
                         .getDbConfig()
                         .setKeyGenerators(ImmutableList.of(new H2KeyGenerator()));
+    }
+
+    @Bean
+    @Order(-2)
+    public StartUpHandler startUpHandler() {
+        return new CreateTableStartUpHandlerImpl();
     }
 
     @Bean

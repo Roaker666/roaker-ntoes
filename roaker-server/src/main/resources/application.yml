@@ -19,7 +19,7 @@ roaker:
     name: roaker-server
     segment:
       enable: true
-      url: jdbc:mysql://localhost:3307/roaker-server?useUnicode=true&characterEncoding=utf8
+      url: jdbc:mysql://localhost:3306/roaker-server?useUnicode=true&characterEncoding=utf8
       username: root
       password: root
   mybatis-plus:
@@ -55,7 +55,7 @@ roaker:
     logType: db
     datasource:
       driverClassName: com.mysql.cj.jdbc.Driver
-      jdbcUrl: jdbc:mysql://localhost:3307/roaker-server?useUnicode=true&characterEncoding=utf8
+      jdbcUrl: jdbc:mysql://localhost:3306/roaker-server?useUnicode=true&characterEncoding=utf8
       username: root
       password: root
 # 负载均衡
@@ -149,7 +149,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     name: roaker-server
-    url: jdbc:mysql://localhost:3307/${spring.datasource.name}?useSSL=false&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/${spring.datasource.name}?useSSL=false&useUnicode=true&characterEncoding=utf8
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
@@ -187,7 +187,7 @@ spring:
       strict: false
       datasource:
         master:
-          url: jdbc:mysql://localhost:3307/${spring.datasource.name}?useSSL=false&useUnicode=true&characterEncoding=utf8
+          url: jdbc:mysql://localhost:3306/${spring.datasource.name}?useSSL=false&useUnicode=true&characterEncoding=utf8
           driver-class-name: com.mysql.cj.jdbc.Driver
           username: root
           password: root
@@ -228,7 +228,7 @@ spring:
       write-date-timestamps-as-nanoseconds: false # 设置不使用 nanoseconds 的格式。例如说 1611460870.401，而是直接 1611460870401
       write-durations-as-timestamps: true # 设置 Duration 的格式，使用时间戳
       fail-on-empty-beans: false # 允许序列化无属性的 Bean
-# --- #################### 监控相关配置 ####################
+  # --- #################### 监控相关配置 ####################
   boot:
     admin:
       # Spring Boot Admin Client 客户端的相关配置

@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.gitee.sunchenbin.mybatis.actable.annotation.IsAutoIncrement;
 import com.gitee.sunchenbin.mybatis.actable.annotation.IsNotNull;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import com.roaker.notes.commons.db.core.dataobject.BaseDO;
 import com.roaker.notes.pay.api.enums.refund.PayRefundStatusEnum;
 import com.roaker.notes.pay.dal.dataobject.order.PayOrderDO;
@@ -90,6 +92,7 @@ public class PayWalletRechargeDO extends BaseDO {
      * 冗余 {@link PayOrderDO#getChannelCode()}
      */
     @TableField
+    @ColumnType(value = MySqlTypeConstant.VARCHAR, length = 64)
     private String payChannelCode;
     /**
      * 订单支付时间
@@ -102,23 +105,27 @@ public class PayWalletRechargeDO extends BaseDO {
      * 关联 {@link PayRefundDO#getId()}
      */
     @TableField
+    @ColumnType(MySqlTypeConstant.BIGINT)
     private Long payRefundId;
 
     /**
      * 退款金额，包含赠送金额
      */
     @TableField
+    @ColumnType(MySqlTypeConstant.INT)
     private Integer refundTotalPrice;
     /**
      * 退款支付金额
      */
     @TableField
+    @ColumnType(MySqlTypeConstant.INT)
     private Integer refundPayPrice;
 
     /**
      * 退款钱包赠送金额
      */
     @TableField
+    @ColumnType(MySqlTypeConstant.INT)
     private Integer refundBonusPrice;
 
     /**
@@ -132,5 +139,6 @@ public class PayWalletRechargeDO extends BaseDO {
      * 枚举 {@link PayRefundStatusEnum}
      */
     @TableField
+    @ColumnType(MySqlTypeConstant.INT)
     private PayRefundStatusEnum refundStatus;
 }
